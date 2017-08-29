@@ -162,7 +162,7 @@ function showMaestro(id,nombre, ape_pat, ape_mat, col, calle, num, telfij, telce
     $('#modalMaestros').modal('show');
 }
 function accionMaestro() {
-    if($("#padreid").val() == ''){
+    if($("#maestroid").val() == ''){
         newMaestro();
     }else{
         updateMaestro();

@@ -15,7 +15,7 @@
             <hr style="border-color:gray;">
         </li>
         <li id="rutetipos"><a href="{{route('index.tipos')}}">Tipos de Clases</a></li>
-        <li><a href="#">Asistencias</a></li>
+        <li id="ruteasistencia"><a href="{{route('index.asistencias')}}">Asistencias</a></li>
         <li><a href="#">Reemplazos</a></li>
         <li>
             <hr style="border-color:gray;">

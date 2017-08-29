@@ -35,6 +35,10 @@ Route::get('/tipoclase',[
     'uses' => 'UserController@getTiposForm',
     'as' => 'index.tipos'
 ]);
+Route::get('/asistencias',[
+   'uses' => 'UserController@getAsistenciasForm',
+    'as' => 'index.asistencias'
+]);
 //area de resources
 Route::resource('/resource/maestros','MaestrosController');
 Route::post('/resource/maestros/{id}',[
@@ -54,3 +58,9 @@ Route::resource('/resource/tipoclase','TiposController');
 Route::post('/resource/tipoclase/{id}',[
     'uses' => 'TiposController@update'
 ]);
+
+Route::post('/alumnos/{id}/asignar',[
+  'uses' => 'AlumnosController@asignar'
+]);
+
+Route::resource('/resource/asistencias','AsistenciasController');

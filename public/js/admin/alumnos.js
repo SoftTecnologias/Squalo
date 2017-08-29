@@ -10,7 +10,8 @@ $(function() {
         multidate:true
     });
     $('#btnAlumnoAsignar').on('click',function () {
-        console.log($('#datepicker :input').val());
+        //console.log($('#datepicker :input').val());
+        asignarAlumno();
     });
     $('#agregarAlumno').on('click',function () {
         $('#titulo-modal').text('Nuevo Alumno');
@@ -89,4 +90,30 @@ function asigna(id, nombre) {
     $('#idasignar').val(id);
     $('#nameasignar').val(nombre);
     $('#modalAsignar').modal('show');
+}
+function asignarAlumno(){
+  var data = new FormData(document.getElementById("asignarForm"));
+
+  var id = $('#idasignar').val();
+  $.ajax({
+      url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/alumnos/"+id+'/asignar',
+      type:"POST",
+      data: data,
+      contentType:false,
+      processData: false,
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  }).done(function(json){
+      if(json.code == 200) {
+          swal("Realizado", json.msg, json.detail);
+          $('#modalAlumno').modal("hide");
+          $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+          reset();
+      }else{
+          swal("Error",json.msg,json.detail);
+      }
+  }).fail(function(){
+      swal("Error","Tuvimos un problema de conexion","error");
+  });
 }

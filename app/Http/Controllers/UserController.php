@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Horarios;
 use App\Maestro;
 use App\Padre;
 use App\Tipos;
@@ -12,6 +13,7 @@ use Mockery\Exception;
 
 class UserController extends Controller
 {
+    //Formularios
    public function getIndex(){
        return view('index');
    }
@@ -34,7 +36,9 @@ class UserController extends Controller
            $padres = Padre::all();
            $tipos= Tipos::all();
            $maestros = Maestro::all();
-           return view('administrador.alumnos',['padres' => $padres,'tipos' => $tipos,'maestros' => $maestros]);
+           $horarios = Horarios::all();
+           return view('administrador.alumnos',['padres' => $padres,'tipos' => $tipos,'maestros' => $maestros,
+                                    'horarios' => $horarios]);
        }catch (Exception $e){
            return $e;
        }
@@ -42,6 +46,13 @@ class UserController extends Controller
    public function getTiposForm(){
        try{
            return view('administrador.tipoclase');
+       }catch (Exception $e){
+           return $e;
+       }
+   }
+   public function getAsistenciasForm(){
+       try{
+           return view('administrador.asistencia');
        }catch (Exception $e){
            return $e;
        }
