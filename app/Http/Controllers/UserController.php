@@ -52,7 +52,8 @@ class UserController extends Controller
    }
    public function getAsistenciasForm(){
        try{
-           return view('administrador.asistencias');
+           $maestros = Maestro::all();
+           return view('administrador.asistencias',['maestros'=>$maestros]);
        }catch (Exception $e){
            return $e;
        }

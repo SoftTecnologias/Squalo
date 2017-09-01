@@ -1,7 +1,28 @@
 $(function () {
 
     $('#asisMaestro').on('change',function () {
-        ($('#asisMaestro').is(':checked') == false) ? $('#divremplazo').attr('hidden',false):$('#divremplazo').attr('hidden',true);
+        var id = $('#asistid').val();
+        $.ajax({
+            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/asistencias/maestro/"+id,
+            type:"POST",
+            data: {'check':$('#asisMaestro').prop('checked')},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).done(function(json){
+            if(json.code == 200) {
+                var maestros = json.data;
+                ($('#asisMaestro').is(':checked') == false) ? $('#divremplazo').attr('hidden',false):$('#divremplazo').attr('hidden',true);
+            }else{
+                ($('#asisMaestro').is(':checked') == false) ? $('#asisMaestro').attr('checked',true): $('#asisMaestro').attr('checked',false);
+                ($('#asisMaestro').is(':checked') == false) ?  $('#divremplazo').attr('hidden',true):$('#divremplazo').attr('hidden',true);
+            }
+        }).fail(function(){
+            ($('#asisMaestro').is(':checked') == false) ? $('#asisMaestro').attr('checked',true): $('#asisMaestro').attr('checked',false);
+            ($('#asisMaestro').is(':checked') == false) ?  $('#divremplazo').attr('hidden',true):$('#divremplazo').attr('hidden',true);
+            swal("Error","Tuvimos un problema de conexion","error");
+        });
+
     });
     $("#ruteasistencia").addClass('active');
     $("#rutehome").removeClass('active');
@@ -42,12 +63,12 @@ function info(id) {
         success: function (data) {
             $('#ab tr').remove();
             data['data'].forEach(function (item) {
-                var asistencia = (item['asal'] == 0) ? '<input type="checkbox"> Asistencia': '<input type="checkbox" checked> Asistencia';
+                var asistencia = (item['asal'] == 0) ? '<input type="checkbox" id="check'+item['alumn']+'" onchange="alumAsis('+item['alumn']+')"> Asistencia': '<input type="checkbox" id="check'+item['alumn']+'" onchange="alumAsis('+item['alumn']+')" checked> Asistencia';
                 $('#asistid').val(item['id']);
                 (item['asma'] == 0) ? $('#asisMaestro').attr('checked',false):$('#asisMaestro').attr('checked',true);
                 (item['asma'] == 0) ? $('#divremplazo').attr('hidden',false):$('#divremplazo').attr('hidden',true);
                 $('#name').val(item['nm']+' '+item['apm']+' '+item['amm']);
-                $('#asistenciasAlumnos').append('<tr class="table" id ="'+item['id']+'">' +
+                $('#asistenciasAlumnos').append('<tr class="table" id ="'+item['alumn']+'">' +
                     '<td>'+item['na']+'</td>' +
                     '<td>'+item['apa']+'</td>' +
                     '<td>'+item['ama']+'</td>' +
@@ -58,6 +79,22 @@ function info(id) {
         }
 
     });
+}
 
+function alumAsis(id) {
+    $.ajax({
+        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/asistencias/alumno/"+id,
+        type:"POST",
+        data: {'check':$('#check'+id).prop('checked'),'grupo':$('#asistid').val()},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }).done(function(json){
+        if(json.code == 200) {
 
+        }else{
+        }
+    }).fail(function(){
+        swal("Error","Tuvimos un problema de conexion","error");
+    });
 }

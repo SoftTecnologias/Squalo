@@ -77,6 +77,14 @@ Route::post('/alumnos/{id}/asignar',[
 
 Route::resource('/resource/asistencias','AsistenciasController');
 
+Route::post('/resource/asistencias/maestro/{id}',[
+    'uses' => 'AsistenciasController@asistenciaMaestro'
+]);
+
+Route::post('/resource/asistencias/alumno/{id}',[
+    'uses' => 'AsistenciasController@asistenciaAlumno'
+]);
+
 Route::get('/resource/asistenciaalumnos/{id}',[
     'uses' => 'AsistenciasController@AlumnosClase'
 ]);

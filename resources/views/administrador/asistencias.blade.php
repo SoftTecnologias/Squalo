@@ -1,5 +1,6 @@
 @extends('layouts.administracion')
 @section('styles')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link media="all" type="text/css" rel="stylesheet"
           href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -100,6 +101,9 @@
                                     <div id="divremplazo" hidden>
                                         <select name="remplazo" id="remplazo" class="selectpicker">
                                             <option value="00">Selecciona a un Reemplazo</option>
+                                            @foreach($maestros as $maestro)
+                                                <option value="{{$maestro->id}}">{{$maestro->nombre.' '.$maestro->ape_paterno.' '.$maestro->ape_materno}}</option>
+                                                @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -128,7 +132,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="btnAlumno" class="btn btn-primary">Guardar</button>
+                    <button id="btnAlumno" class="btn btn-primary">Cerrar</button>
                 </div>
             </div>
         </div>

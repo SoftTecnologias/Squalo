@@ -233,13 +233,6 @@ class AlumnosController extends Controller
 
     public function getHorarios(Request $request){
         try{
-            /*
-             * select fecha,h.Hora from horarios h
-inner join clase c on c.idhorario = h.id
-inner join fecha_clase fc on fc.idclase = c.id
-inner join maestros m on m.id = c.idmaestro
-where m.id = 1
-             */
 
             $fechas = DB::table('horarios as h')
                 ->select('fc.fecha','h.Hora')

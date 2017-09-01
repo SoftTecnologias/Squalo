@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\AsistenciaMaestro;
+use App\Maestro;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -119,7 +121,7 @@ class AsistenciasController extends Controller
 
             $asistencias = DB::table('clase as c')
                 ->select('g.id', 'a.nombre as na', 'a.ape_paterno as apa', 'a.ape_materno as ama', 'ga.asistencia as asal',
-                    'am.asistencia as asma', 'm.nombre as nm', 'm.ape_paterno as apm', 'm.ape_materno as amm')
+                    'am.asistencia as asma', 'm.nombre as nm', 'm.ape_paterno as apm', 'm.ape_materno as amm','a.id as alumn')
                 ->join('fecha_clase as fc', 'c.id', '=', 'fc.idclase')
                 ->join('grupo as g', 'g.idfecha', '=', 'fc.id')
                 ->join('grupo_alumnos as ga','ga.idGrupo','=','g.id')
@@ -130,6 +132,50 @@ class AsistenciasController extends Controller
                 ->where('c.id','=',$id)
                 ->get();
             $respuesta = ["code"=>200, 'data'=>$asistencias,"detail"=>"success"];
+        }catch(Exception $e){
+            $respuesta = ["code"=>500, "msg"=>$e->getMessage(),"detail"=>"error"];
+        }
+        return Response::json($respuesta);
+    }
+
+    public function asistenciaMaestro(Request $request,$id){
+        try {
+            $grupo = DB::table('grupo')
+                ->select('*')
+                ->where('id','=',$id)->get();
+            $asismaestro = '';
+            foreach ($grupo as $g) {
+                $asismaestro = AsistenciaMaestro::findOrFail($g->id_asis_maestro);
+            }
+                $up=([
+                    "asistencia" => $request->check
+                ]);
+
+                $asismaestro->fill($up);
+                $asismaestro->save();
+
+
+            $respuesta = ["code"=>200, 'data'=>'',"detail"=>"success"];
+        }catch(Exception $e){
+            $respuesta = ["code"=>500, "msg"=>$e->getMessage(),"detail"=>"error"];
+        }
+        return Response::json($respuesta);
+    }
+
+    public function asistenciaAlumno(Request $request,$id){
+        try {
+            $asis =0;
+            if($request->check == 'true'){
+                $asis = 1;
+            }else{
+                $asis = 0;
+            }
+            DB::table('grupo_alumnos')
+                ->where('idAlumno','=',$id)
+                ->where('idGrupo','=',$request->grupo)
+                ->update(['asistencia'=>$asis]);
+
+            $respuesta = ["code"=>200, 'data'=>'',"detail"=>"success"];
         }catch(Exception $e){
             $respuesta = ["code"=>500, "msg"=>$e->getMessage(),"detail"=>"error"];
         }
