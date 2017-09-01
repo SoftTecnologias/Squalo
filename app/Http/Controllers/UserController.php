@@ -52,7 +52,7 @@ class UserController extends Controller
    }
    public function getAsistenciasForm(){
        try{
-           return view('administrador.asistencia');
+           return view('administrador.asistencias');
        }catch (Exception $e){
            return $e;
        }

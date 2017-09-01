@@ -52,6 +52,14 @@ Route::post('/resource/padres/{id}',[
 
 Route::resource('/resource/alumnos','AlumnosController');
 
+Route::post('/resource/alumnos/abono/{id}',[
+    'uses' => 'AlumnosController@abonar'
+]);
+
+Route::post('/resource/alumnos/abono/cancel/{id}',[
+   'uses' =>  'AlumnosController@cancelAbono'
+]);
+
 
 Route::resource('/resource/tipoclase','TiposController');
 
@@ -64,3 +72,11 @@ Route::post('/alumnos/{id}/asignar',[
 ]);
 
 Route::resource('/resource/asistencias','AsistenciasController');
+
+Route::get('/resource/asistenciaalumnos/{id}',[
+    'uses' => 'AsistenciasController@AlumnosClase'
+]);
+
+Route::get('/resource/pagos/{id}',[
+    'uses' => 'AlumnosController@getPagos'
+]);

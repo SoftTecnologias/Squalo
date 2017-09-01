@@ -3,12 +3,60 @@ $(function() {
     $('#tipoc').on('change',function () {
         numero = $(this).find('option:selected').attr('name');
     });
+
     $('#datepicker').datepicker({
         format: 'dd/mm/yyyy',
         startDate: '0d',
         autoclose: false,
         multidate:true
     });
+
+    $('#abonar').on('click',function () {
+        swal({
+            title: 'Ingrese el monto a abonar',
+            input: 'number',
+            showCancelButton: true,
+            confirmButtonText: 'Abonar',
+            showLoaderOnConfirm: true,
+            preConfirm: function (abono) {
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function() {
+                        if (isNaN(abono)) {
+                            reject('No es un numero')
+                        } else {
+                            resolve()
+                        }
+                    }, 2000)
+                })
+            },
+            allowOutsideClick: false
+        }).then(function (abono) {
+            var id = $('#idabono').val();
+            $.ajax({
+                url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/alumnos/abono/"+id,
+                type:"POST",
+                data: {'abonar':abono},
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            }).done(function(json){
+                if(json.code == 200) {
+                    swal({
+                        type: 'success',
+                        title: 'Pago Registrado!',
+                        html: 'Se abonaron: ' + abono+' a la cuenta'
+                    })
+                    $('#modalInfoAbono').modal("hide");
+                    $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+                }else{
+                    swal("Error",json.msg,json.detail);
+                }
+            }).fail(function(){
+                swal("Error","Tuvimos un problema de conexion","error");
+            });
+        })
+    });
+
     $('#btnAlumnoAsignar').on('click',function () {
         //console.log($('#datepicker :input').val());
         asignarAlumno();
@@ -38,7 +86,7 @@ $(function() {
             {data: 'fecha_nac'},
             {data: 'npadre'},
             {data: function (row) {
-                str = (row['asignado']==0) ? row['adeudo'] : row["adeudo"]+'<a href="#" id="adeudo'+row['id']+'">  info</a>';
+                str = (row['asignado']==0) ? row['adeudo'] : row["adeudo"]+'<a id="adeudo'+row['id']+'" onclick="pago('+row['id']+')">  info</a>';
                 return str;
             }},
             {data: function (row) {
@@ -116,4 +164,72 @@ function asignarAlumno(){
   }).fail(function(){
       swal("Error","Tuvimos un problema de conexion","error");
   });
+}
+
+function pagso(id) {
+    $('#modalInfoAbono').modal('show');
+}
+
+function pago(id) {
+    $.ajax({
+        type: "get",
+        url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/pagos/'+id,
+        success: function (data) {
+            $('#abonobody tr').remove();
+            $('#idabono').val(id);
+            data['data'].forEach(function (item) {
+                var acciones = (item['cancel'] == 0) ? '<button type="button" id="cancel'+item['id']+'" onclick="cancelpago('+item['id']+')" class="btn btn-danger">Cancelar</button>': '<label>Cancelado</label>';
+                var col = (item['cancel'] == 0) ? 'success': 'danger';
+                $('#nameabono').val(item['nombre']+' '+item['ape_paterno']+' '+item['ape_materno']);
+                $('#tablainfoabono').append('<tr class="table '+col+'" id ="'+item['id']+'">' +
+                    '<td>'+item['abono']+'</td>' +
+                    '<td>'+item['fecha']+'</td>' +
+                    '<td align="center">'+acciones+'</td>' +
+                    '</tr>');
+            })
+            $('#modalInfoAbono').modal('show');
+        }
+
+    });
+}
+
+function cancelpago(id) {
+    swal({
+        title: 'Este pago se cancelara',
+        showCancelButton: true,
+        confirmButtonText: 'continuar',
+        showLoaderOnConfirm: true,
+        preConfirm: function (abono) {
+            return new Promise(function (resolve, reject) {
+                setTimeout(function() {
+                    resolve();
+                }, 2000)
+            })
+        },
+        allowOutsideClick: false
+    }).then(function (abono) {
+
+        $.ajax({
+            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/alumnos/abono/cancel/"+id,
+            type:"POST",
+            data: {'id':id},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).done(function(json){
+            if(json.code == 200) {
+                swal({
+                    type: 'success',
+                    title: 'Ajax request finished!',
+                    html: 'Se abonaron: ' + abono+' a la cuenta'
+                })
+                $('#modalInfoAbono').modal("hide");
+                $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+            }else{
+                swal("Error",json.msg,json.detail);
+            }
+        }).fail(function(){
+            swal("Error","Tuvimos un problema de conexion","error");
+        });
+    })
 }

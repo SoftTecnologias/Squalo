@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Alumno;
+use App\pagos;
 use App\Tipos;
 use DateTime;
 use Illuminate\Http\Request;
@@ -58,7 +59,7 @@ class AlumnosController extends Controller
     public function store(Request $request)
     {
         try {
-            //Insercion del producto
+            //Insercion
             $tipoid = DB::table('alumnos')->insertGetId([
                 "nombre" => $request->input('name'),
                 "ape_paterno" => $request->input('ape_pat'),
@@ -159,15 +160,84 @@ class AlumnosController extends Controller
                 ]);
 
                 $grupoid = DB::table('grupo')->insertGetId([
-                    "idalumno" => $request->input('idasignar'),
-                    "asistencia_alumno" => 0,
                     "id_asis_maestro" => $asismaestroid,
                     "idfecha" => $fcid
+                ]);
+
+                $gru_al = DB::table('grupo_alumnos')->insertGetId([
+                    "idAlumno" => $request->input('idasignar'),
+                    "idGrupo" => $grupoid,
+                    "asistencia" => 0,
                 ]);
             }
 
             $respuesta = ["code" => 200, "msg" => 'El maestros fue registrado exitosamente', 'detail' => 'success'];
         } catch (Exception $e) {
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
+
+    public  function getPagos($id){
+        try {
+            $hoy = getdate();
+            if ($hoy['mon'] < 10) {
+                $hoy['mon'] = '0' . $hoy['mon'];
+            }
+            if ($hoy['mday'] < 10) {
+                $hoy['mday'] = '0' . $hoy['mday'];
+            }
+            $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . ($hoy['mday']);
+
+            $asistencias = DB::table('pagos as p')
+                ->select('p.abono','p.fecha','p.id','p.cancel','a.nombre','a.ape_paterno','a.ape_materno')
+                ->join('alumnos as a','p.idAlumno','=','a.id')
+                ->where('a.id','=',$id)
+                ->get();
+            $respuesta = ["code"=>200, 'data'=>$asistencias,"detail"=>"success"];
+        }catch(Exception $e){
+            $respuesta = ["code"=>500, "msg"=>$e->getMessage(),"detail"=>"error"];
+        }
+        return Response::json($respuesta);
+    }
+
+    public function abonar(Request $request,$id){
+        try{
+            $hoy = getdate();
+            if ($hoy['mon'] < 10) {
+                $hoy['mon'] = '0' . $hoy['mon'];
+            }
+            if ($hoy['mday'] < 10) {
+                $hoy['mday'] = '0' . $hoy['mday'];
+            }
+            $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . ($hoy['mday']);
+
+            $idpago = DB::table('pagos')->insertGetId([
+                "idAlumno" => $id,
+                "abono" => $request->abonar,
+                "cancel" => 0,
+                "fecha" => $fecha,
+            ]);
+
+            $respuesta = ["code" => 200, "msg" => 'El maestros fue registrado exitosamente', 'detail' => 'success'];
+        } catch (Exception $e) {
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+
+    }
+
+    public function cancelAbono(Request $request,$id){
+        try{
+            $pago = pagos::findOrFail($id);
+            $up=([
+                "cancel" => 1
+            ]);
+
+            $pago->fill($up);
+            $pago->save();
+            $respuesta = ["code" => 200, "msg" => 'El pago ha sido cancelado', 'detail' => 'success'];
+     }catch (Exception $e){
             $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
         }
         return Response::json($respuesta);

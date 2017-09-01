@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use yajra\Datatables\Datatables;
 
 class AsistenciasController extends Controller
@@ -24,10 +25,10 @@ class AsistenciasController extends Controller
         if($hoy['mday']<10){
             $hoy['mday'] = '0'.$hoy['mday'];
         }
-        $fecha = $hoy['year'].'-'.$hoy['mon'].'-'.($hoy['mday']-1);
+        $fecha = $hoy['year'].'-'.$hoy['mon'].'-'.($hoy['mday']);
 
         $asistencias = DB::table('grupo as g')
-            ->select('tc.descripcion','fc.fecha','h.Hora','m.nombre')
+            ->select('tc.descripcion','fc.fecha','h.Hora','m.nombre','c.id')
             ->join('fecha_clase as fc','fc.id','=','g.idfecha')
             ->join('clase as c','c.id','=','fc.idclase')
             ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
@@ -103,5 +104,35 @@ class AsistenciasController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public  function AlumnosClase($id){
+        try {
+            $hoy = getdate();
+            if ($hoy['mon'] < 10) {
+                $hoy['mon'] = '0' . $hoy['mon'];
+            }
+            if ($hoy['mday'] < 10) {
+                $hoy['mday'] = '0' . $hoy['mday'];
+            }
+            $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . ($hoy['mday']);
+
+            $asistencias = DB::table('clase as c')
+                ->select('g.id', 'a.nombre as na', 'a.ape_paterno as apa', 'a.ape_materno as ama', 'ga.asistencia as asal',
+                    'am.asistencia as asma', 'm.nombre as nm', 'm.ape_paterno as apm', 'm.ape_materno as amm')
+                ->join('fecha_clase as fc', 'c.id', '=', 'fc.idclase')
+                ->join('grupo as g', 'g.idfecha', '=', 'fc.id')
+                ->join('grupo_alumnos as ga','ga.idGrupo','=','g.id')
+                ->join('alumnos as a', 'a.id', '=', 'ga.idAlumno')
+                ->join('asistencia_maestros as am', 'am.id', '=', 'g.id_asis_maestro')
+                ->join('maestros as m', 'm.id', '=', 'c.idmaestro')
+                ->where('fc.fecha', '=', $fecha)
+                ->where('c.id','=',$id)
+                ->get();
+            $respuesta = ["code"=>200, 'data'=>$asistencias,"detail"=>"success"];
+        }catch(Exception $e){
+            $respuesta = ["code"=>500, "msg"=>$e->getMessage(),"detail"=>"error"];
+        }
+        return Response::json($respuesta);
     }
 }

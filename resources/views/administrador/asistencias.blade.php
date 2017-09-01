@@ -63,7 +63,7 @@
                                 </th>
                             </tr >
                             </thead>
-                            <tbody>
+                            <tbody id="bodyasis">
 
                             </tbody>
                             <tfoot>
@@ -77,11 +77,11 @@
     </div>
     <footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
 
-    <div class="modal" id="modalAlumno">
+    <div class="modal" id="modalAsistencia">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="reset()"><i class="fa fa-times"></i></button>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick=""><i class="fa fa-times"></i></button>
                     <h3 id="titulo-modal">Alumnos</h3>
                 </div>
                 <div class="model-body">
@@ -89,51 +89,35 @@
                         <fieldset>
                             <br>
                             {{csrf_field()}}
-                            <input type="hidden" name="padreid" id="padreid">
+                            <input type="hidden" name="asistid" id="asistid">
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="name">Nombre:</label>
+                                <label class="col-md-4 control-label" for="name">Maestro:</label>
                                 <div class="col-md-5">
-                                    <input id="name" name="name" placeholder="" class="form-control input-md" required=""
-                                           type="text">
+                                    <input type="text" id="name" name="name" readonly>Nombre</input>
+                                    <input type="checkbox" id="asisMaestro"> Asistencia
                                 </div>
                             </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="ape_pat">Apellido Paterno:</label>
-                                <div class="col-md-5">
-                                    <input id="ape_pat" name="ape_pat" placeholder="" class="form-control input-md"
-                                           required="" type="text">
-                                </div>
-                            </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="ape_mat">Apellido Materno:</label>
-                                <div class="col-md-5">
-                                    <input id="ape_mat" name="ape_mat" placeholder="" class="form-control input-md"
-                                           required="" type="text">
+                                <div class="col-md-12">
+                                    <table id="asistenciasAlumnos" name="asistenciasAlumnos" class="table">
+                                        <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Apellido Paterno</th>
+                                            <th>Apellido Paterno</th>
+                                            <th>Asistencia</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="ab">
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
 
-                            <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="fecha_nac">Fecha de Nacimiento:</label>
-                                <div class="col-md-5">
-                                    <input id="fecha_nac" name="fecha_nac" placeholder="" class="form-control input-md" type="text">
-                                </div>
-                            </div>
-
-                            <!-- Text input password-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="padre" >Padre:</label>
-                                <div class="col-md-5">
-                                    <select name="padre" id="padre" class="selectpicker" data-live-search="true">
-                                        <option value="00">Selecciona un padre</option>
-
-                                    </select>
-                                </div>
-                            </div>
                         </fieldset>
                     </form>
                 </div>
