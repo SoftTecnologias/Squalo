@@ -148,7 +148,8 @@ class AsistenciasController extends Controller
                 $asismaestro = AsistenciaMaestro::findOrFail($g->id_asis_maestro);
             }
                 $up=([
-                    "asistencia" => $request->check
+                    "asistencia" => $request->check,
+                    "remplazo" => null
                 ]);
 
                 $asismaestro->fill($up);
@@ -174,6 +175,31 @@ class AsistenciasController extends Controller
                 ->where('idAlumno','=',$id)
                 ->where('idGrupo','=',$request->grupo)
                 ->update(['asistencia'=>$asis]);
+
+            $respuesta = ["code"=>200, 'data'=>'',"detail"=>"success"];
+        }catch(Exception $e){
+            $respuesta = ["code"=>500, "msg"=>$e->getMessage(),"detail"=>"error"];
+        }
+        return Response::json($respuesta);
+    }
+
+    public function remplazo(Request $request,$id){
+        try {
+
+            $grupo = DB::table('grupo')
+                ->select('*')
+                ->where('id','=',$id)->get();
+            $asismaestro = '';
+            foreach ($grupo as $g) {
+                $asismaestro = AsistenciaMaestro::findOrFail($g->id_asis_maestro);
+            }
+            $up=([
+                "remplazo" => $request->remplazo
+            ]);
+
+            $asismaestro->fill($up);
+            $asismaestro->save();
+
 
             $respuesta = ["code"=>200, 'data'=>'',"detail"=>"success"];
         }catch(Exception $e){

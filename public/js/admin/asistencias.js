@@ -2,6 +2,7 @@ $(function () {
 
     $('#asisMaestro').on('change',function () {
         var id = $('#asistid').val();
+        $('#remplazo option[value="00"]').prop("selected",true);
         $.ajax({
             url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/asistencias/maestro/"+id,
             type:"POST",
@@ -23,6 +24,25 @@ $(function () {
             swal("Error","Tuvimos un problema de conexion","error");
         });
 
+    });
+    $('#remplazo').on('change',function () {
+        var id = $('#asistid').val();
+        $.ajax({
+            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/asistencias/remplazo/"+id,
+            type:"POST",
+            data: {'remplazo':$('#remplazo option:selected').val()},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).done(function(json){
+            if(json.code == 200) {
+
+            }else{
+
+            }
+        }).fail(function(){
+            swal("Error","Tuvimos un problema de conexion","error");
+        });
     });
     $("#ruteasistencia").addClass('active');
     $("#rutehome").removeClass('active');

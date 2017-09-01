@@ -85,6 +85,10 @@ Route::post('/resource/asistencias/alumno/{id}',[
     'uses' => 'AsistenciasController@asistenciaAlumno'
 ]);
 
+Route::post('/resource/asistencias/remplazo/{id}',[
+    'uses' => 'AsistenciasController@remplazo'
+]);
+
 Route::get('/resource/asistenciaalumnos/{id}',[
     'uses' => 'AsistenciasController@AlumnosClase'
 ]);
