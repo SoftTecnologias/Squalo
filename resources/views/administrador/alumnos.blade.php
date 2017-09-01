@@ -1,5 +1,6 @@
 @extends('layouts.administracion')
 @section('styles')
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link media="all" type="text/css" rel="stylesheet"
           href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
@@ -150,7 +151,6 @@
         </div>
     </div>
 
-
     <div class="modal" id="modalAsignar">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -224,6 +224,55 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAlumnoAsignar" class="btn btn-primary">Asignar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalInfoAbono">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick=""><i class="fa fa-times"></i></button>
+                    <h3 id="titulo-modal">Informacion de Abonos</h3>
+                </div>
+                <div class="model-body">
+                    <form class="form-horizontal" enctype="multipart/form-data" id="abonarForm">
+                        <fieldset>
+                            <br>
+                            {{csrf_field()}}
+                            <input type="hidden" name="idabono" id="idabono">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="name">Alumno:</label>
+                                <div class="col-md-5">
+                                    <input id="nameabono" name="nameabono" placeholder="" class="form-control input-md" required=""
+                                           type="text" readonly>
+                                </div>
+                                <a class="btn btn-success" id="abonar">Abonar</a>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <table id="tablainfoabono" class="table">
+                                        <thead >
+                                        <tr class="active">
+                                            <th>Abono</th>
+                                            <th>Fecha</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="abonobody">
+
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </fieldset>

@@ -60,6 +60,10 @@ Route::post('/resource/alumnos/abono/cancel/{id}',[
    'uses' =>  'AlumnosController@cancelAbono'
 ]);
 
+Route::post('/resource/alumnos/horarios',[
+    'uses' => 'AlumnosController@getHorarios'
+]);
+
 
 Route::resource('/resource/tipoclase','TiposController');
 

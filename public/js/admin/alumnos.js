@@ -4,11 +4,37 @@ $(function() {
         numero = $(this).find('option:selected').attr('name');
     });
 
-    $('#datepicker').datepicker({
-        format: 'dd/mm/yyyy',
-        startDate: '0d',
-        autoclose: false,
-        multidate:true
+    $('#horario').on('change',function () {
+        $.ajax({
+            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/alumnos/horarios",
+            type:"POST",
+            data: {'maestro':$('#maestroc').val(),'horario':$('#horario').val()},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).done(function(json){
+            if(json.code == 200) {
+                var arreglo = [];
+                var fechas = json.msg;
+                fechas.forEach(function (item) {
+                    arreglo.push(item['fecha'])
+                });
+                console.log(arreglo);
+                $('#datepicker').datepicker('destroy');
+                $('#datepicker').datepicker({
+                    format: 'yyyy-mm-dd',
+                    startDate: '0d',
+                    autoclose: false,
+                    multidate:true,
+                    datesDisabled:arreglo
+                });
+            }else{
+                swal("Error",json.msg,json.detail);
+            }
+        }).fail(function(){
+            swal("Error","Tuvimos un problema de conexion","error");
+        });
+
     });
 
     $('#abonar').on('click',function () {
@@ -171,6 +197,7 @@ function pagso(id) {
 }
 
 function pago(id) {
+
     $.ajax({
         type: "get",
         url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/pagos/'+id,

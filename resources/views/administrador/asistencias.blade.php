@@ -22,10 +22,10 @@
 @section('content')
     <div class="col-md-10">
         <hr>
-        <div class="row"><h3>Alumnos</h3>
+        <div class="row"><h3>Grupos y Asistencias</h3>
             <hr style="border-color:lightgray; width: 90%"></div>
         <div align="right" class="">
-            <button class="btn btn-success" id="agregarAlumno">Agregar <i class="fa fa-user-plus"></i></button>
+            <button class="btn btn-success" id="agregarGrupo">Agregar <i class="fa fa-user-plus"></i></button>
         </div>
         <br>
         <div class="box-body">
@@ -94,8 +94,14 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="name">Maestro:</label>
                                 <div class="col-md-5">
-                                    <input type="text" id="name" name="name" readonly>Nombre</input>
+                                    <label for="name">Nombre</label>
+                                    <input type="text" id="name" name="name" class="form-control" readonly>
                                     <input type="checkbox" id="asisMaestro"> Asistencia
+                                    <div id="divremplazo" hidden>
+                                        <select name="remplazo" id="remplazo" class="selectpicker">
+                                            <option value="00">Selecciona a un Reemplazo</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
 

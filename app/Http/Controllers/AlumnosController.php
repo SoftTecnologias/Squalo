@@ -22,18 +22,6 @@ class AlumnosController extends Controller
      */
     public function index()
     {
-        /*  $alumnos = DB::table('alumnos as a')
-              ->select('a.id','a.nombre as nombre','a.ape_paterno as app','a.ape_materno as apm','a.fecha_nac as fecha',
-                  'tc.tipo_clase as tipo_clase',
-                  'm.nombre as maestro','a.adeudo as adeudo','h.Hora as hora')
-              ->join('grupo as g','g.idalumno','=','a.id')
-              ->join('fecha_clase as fc','fc.id','=','g.idfecha')
-              ->join('clase as c','c.id','=','fc.idclase')
-              ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
-              ->join('maestros as m','m.id','=','c.idmaestro')
-              ->join('horarios as h','h.id','=','c.idhorario')
-              ->get();*/
-
         $alumnos = DB::table('alumnos as a')->select('a.id', 'a.nombre', 'a.ape_paterno', 'a.ape_materno', 'a.adeudo', 'a.fecha_nac',
             'a.asignado', 'p.nombre as npadre', 'p.ape_paterno as appadre', 'p.ape_materno as ampadre')
             ->join('padres as p', 'padreid', '=', 'p.id')->get();
@@ -238,6 +226,32 @@ class AlumnosController extends Controller
             $pago->save();
             $respuesta = ["code" => 200, "msg" => 'El pago ha sido cancelado', 'detail' => 'success'];
      }catch (Exception $e){
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
+
+    public function getHorarios(Request $request){
+        try{
+            /*
+             * select fecha,h.Hora from horarios h
+inner join clase c on c.idhorario = h.id
+inner join fecha_clase fc on fc.idclase = c.id
+inner join maestros m on m.id = c.idmaestro
+where m.id = 1
+             */
+
+            $fechas = DB::table('horarios as h')
+                ->select('fc.fecha','h.Hora')
+                ->join('clase as c', 'c.idhorario', '=', 'h.id')
+                ->join('fecha_clase as fc','fc.idclase','=','c.id')
+                ->join('maestros as m','m.id','=','c.idmaestro')
+                ->where('m.id','=',$request->maestro)
+               ->where('h.id','=',$request->horario)
+                ->get();
+
+            $respuesta = ["code" => 200, "msg" => $fechas, 'detail' => 'success'];
+        }catch (Exception $e){
             $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
         }
         return Response::json($respuesta);
