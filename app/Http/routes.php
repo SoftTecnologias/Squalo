@@ -39,6 +39,11 @@ Route::get('/asistencias',[
    'uses' => 'UserController@getAsistenciasForm',
     'as' => 'index.asistencias'
 ]);
+
+Route::get('/reemplazos',[
+    'uses' => 'UserController@getReemplazoForm',
+    'as' => 'index.reemplazo'
+]);
 //area de resources
 Route::resource('/resource/maestros','MaestrosController');
 Route::post('/resource/maestros/{id}',[
@@ -96,3 +101,5 @@ Route::get('/resource/asistenciaalumnos/{id}',[
 Route::get('/resource/pagos/{id}',[
     'uses' => 'AlumnosController@getPagos'
 ]);
+
+Route::resource('/resource/reemplazo','ReemplazosController');

@@ -58,4 +58,11 @@ class UserController extends Controller
            return $e;
        }
    }
+    public function getReemplazoForm(){
+        try{
+            return view('administrador.reemplazos');
+        }catch (Exception $e){
+            return $e;
+        }
+    }
 }

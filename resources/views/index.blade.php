@@ -13,26 +13,22 @@
 
                 <!-- center left-->
                 <div class="col-md-6">
-                    <div class="well">Inbox Messages <span class="badge pull-right">3</span></div>
-
-                    <hr>
-
                     <div class="btn-group btn-group-justified">
-                        <a href="#" class="btn btn-primary col-sm-3">
-                            <i class="glyphicon glyphicon-plus"></i><br>
-                            Service
+                        <a href="{{route('index.maestros')}}" class="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon-user"></i><br>
+                            Maestros
                         </a>
-                        <a href="#" class="btn btn-primary col-sm-3">
-                            <i class="glyphicon glyphicon-cloud"></i><br>
-                            Cloud
+                        <a href="{{route('index.padres')}}" class="btn btn-primary col-sm-3">
+                            <i class="glyphicon glyphicon-user"></i><br>
+                            Padres
                         </a>
-                        <a href="#" class="btn btn-primary col-sm-3">
-                            <i class="glyphicon glyphicon-cog"></i><br>
-                            Tools
+                        <a href="{{route('index.alumnos')}}" class="btn btn-primary col-sm-3">
+                            <i class="fa fa-users"></i><br>
+                            Alumnos
                         </a>
-                        <a href="#" class="btn btn-primary col-sm-3">
-                            <i class="glyphicon glyphicon-question-sign"></i><br>
-                            Help
+                        <a href="{{route('index.asistencias')}}" class="btn btn-primary col-sm-3">
+                            <i class="fa fa-check"></i><br>
+                            Asistencias
                         </a>
                     </div>
 
@@ -44,7 +40,7 @@
 
                             <small>Success</small>
                             <div class="progress">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 72%">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
                                     <span class="sr-only">72% Complete</span>
                                 </div>
                             </div>
@@ -209,22 +205,6 @@
 
             <hr>
 
-            <a href="#"><strong><i class="glyphicon glyphicon-comment"></i> Discussions</strong></a>
-
-            <hr>
-
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="list-group">
-                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(3 mins ago)</small> The 3rd page reports don't contain any links. Does anyone know why..</a></li>
-                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(1 hour ago)</small> Hi all, I've just post a report that show the relationship betwe..</a></li>
-                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-heart"></i> <small>(2 hrs ago)</small> Paul. That document you posted yesterday doesn't seem to contain the over..</a></li>
-                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-heart-empty"></i> <small>(4 hrs ago)</small> The map service on c243 is down today. I will be fixing the..</a></li>
-                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-heart"></i> <small>(yesterday)</small> I posted a new document that shows how to install the services layer..</a></li>
-                        <li class="list-group-item"><a href="#"><i class="glyphicon glyphicon-flash"></i> <small>(yesterday)</small> ..</a></li>
-                    </ul>
-                </div>
-            </div>
         </div><!--/col-span-9-->
 
 

@@ -16,11 +16,10 @@
         </li>
         <li id="rutetipos"><a href="{{route('index.tipos')}}">Tipos de Clases</a></li>
         <li id="ruteasistencia"><a href="{{route('index.asistencias')}}">Asistencias</a></li>
-        <li><a href="#">Reemplazos</a></li>
         <li>
             <hr style="border-color:gray;">
         </li>
-        <li><a href="#"><i class="glyphicon glyphicon-list"></i> Reportes</a></li>
+        <li id="ruteremplazo"><a href="{{route('index.reemplazo')}}">Reemplazos</a></li>
     </ul>
 
 
