@@ -65,4 +65,12 @@ class UserController extends Controller
             return $e;
         }
     }
+
+    public  function  getClasesForm(){
+        try{
+            return view('administrador.clases');
+        }catch (Rxception $e){
+            return $e;
+        }
+    }
 }

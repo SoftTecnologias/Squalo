@@ -44,6 +44,11 @@ Route::get('/reemplazos',[
     'uses' => 'UserController@getReemplazoForm',
     'as' => 'index.reemplazo'
 ]);
+
+Route::get('/clases',[
+   'uses' => 'UserController@getClasesForm',
+    'as' => 'index.clases'
+]);
 //area de resources
 Route::resource('/resource/maestros','MaestrosController');
 Route::post('/resource/maestros/{id}',[
@@ -103,3 +108,5 @@ Route::get('/resource/pagos/{id}',[
 ]);
 
 Route::resource('/resource/reemplazo','ReemplazosController');
+
+Route::resource('/resource/clases','ClasesController');
