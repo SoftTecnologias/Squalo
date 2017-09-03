@@ -26,7 +26,7 @@
         <div class="row"><h3>Grupos y Asistencias</h3>
             <hr style="border-color:lightgray; width: 90%"></div>
         <div align="right" class="">
-            <button class="btn btn-success" id="agregarGrupo">Agregar <i class="fa fa-user-plus"></i></button>
+            <button class="btn btn-success" id="agregarClaseGrupal">Agregar clase grupal</button>
         </div>
         <br>
         <div class="box-body">
@@ -103,7 +103,7 @@
                                             <option value="00">Selecciona a un Reemplazo</option>
                                             @foreach($maestros as $maestro)
                                                 <option value="{{$maestro->id}}">{{$maestro->nombre.' '.$maestro->ape_paterno.' '.$maestro->ape_materno}}</option>
-                                                @endforeach
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -138,4 +138,78 @@
         </div>
     </div>
 
+    <div class="modal" id="modalGrupal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick=""><i class="fa fa-times"></i></button>
+                    <h3 id="titulo-modal">Nuevo Grupo</h3>
+                </div>
+                <div class="model-body">
+                    <form class="form-horizontal" enctype="multipart/form-data" id="grupoForm">
+                        <fieldset>
+                            <br>
+                            {{csrf_field()}}
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="ape_pat">Tipo de Clase:</label>
+                                <div class="col-md-5">
+                                    <select name="tipoc" id="tipoc" class="selectpicker">
+                                        <option value="00">Seleccione una Clase</option>
+                                        @foreach($tipos as $tipo)
+                                            <option value="{{$tipo->id}}" name="{{$tipo->numero_clases}}">{{$tipo->descripcion.' - '.$tipo->tipo_clase.' - $'.$tipo->costo.'. '.$tipo->numero_clases.' clases'}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="ape_mat">Maestros:</label>
+                                <div class="col-md-5">
+                                    <select name="maestroc" id="maestroc" class="selectpicker">
+                                        <option value="00">Seleccione un Maestro</option>
+                                        @foreach($maestros as $maestro)
+                                            <option value="{{$maestro->id}}">{{$maestro->nombre.' '.$maestro->ape_paterno.' '.$maestro->ape_materno}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="fecha_nac">Horario:</label>
+                                <div class="col-md-5">
+                                    <select name="horario" id="horario" class="selectpicker">
+                                        <option value="00">Seleccione un Horario</option>
+                                        @foreach($horarios as $horario)
+                                            <option value="{{$horario->id}}">{{$horario->Hora}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Text input password-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="padre" >Fechas:</label>
+                                <div class="col-md-5" id="fechas">
+                                    <div class='col-sm-6'>
+                                        <div class='form-group'>
+                                            <div class='input-group date' id='datepicker'>
+                                                <input type='text' class='form-control' id='alldates' name='alldates'/>
+                                                <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAgregarGrupo" class="btn btn-primary">Agregar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

@@ -1,5 +1,7 @@
 $(function () {
-
+    $('#btnAgregarGrupo').on('click',function () {
+       newGrupo();
+    });
     $('#asisMaestro').on('change',function () {
         var id = $('#asistid').val();
         $('#remplazo option[value="00"]').prop("selected",true);
@@ -24,6 +26,9 @@ $(function () {
             swal("Error","Tuvimos un problema de conexion","error");
         });
 
+    });
+    $('#agregarClaseGrupal').on('click',function () {
+        $('#modalGrupal').modal('show');
     });
     $('#remplazo').on('change',function () {
         var id = $('#asistid').val();
@@ -74,8 +79,66 @@ $(function () {
         }
     });
 
+    $('#horario').on('change',function () {
+        $.ajax({
+            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/alumnos/horarios",
+            type:"POST",
+            data: {'maestro':$('#maestroc').val(),'horario':$('#horario').val()},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).done(function(json){
+            if(json.code == 200) {
+                var arreglo = [];
+                var fechas = json.msg;
+                fechas.forEach(function (item) {
+                    arreglo.push(item['fecha'])
+                });
+                console.log(arreglo);
+                $('#datepicker').datepicker('destroy');
+                $('#datepicker').datepicker({
+                    format: 'yyyy-mm-dd',
+                    startDate: '0d',
+                    autoclose: false,
+                    multidate:true,
+                    datesDisabled:arreglo
+                });
+            }else{
+                swal("Error",json.msg,json.detail);
+            }
+        }).fail(function(){
+            swal("Error","Tuvimos un problema de conexion","error");
+        });
+
+    });
+
 
 });
+function newGrupo(){
+    var data = new FormData(document.getElementById("grupoForm"));
+    $.ajax({
+        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/asistencias",
+        type:"POST",
+        data: data,
+        contentType:false,
+        processData: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }).done(function(json){
+        if(json.code == 200) {
+            swal("Realizado", json.msg, json.detail);
+            $('#modalGrupal').modal("hide");
+            $('#tablatipos').dataTable().api().ajax.reload(null,false);
+            reset();
+        }else{
+            swal("Error",json.msg,json.detail);
+        }
+    }).fail(function(){
+        swal("Error","Tuvimos un problema de conexion","error");
+    });
+}
+
 function info(id) {
     $.ajax({
         type: "get",

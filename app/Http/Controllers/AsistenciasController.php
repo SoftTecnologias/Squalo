@@ -25,10 +25,9 @@ class AsistenciasController extends Controller
             $hoy['mon'] = '0'.$hoy['mon'];
         }
         if($hoy['mday']<10){
-            $hoy['mday'] = '0'.$hoy['mday'];
+            $hoy['mday'] = '0'.($hoy['mday']-1);
         }
         $fecha = $hoy['year'].'-'.$hoy['mon'].'-'.($hoy['mday']);
-
         $asistencias = DB::table('grupo as g')
             ->select('tc.descripcion','fc.fecha','h.Hora','m.nombre','c.id')
             ->join('fecha_clase as fc','fc.id','=','g.idfecha')
@@ -60,7 +59,42 @@ class AsistenciasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $fechas = explode(',', $request->input('alldates'));
+            $finicial = date(str_replace('/','-',$fechas[0]));
+            $f = strtotime($finicial);
+
+            $claseid = DB::table('clase')->insertGetId([
+                "idtipo_clase" => $request->input('tipoc'),
+                "idmaestro" => $request->input('maestroc'),
+                "fechainicio" => date('Y-m-d',$f),
+                "idhorario" => $request->input('horario'),
+            ]);
+
+            foreach ($fechas as $fecha) {
+                $fecha = date(str_replace('/','-',$fecha));
+                $f = strtotime($fecha);
+                $fcid = DB::table('fecha_clase')->insertGetId([
+                    "fecha" => date('Y-m-d',$f),
+                    "idclase" => $claseid
+                ]);
+
+                $asismaestroid = DB::table('asistencia_maestros')->insertGetId([
+                    "asistencia" => 0,
+                    "remplazo" => null
+                ]);
+
+                $grupoid = DB::table('grupo')->insertGetId([
+                    "id_asis_maestro" => $asismaestroid,
+                    "idfecha" => $fcid
+                ]);
+            }
+
+            $respuesta = ["code" => 200, "msg" => 'El grupo fue registrado exitosamente', 'detail' => 'success'];
+        } catch (Exception $e) {
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
     }
 
     /**
@@ -115,7 +149,7 @@ class AsistenciasController extends Controller
                 $hoy['mon'] = '0' . $hoy['mon'];
             }
             if ($hoy['mday'] < 10) {
-                $hoy['mday'] = '0' . $hoy['mday'];
+                $hoy['mday'] = '0' . ($hoy['mday']-1);
             }
             $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . ($hoy['mday']);
 

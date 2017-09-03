@@ -88,8 +88,12 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="tipo">Tipo Clase:</label>
                                 <div class="col-md-5">
-                                    <input id="tipo" name="tipo" placeholder="" class="form-control input-md" required=""
-                                           type="text">
+                                    <select id="tipo" name="tipo" class="form-control input-md">
+                                        <option value="00">Selecciona el tipo de Clase</option>
+                                        <option value="I">Individual</option>
+                                        <option value="G">Grupal</option>
+                                        <option value="E">Especial</option>
+                                    </select>
                                 </div>
                             </div>
 

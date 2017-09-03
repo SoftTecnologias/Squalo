@@ -9,6 +9,7 @@ use App\Tipos;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\DB;
 use Mockery\Exception;
 
 class UserController extends Controller
@@ -53,7 +54,12 @@ class UserController extends Controller
    public function getAsistenciasForm(){
        try{
            $maestros = Maestro::all();
-           return view('administrador.asistencias',['maestros'=>$maestros]);
+           $tipos = DB::table('tipo_clase')
+                    ->select('*')
+                    ->where('tipo_clase','=','G')
+                    ->get();
+           $horarios = Horarios::all();
+           return view('administrador.asistencias',['maestros'=>$maestros,'horarios'=>$horarios,'tipos'=>$tipos]);
        }catch (Exception $e){
            return $e;
        }

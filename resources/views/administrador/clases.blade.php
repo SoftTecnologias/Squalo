@@ -34,24 +34,24 @@
                             <thead>
                             <tr role="row">
                                 <th class="sorting_asc" tabindex="0" aria-controls="userTable" rowspan="1"
-                                    colspan="1" aria-label="Nombre: Nombre del usuario">
+                                    colspan="1" aria-label="Nombre: Nombre del usuario" align="center">
                                     Padre
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="userTable" rowspan="1"
-                                    colspan="1" aria-label="Apellido Paterno: apellido paterno del usuario">
+                                    colspan="1" aria-label="Apellido Paterno: apellido paterno del usuario" align="center">
                                     Alumno
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="userTable" rowspan="1"
-                                    colspan="1" aria-label="Apellido Materno: apellido materno del usuario">
+                                    colspan="1" aria-label="Apellido Materno: apellido materno del usuario" align="center">
                                     Maestro
                                 </th>
                                 <th class="sorting" tabindex="0" aria-controls="userTable" rowspan="1"
-                                    colspan="1" aria-label="Email: Correo del usuario">
+                                    colspan="1" aria-label="Email: Correo del usuario" align="center">
                                     Fecha
                                 </th>
                                 <th class="sorting col-sm-3" tabindex="0" aria-controls="userTable"
                                     rowspan="1" colspan="1" aria-sort="ascending"
-                                    aria-label="Acciones">
+                                    aria-label="Acciones" align="center">
                                     Asistencia
                                 </th>
                             </tr >
