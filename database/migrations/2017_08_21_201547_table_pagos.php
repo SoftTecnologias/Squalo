@@ -23,7 +23,7 @@ class TablePagos extends Migration
             $table->foreign('idAlumno')->references('id')->on('alumnos');
         });
 
-        DB::getPdo()->exec('
+        /*DB::exec('
         use Squalo;
         create trigger Triggerpagos on pagos
         for insert,update
@@ -55,7 +55,7 @@ class TablePagos extends Migration
 					update alumnos set adeudo=(adeudo+@abono)
 				end
 				
-        end');
+        end');*/
     }
 
     /**

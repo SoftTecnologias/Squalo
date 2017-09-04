@@ -180,8 +180,18 @@
                                     <select name="tipoc" id="tipoc" class="selectpicker">
                                         <option value="00">Seleccione una Clase</option>
                                         @foreach($tipos as $tipo)
-                                            <option value="{{$tipo->id}}" name="{{$tipo->numero_clases}}">{{$tipo->descripcion.' - '.$tipo->tipo_clase.' - $'.$tipo->costo.'. '.$tipo->numero_clases.' clases'}}</option>
+                                            <option value="{{$tipo->id}}" name="{{$tipo->numero_clases.'-'.$tipo->tipo_clase}}">{{$tipo->descripcion.' - '.$tipo->tipo_clase.' - $'.$tipo->costo.'. '.$tipo->numero_clases.' clases'}}</option>
                                             @endforeach
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" id="grupos" hidden>
+                                <label class="col-md-4 control-label" for="ape_pat">Grupos Disponibles:</label>
+                                <div class="col-md-5">
+                                    <select name="gruposdisp" id="gruposdisp" class="selectpicker">
+
+
                                     </select>
                                 </div>
                             </div>

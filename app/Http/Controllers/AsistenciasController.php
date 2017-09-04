@@ -25,7 +25,7 @@ class AsistenciasController extends Controller
             $hoy['mon'] = '0'.$hoy['mon'];
         }
         if($hoy['mday']<10){
-            $hoy['mday'] = '0'.($hoy['mday']-1);
+            $hoy['mday'] = '0'.($hoy['mday']);
         }
         $fecha = $hoy['year'].'-'.$hoy['mon'].'-'.($hoy['mday']);
         $asistencias = DB::table('grupo as g')
@@ -149,7 +149,7 @@ class AsistenciasController extends Controller
                 $hoy['mon'] = '0' . $hoy['mon'];
             }
             if ($hoy['mday'] < 10) {
-                $hoy['mday'] = '0' . ($hoy['mday']-1);
+                $hoy['mday'] = '0' . ($hoy['mday']);
             }
             $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . ($hoy['mday']);
 

@@ -1,7 +1,52 @@
 $(function() {
     limpiarSeleccion();
     $('#tipoc').on('change',function () {
-        numero = $(this).find('option:selected').attr('name');
+        tipoclase = $(this).find('option:selected').attr('name');
+        tc = tipoclase.split('-');
+        var id = $(this).find('option:selected').val();
+        console.log(id);
+        if(tc[1] == 'G'){
+            $.ajax({
+                type: "get",
+                url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/alumnos/grupo/'+id,
+                success: function (data) {
+                    $('#gruposdisp option').remove();
+                    $('#gruposdisp').append('<option value="00">Seleccione un Grupo</option>').selectpicker('refresh');
+                    data['msg'].forEach(function (item) {
+                            $('#gruposdisp').append('<option value="'+item['idclase']+'">'+'Inicia: '+item['feini']+'</option>').selectpicker('refresh');
+                    });
+                }
+            });
+            $('#grupos').show();
+        }else{
+            $('#maestroc').val('00').datepicker('refresh');
+            $('#horario').val('00').datepicker('refresh');
+            $('#alldates').val('');
+            $('#grupos').hide();
+        }
+    });
+
+    $('#gruposdisp').on('change',function () {
+        var id = $(this).find('option:selected').val();
+        console.log(id);
+        if(tc[1] != '00'){
+            $.ajax({
+                type: "get",
+                url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/alumnos/clase/sel/'+id,
+                success: function (data) {
+                    var fechas = '';
+                    data['msg'].forEach(function (item) {
+                        $('#maestroc').val(item['maestro']).datepicker('refresh');
+                        $('#horario').val(item['hora']).datepicker('refresh');
+                        fechas += item['fechas']+',';
+                    });
+                    $('#alldates').val(fechas);
+                }
+            });
+
+        }else{
+
+        }
     });
 
     $('#horario').on('change',function () {
@@ -83,9 +128,15 @@ $(function() {
         })
     });
 
+
     $('#btnAlumnoAsignar').on('click',function () {
-        //console.log($('#datepicker :input').val());
-        asignarAlumno();
+       var tipo = $('#tipoc').find('option:selected').attr('name');
+        var tc = tipo.split('-');
+        if(tc[1] == 'G'){
+            asignarAlumnoGrupal();
+        }else {
+            asignarAlumno();
+        }
     });
     $('#agregarAlumno').on('click',function () {
         $('#titulo-modal').text('Nuevo Alumno');
@@ -181,15 +232,39 @@ function asignarAlumno(){
   }).done(function(json){
       if(json.code == 200) {
           swal("Realizado", json.msg, json.detail);
-          $('#modalAlumno').modal("hide");
+          $('#modalAsignar').modal("hide");
           $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
-          reset();
       }else{
           swal("Error",json.msg,json.detail);
       }
   }).fail(function(){
       swal("Error","Tuvimos un problema de conexion","error");
   });
+}
+function asignarAlumnoGrupal(){
+    var data = new FormData(document.getElementById("asignarForm"));
+
+    var id = $('#idasignar').val();
+    $.ajax({
+        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/alumnos/"+id+'/asignargrupo',
+        type:"POST",
+        data: data,
+        contentType:false,
+        processData: false,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }).done(function(json){
+        if(json.code == 200) {
+            swal("Realizado", json.msg, json.detail);
+            $('#modalAlumno').modal("hide");
+            $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+        }else{
+            swal("Error",json.msg,json.detail);
+        }
+    }).fail(function(){
+        swal("Error","Tuvimos un problema de conexion","error");
+    });
 }
 
 function pagso(id) {

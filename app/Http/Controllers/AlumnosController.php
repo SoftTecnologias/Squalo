@@ -166,6 +166,43 @@ class AlumnosController extends Controller
         return Response::json($respuesta);
     }
 
+    public function asignargrupo(Request $request, $id)
+    {
+        try {
+
+            $alumno = Alumno::findOrFail($id);
+            $grupoid = DB::table('grupo as g')
+                ->select('g.id')
+                ->join('fecha_clase as fc','fc.id','=','g.idfecha')
+                ->join('clase as c', 'c.id', '=', 'fc.idclase')
+                ->where('c.id','=',$request->input('gruposdisp'))
+                ->get();
+
+            $alumno = Alumno::findOrFail($id);
+            $tipo_clase = Tipos::findOrFail($request->input('tipoc'));
+            $up=([
+                "adeudo" => $tipo_clase->costo,
+                "asignado" => 1
+            ]);
+
+            $alumno->fill($up);
+            $alumno->save();
+
+            foreach ($grupoid as $gid) {
+                $gru_al = DB::table('grupo_alumnos')->insertGetId([
+                    "idAlumno" => $request->input('idasignar'),
+                    "idGrupo" => $gid->id,
+                    "asistencia" => 0,
+                ]);
+            }
+
+            $respuesta = ["code" => 200, "msg" => 'El maestros fue registrado exitosamente', 'detail' => 'success'];
+        } catch (Exception $e) {
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
+
     public  function getPagos($id){
         try {
             $hoy = getdate();
@@ -240,10 +277,54 @@ class AlumnosController extends Controller
                 ->join('fecha_clase as fc','fc.idclase','=','c.id')
                 ->join('maestros as m','m.id','=','c.idmaestro')
                 ->where('m.id','=',$request->maestro)
-               ->where('h.id','=',$request->horario)
+                ->where('h.id','=',$request->horario)
                 ->get();
 
             $respuesta = ["code" => 200, "msg" => $fechas, 'detail' => 'success'];
+        }catch (Exception $e){
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
+
+    public function getGruposDisponibles($id){
+        try{
+            $hoy = getdate();
+            if ($hoy['mon'] < 10) {
+                $hoy['mon'] = '0' . $hoy['mon'];
+            }
+            if ($hoy['mday'] < 10) {
+                $hoy['mday'] = '0' . $hoy['mday'];
+            }
+            $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . ($hoy['mday']);
+            $fechas = DB::table('grupo as g')
+                ->select('c.id as idclase','c.fechainicio as feini')
+                ->join('fecha_clase as fc','fc.id','=','g.idfecha')
+                ->join('clase as c', 'c.id', '=', 'fc.idclase')
+                ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+                ->where('tc.tipo_clase','like','G')
+                ->where('c.fechainicio','>',$fecha)
+                ->where('tc.id','=',$id)
+                ->distinct()
+                ->get();
+            $respuesta = ["code" => 200, "msg" => $fechas, 'detail' => 'success'];
+        }catch (Exception $e){
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
+
+    public function infoGrupo($id){
+        try{
+
+            $clase = DB::table('clase as c')
+                ->select('m.id as maestro','h.id as hora','fc.fecha as fechas')
+                ->join('maestros as m', 'm.id', '=', 'c.idmaestro')
+                ->join('horarios as h','h.id','=','c.idhorario')
+                ->join('fecha_clase as fc','fc.idclase','=','c.id')
+                ->where('c.id','=',$id)
+                ->get();
+            $respuesta = ["code" => 200, "msg" => $clase, 'detail' => 'success'];
         }catch (Exception $e){
             $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
         }

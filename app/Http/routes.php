@@ -49,6 +49,15 @@ Route::get('/clases',[
    'uses' => 'UserController@getClasesForm',
     'as' => 'index.clases'
 ]);
+
+
+Route::post('/alumnos/{id}/asignar',[
+    'uses' => 'AlumnosController@asignar'
+]);
+
+Route::post('/alumnos/{id}/asignargrupo',[
+    'uses' => 'AlumnosController@asignargrupo'
+]);
 //area de resources
 Route::resource('/resource/maestros','MaestrosController');
 Route::post('/resource/maestros/{id}',[
@@ -74,6 +83,13 @@ Route::post('/resource/alumnos/horarios',[
     'uses' => 'AlumnosController@getHorarios'
 ]);
 
+Route::get('/resource/alumnos/grupo/{idtipogrupo}',[
+   'uses' => 'AlumnosController@getGruposDisponibles'
+]);
+
+Route::get('/resource/alumnos/clase/sel/{idtipoclase}',[
+    'uses' => 'AlumnosController@infoGrupo'
+]);
 
 Route::resource('/resource/tipoclase','TiposController');
 
@@ -81,9 +97,6 @@ Route::post('/resource/tipoclase/{id}',[
     'uses' => 'TiposController@update'
 ]);
 
-Route::post('/alumnos/{id}/asignar',[
-  'uses' => 'AlumnosController@asignar'
-]);
 
 Route::resource('/resource/asistencias','AsistenciasController');
 
