@@ -175,6 +175,9 @@ $(function() {
                 return str;
             }}
         ],
+        buttons: [
+            'print'
+        ],
         'language': {
             url:'https://cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json',
             sLoadingRecords : '<span style="width:100%;"><img src="http://www.snacklocal.com/images/ajaxload.gif"></span>'

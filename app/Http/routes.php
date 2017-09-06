@@ -58,6 +58,15 @@ Route::post('/alumnos/{id}/asignar',[
 Route::post('/alumnos/{id}/asignargrupo',[
     'uses' => 'AlumnosController@asignargrupo'
 ]);
+
+Route::get('/pagos',[
+   'uses' => 'UserController@getPagosForm',
+    'as' => 'index.pagos'
+]);
+
+Route::post('/pagos/maestro',[
+    'uses' => 'PagosController@getInfo',
+]);
 //area de resources
 Route::resource('/resource/maestros','MaestrosController');
 Route::post('/resource/maestros/{id}',[

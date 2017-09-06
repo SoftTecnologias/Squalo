@@ -75,7 +75,16 @@ class UserController extends Controller
     public  function  getClasesForm(){
         try{
             return view('administrador.clases');
-        }catch (Rxception $e){
+        }catch (Exception $e){
+            return $e;
+        }
+    }
+
+    public function getPagosForm(){
+        try{
+            $maestros = Maestro::all();
+            return view('administrador.pagos',['maestros'=>$maestros]);
+        }catch (Exception $e){
             return $e;
         }
     }
