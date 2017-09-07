@@ -4,9 +4,65 @@ $(function() {
         $('#titulo-modal').text("Nuevo Tipo");
         $('#modalTipos').modal('show');
     });
+    $.validator.addMethod("selected", function(value, element, arg){
+        return arg !== value;
+    }, "Seleccion no valida");
+    $('#tiposForm').validate({
+        rules: {
+            'tipo': {
+                selected:'00'
+            },
+            'desc':{
+                required:true
+            },
+            'costo':{
+                required:true,
+                number:true
+            },
+            'noclases':{
+                required:true,
+                number:true
+            }
+        },
+        messages: {
+            'tipo':{
+                required: 'Seleccione las fechas'
+            },
+            'desc':{
+                required:'Este campo es requerido'
+            },
+            'costo':{
+                required:'Este campo es requerido',
+                number:'Solo numeros'
+            },
+            'noclases':{
+                required:'Este campo es requerido',
+                number:'Solo numeros'
+            }
+        },
+        highlight: function (element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function (error, element) {
+            if (element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function () {
+            accionTipo();
+            return false;
+        }
+    });
 
     $('#btnTipo').on('click',function () {
-        accionTipo();
+       $('#tiposForm').submit();
     });
     $('#tablatipos').DataTable({
         'scrollX':true,

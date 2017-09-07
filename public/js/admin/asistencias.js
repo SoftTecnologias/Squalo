@@ -1,6 +1,6 @@
 $(function () {
     $('#btnAgregarGrupo').on('click',function () {
-       newGrupo();
+        $('#grupoForm').submit();
     });
     $('#asisMaestro').on('change',function () {
         var id = $('#asistid').val();
@@ -76,6 +76,50 @@ $(function () {
         'language': {
             url:'https://cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json',
             sLoadingRecords : '<span style="width:100%;"><img src="http://www.snacklocal.com/images/ajaxload.gif"></span>'
+        }
+    });
+
+    $.validator.addMethod("selected", function(value, element, arg){
+        return arg !== value;
+    }, "Seleccion no valida");
+    $('#grupoForm').validate({
+        rules: {
+            'tipoc': {
+                selected:'00'
+            },
+            'maestroc':{
+                selected:'00'
+            },
+            'horario':{
+                selected:'00'
+            },
+            'alldates':{
+                required:true
+            }
+        },
+        messages: {
+            'alldates':{
+                required:'Este campo es requerido'
+            }
+        },
+        highlight: function (element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function (error, element) {
+            if (element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function () {
+            newGrupo();
+            return false;
         }
     });
 

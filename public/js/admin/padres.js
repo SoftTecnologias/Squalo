@@ -3,9 +3,112 @@ $(function() {
         $('#titulo-modal').text("Nuevo Padre");
         $('#modalPadres').modal('show');
     });
+    $('#padresForm').validate({
+        rules: {
+            'name': {
+                required: true,
+                minlength: 3
+            },
+            'ape_pat':{
+                required:true,
+                minlength: 3
+            },
+            'ape_mat':{
+                required:true,
+                minlength:3
+            },
+            'colonia':{
+                required:true,
+                minlength:3
+            },
+            'calle':{
+                required:true,
+                minlength:3
+            },
+            'numero':{
+                required:true,
+                number:true
+            },
+            'tel':{
+                minlength: 7,
+                maxlength:10
+            },
+            'phone':{
+                minlength: 10,
+                maxlength: 12
+            },
+            'fecha':{
+                required:true
+            },
+            'email':{
+                required:true,
+                email:true
+            }
+        },
+        messages: {
+            'name': {
+                required: "Este campo es requerido",
+                minlength: "El nombre es muy corto"
+            },
+            'ape_pat':{
+                required: "Este campo es requerido",
+                minlength: "El nombre es muy corto"
+            },
+            'ape_mat':{
+                required: "Este campo es requerido",
+                minlength: "El nombre es muy corto"
+            },
+            'colonia':{
+                required: "Este campo es requerido",
+                minlength: "El nombre es muy corto"
+            },
+            'calle':{
+                required: "Este campo es requerido",
+                minlength: "El nombre es muy corto"
+            },
+            'numero':{
+                required: "Este campo es requerido",
+                number: "Solo numeros"
+            },
+            'tel':{
+                minlength: 'El numero es muy corto',
+                maxlength:'El numero es muy largo'
+            },
+            'phone':{
+                minlength: 'El numero es muy corto',
+                maxlength:'El numero es muy largo'
+            },
+            'fecha':{
+                required:'Este campo es requerido'
+            },
+            'email':{
+                required: 'Este campo es requerido',
+                email: 'Correo no valido'
+            }
+        },
+        highlight: function (element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function (error, element) {
+            if (element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function () {
+            accionTipo();
+            return false;
+        }
+    });
     limpiarSeleccion();
     $('#btnPadre').on('click',function () {
-       accionTipo();
+       $('#padresForm').submit();
     });
 
     $('#tablaPadres').DataTable({

@@ -164,7 +164,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="ape_mat">Maestros:</label>
+                                <label class="col-md-4 control-label" for="maestroc">Maestros:</label>
                                 <div class="col-md-5">
                                     <select name="maestroc" id="maestroc" class="selectpicker">
                                         <option value="00">Seleccione un Maestro</option>
@@ -190,7 +190,7 @@
 
                             <!-- Text input password-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="padre" >Fechas:</label>
+                                <label class="col-md-4 control-label" for="alldates" >Fechas:</label>
                                 <div class="col-md-5" id="fechas">
                                     <div class='col-sm-6'>
                                         <div class='form-group'>

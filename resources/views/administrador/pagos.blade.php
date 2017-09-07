@@ -43,7 +43,7 @@
                         <div class='col-sm-12'>
                             <div class='form-group'>
                                 <div class='input-group date' id='datepicker'>
-                                    <input type='text' class='form-control' placeholder="fecha" id='alldates' name='alldates' />
+                                    <input type='text' class='form-control' placeholder="Selecciona un rango" id='alldates' name='alldates' />
                                     <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span>
                                                 </span>
                                 </div>

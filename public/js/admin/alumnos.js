@@ -1,5 +1,115 @@
 $(function() {
     limpiarSeleccion();
+    $.validator.addMethod("selected", function(value, element, arg){
+        return arg !== value;
+    }, "Seleccion no valida");
+    $('#alumnosForm').validate({
+        rules: {
+            'name': {
+                required: true,
+                minlength: 3
+            },
+            'ape_pat':{
+                required:true,
+                minlength: 3
+            },
+            'ape_mat':{
+                required:true,
+                minlength:3
+            },
+            'fecha_nac':{
+                required:true
+            },
+            'padre':{
+                selected:'00'
+            }
+        },
+        messages: {
+            'name': {
+                required: "Este campo es requerido",
+                minlength: "El nombre es muy corto"
+            },
+            'ape_pat':{
+                required: "Este campo es requerido",
+                minlength: "El nombre es muy corto"
+            },
+            'ape_mat':{
+                required: "Este campo es requerido",
+                minlength: "El nombre es muy corto"
+            },
+            'fecha_nac':{
+                required:'Este campo es requerido'
+            },
+            'padre':{
+                required: 'Seleccione un padre'
+            }
+        },
+        highlight: function (element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function (error, element) {
+            if (element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function () {
+            newAlumno();
+            return false;
+        }
+    });
+    $('#asignarForm').validate({
+        rules: {
+            'tipoc': {
+               selected:'00'
+            },
+            'maestroc':{
+                selected:'00'
+            },
+            'horario':{
+               selected:'00'
+            },
+            'alldates':{
+                required:true
+            }
+        },
+        messages: {
+            'alldates':{
+                required: 'Seleccione las fechas'
+            }
+        },
+        highlight: function (element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function (element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function (error, element) {
+            if (element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        },
+        submitHandler: function () {
+            var tipo = $('#tipoc').find('option:selected').attr('name');
+            var tc = tipo.split('-');
+            if(tc[1] == 'G'){
+                asignarAlumnoGrupal();
+            }else {
+                asignarAlumno();
+            }
+            return false;
+        }
+    });
     $('#tipoc').on('change',function () {
         tipoclase = $(this).find('option:selected').attr('name');
         tc = tipoclase.split('-');
@@ -130,20 +240,14 @@ $(function() {
 
 
     $('#btnAlumnoAsignar').on('click',function () {
-       var tipo = $('#tipoc').find('option:selected').attr('name');
-        var tc = tipo.split('-');
-        if(tc[1] == 'G'){
-            asignarAlumnoGrupal();
-        }else {
-            asignarAlumno();
-        }
+       $('#asignarForm').submit();
     });
     $('#agregarAlumno').on('click',function () {
         $('#titulo-modal').text('Nuevo Alumno');
         $('#modalAlumno').modal('show');
     });
     $('#btnAlumno').on('click',function () {
-       newAlumno();
+       $('#alumnosForm').submit();
     });
     $('#tablaAlumnos').DataTable({
         'scrollX':true,
