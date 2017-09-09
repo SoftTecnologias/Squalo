@@ -30,6 +30,17 @@ class ClasesController extends Controller
             ->join('padres as p', 'p.id', '=', 'a.padreid')
             ->join('asistencia_maestros as am', 'am.id', '=', 'g.id_asis_maestro')
             ->get();
+
+        foreach ($infoClases as $clase){
+            if($clase->remplazo != null){
+                $remplazo = DB::table('maestros')->select('*')->where('id','=',$clase->remplazo)->get();
+                foreach ($remplazo as $item){
+                    $clase->mnombre = 'R: '.$item->nombre;
+                    $clase->map = $item->ape_paterno;
+                    $clase->mam = $item->ape_materno;
+                }
+            }
+        }
         return Datatables::of(collect($infoClases))->make(true);
     }
 
