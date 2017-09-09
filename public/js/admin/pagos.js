@@ -72,20 +72,16 @@ function consulta() {
         }
     }).done(function(json){
         if(json.code == 200) {
-            var arreglo = [];
-            var fechas = json.msg;
-            fechas.forEach(function (item) {
-                arreglo.push(item['fecha'])
-            });
-            console.log(arreglo);
-            $('#datepicker').datepicker('destroy');
-            $('#datepicker').datepicker({
-                format: 'yyyy-mm-dd',
-                startDate: '0d',
-                autoclose: false,
-                multidate:true,
-                datesDisabled:arreglo
-            });
+            $('#hrsIndividual').val(json.msg['clasesIndividuales']);
+            $('#hrsGrupal').val(json.msg['clasesGrupales']);
+            $('#hrsEspecial').val(json.msg['clasesEspeciales']);
+            $('#pagoIndividual').val(json.msg['individual']);
+            $('#pagoGrupal').val(json.msg['grupal']);
+            $('#pagoEspecial').val(json.msg['especial']);
+            $('#totalIndividual').val(json.msg['totalI']);
+            $('#totalGrupal').val(json.msg['totalG']);
+            $('#totalEspecial').val(json.msg['totalE']);
+            $('#totalPago').val(json.msg['ptotal']);
         }else{
             swal("Error",json.msg,json.detail);
         }

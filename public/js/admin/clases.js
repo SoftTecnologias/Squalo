@@ -1,6 +1,6 @@
 $(function() {
     limpiarSeleccion();
-    $('#tablatipos').DataTable({
+    $('#tablaClases').DataTable({
         'scrollX':true,
         'scrollY':'400px',
         "processing": true,
@@ -10,7 +10,21 @@ $(function() {
             {"targets":[1,2,3],"width":"25%"},
             {"targets":[0],"width":"20%"},
             {"targets":[4],"width":"10%"},
-            {"className": "dt-center", "targets": "_all"}
+            {"className": "dt-center", "targets": "_all"},
+        ],
+
+        dom: 'Bfrtip',
+        "buttons":[
+            {
+                extend:    'excelHtml5',
+                text:      '<i class="fa fa-file-excel-o"></i>',
+                titleAttr: 'Excel'
+            },
+            {
+                extend:    'pdfHtml5',
+                text:      '<i class="fa fa-file-pdf-o"></i>',
+                titleAttr: 'PDF'
+            }
         ],
         columns: [
             {data: function (row) {

@@ -21,13 +21,13 @@
 
 @endsection
 @section('content')
-
     <div class="col-md-10">
             <hr>
             <div class="row"><h3>Pagos</h3>
                 <hr style="border-color:lightgray; width: 90%"></div>
             <br>
             <hr>
+
         <form id="formPago">
             <div class="form-group col-md-4">
                 <label for="maestro" class="label-control">Maestro</label>
@@ -60,16 +60,16 @@
             <div class="col-md-1"></div>
             <div class="col-md-3 form-group">
                   <label for="hrsIndividual" class="label-cotrol">Clases Individuales</label>
-                  <input type="text" id="hrsIndividual" name="hrsIndividual" placeholder="Clases Individuales" class="form-control">
+                  <input type="text" id="hrsIndividual" name="hrsIndividual" placeholder="Clases Individuales" class="form-control" readonly>
             </div>
                 <div class="col-md-3 form-group">
                     <label for="pagoIndividual" class="label-cotrol">Pago por Clase</label>
-                    <input type="text" id="pagoIndividual" name="hrsIndividual" placeholder="Pago por Clase" class="form-control">
+                    <input type="text" id="pagoIndividual" name="pagoIndividual" placeholder="Pago por Clase" class="form-control" readonly>
                 </div>
 
                 <div class="col-md-3 form-group">
                     <label for="totalIndividual" class="label-cotrol">Total Individuales</label>
-                    <input type="text" id="totalIndividual" name="hrsIndividual" placeholder="Total" class="form-control">
+                    <input type="text" id="totalIndividual" name="totalIndividual" placeholder="Total" class="form-control" readonly>
                 </div>
 
                 <div class="col-md-12">
@@ -77,15 +77,15 @@
             <div class="col-md-1"></div>
                 <div class="col-md-3 form-group">
                     <label for="hrsIndividual" class="label-cotrol">Clases Grupales</label>
-                    <input type="text" id="hrsIndividual" name="hrsIndividual" placeholder="Clases Individuales" class="form-control">
+                    <input type="text" id="hrsGrupal" name="hrsGrupal" placeholder="Clases Individuales" class="form-control" readonly>
                 </div>
                 <div class="col-md-3 form-group">
                     <label for="pagoIndividual" class="label-cotrol">Pago por Clase</label>
-                    <input type="text" id="pagoIndividual" name="hrsIndividual" placeholder="Pago por Clase" class="form-control">
+                    <input type="text" id="pagoGrupal" name="pagoGrupal" placeholder="Pago por Clase" class="form-control" readonly>
                 </div>
                 <div class="col-md-3 form-group">
                     <label for="totalIndividual" class="label-cotrol">Total Grupal</label>
-                    <input type="text" id="totalIndividual" name="hrsIndividual" placeholder="Total" class="form-control">
+                    <input type="text" id="totalGrupal" name="totalGrupal" placeholder="Total" class="form-control" readonly>
                 </div>
 
                 <div class="col-md-12">
@@ -93,27 +93,30 @@
             <div class="col-md-1"></div>
                 <div class="col-md-3 form-group">
                     <label for="hrsIndividual" class="label-cotrol">Clases Especiales</label>
-                    <input type="text" id="hrsIndividual" name="hrsIndividual" placeholder="Clases Individuales" class="form-control">
+                    <input type="text" id="hrsEspecial" name="totalEspecial" placeholder="Clases Individuales" class="form-control" readonly>
                 </div>
                 <div class="col-md-3 form-group">
                     <label for="pagoIndividual" class="label-cotrol">Pago por Clase</label>
-                    <input type="text" id="pagoIndividual" name="hrsIndividual" placeholder="Pago por Clase" class="form-control">
+                    <input type="text" id="pagoEspecial" name="totalEspecial" placeholder="Pago por Clase" class="form-control" readonly>
                 </div>
                 <div class="col-md-3 form-group">
                     <label for="totalIndividual" class="label-cotrol">Total Especial</label>
-                    <input type="text" id="totalIndividual" name="hrsIndividual" placeholder="Total" class="form-control">
+                    <input type="text" id="totalEspecial" name="totalEspecial" placeholder="Total" class="form-control" readonly>
                 </div>
 
                 <div class="col-md-12">
                     <br></div>
             <div class="col-md-7"></div>
                 <div class="col-md-3">
-                    <label for="totalIndividual" class="label-cotrol">Pago Total</label>
-                    <input type="text" id="totalIndividual" name="hrsIndividual" placeholder="Pago Total" class="form-control">
+                    <label for="totalPago" class="label-cotrol">Pago Total</label>
+                    <input type="text" id="totalPago" name="totalPago" placeholder="Pago Total" class="form-control" readonly>
                 </div>
                 <div class="col-md-12">
                     <hr></div>
+            <div class="col-md-10" align="right"><a href="{{route('pdf.export')}}" class="btn btn-primary">exportar</a></div>
+
         </form>
+
     </div>
     <footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
 @endsection

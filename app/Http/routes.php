@@ -132,3 +132,8 @@ Route::get('/resource/pagos/{id}',[
 Route::resource('/resource/reemplazo','ReemplazosController');
 
 Route::resource('/resource/clases','ClasesController');
+
+Route::get('exportpdf', [
+   'uses' => 'PagosController@exportpdf',
+    'as' => 'pdf.export'
+]);

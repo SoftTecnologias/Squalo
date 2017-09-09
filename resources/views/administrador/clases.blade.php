@@ -2,12 +2,19 @@
 @section('styles')
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link media="all" type="text/css" rel="stylesheet"
-          href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"/>
+          href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+    <link media="all" type="text/css" rel="stylesheet"
+          href="https://cdn.datatables.net/buttons/1.4.1/css/buttons.dataTables.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="{{asset('/css/index.css')}}">
 @endsection
 @section('scripts')
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.4.1/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" src="{{asset('js/plugins/jquery.validate.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/plugins/fileinput.min.js')}}"></script>
@@ -18,7 +25,7 @@
 @section('content')
     <div class="col-md-10">
         <hr>
-        <div class="row"><h3>Reporte de Reemplazo</h3>
+        <div class="row"><h3>Reporte de Clases</h3>
             <hr style="border-color:lightgray; width: 90%"></div>
         <br>
         <div class="box-body">
@@ -29,7 +36,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <table id="tablatipos" class="table table-bordered table-hover dataTable table-responsive"
+                        <table id="tablaClases" class="table table-bordered table-hover dataTable table-responsive display nowrap"
                                role="grid" aria-describedby="User_info">
                             <thead>
                             <tr role="row">
