@@ -80,6 +80,19 @@ Route::post('/resource/padres/{id}',[
 
 Route::resource('/resource/alumnos','AlumnosController');
 
+Route::get('/alumnos/all',[
+    'uses' => 'AlumnosController@todos',
+    'as' => 'algo.l'
+]);
+
+Route::get('/alumnos/inactivos',[
+        'uses' => 'AlumnosController@inactivos']
+);
+
+Route::get('/alumnos/activos',[
+        'uses' => 'AlumnosController@activos']
+);
+
 Route::post('/resource/alumnos/abono/{id}',[
     'uses' => 'AlumnosController@abonar'
 ]);

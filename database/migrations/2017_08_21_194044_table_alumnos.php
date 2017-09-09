@@ -22,6 +22,7 @@ class TableAlumnos extends Migration
             $table->date('fecha_nac');
             $table->float('adeudo');
             $table->tinyInteger('asignado');
+            $table->integer('activo');
 
             $table->foreign('padreid')->references('id')->on('padres');
         });

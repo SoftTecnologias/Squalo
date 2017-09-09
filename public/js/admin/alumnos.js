@@ -1,5 +1,45 @@
 $(function() {
     limpiarSeleccion();
+
+    $('#chactivos').on('change',function () {
+       if($(this).is(':checked')){
+           var filtro;
+           if($('#chinactivos').is(':checked')){
+               filtro = '/all'
+           }else{
+               filtro = '/activos';
+           }
+           $('#tablaAlumnos').dataTable().fnDestroy();
+            rellenarTabla(filtro);
+           $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+       }else{
+           filtro = '/inactivos';
+           $('#tablaAlumnos').dataTable().fnDestroy();
+           rellenarTabla(filtro);
+           $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+           $('#chinactivos').prop('checked',true)
+       }
+    });
+    $('#chinactivos').on('change',function () {
+        if($(this).is(':checked')){
+            var filtro;
+            if($('#chactivos').is(':checked')){
+                filtro = '/all'
+            }else{
+                filtro = '/inactivos';
+            }
+            $('#tablaAlumnos').dataTable().fnDestroy();
+            rellenarTabla(filtro);
+            $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+        }else{
+            $('#chactivos').prop('checked',true);
+            filtro = '/activos';
+            $('#tablaAlumnos').dataTable().fnDestroy();
+            rellenarTabla(filtro);
+            $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+        }
+    });
+
     $.validator.addMethod("selected", function(value, element, arg){
         return arg !== value;
     }, "Seleccion no valida");
@@ -256,7 +296,9 @@ $(function() {
         "serverSide": true,
         "ajax": document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/alumnos',
         "columnDefs":[
-            {targets:[0,1,2,3],width:'20%'}
+            {targets:[0,1,3],width:'20%'},
+            {targets:[2,4,5],width:'13%'},
+            {searchable:true, targets:'_all'},
         ],
         columns: [
             {data: 'nombre'},
@@ -265,17 +307,22 @@ $(function() {
                 return str;
             }},
             {data: 'fecha_nac'},
-            {data: 'npadre'},
             {data: function (row) {
-                str = (row['asignado']==0) ? row['adeudo'] : row["adeudo"]+'<a id="adeudo'+row['id']+'" onclick="pago('+row['id']+')">  info</a>';
+                str = row['npadre']+' '+row['appadre']+' '+row['ampadre'];
+                return str;
+            }},
+            {data: function (row) {
+                str = (row['asignado']==0) ? row['adeudo'] : row["adeudo"]+'<a id="adeudo'+row['id']+'" class="btn btn-warning btn-xs" onclick="pago('+row['id']+')">pago</a>';
                 return str;
             }},
             {data: function (row) {
                 str = "<div align='center'>";
                 str += (row['asignado']==1) ? " <button id='btninfo"+row['id']+"' class='btn btn-info btn-xs col-md-4'>Info</button>":
                     " <button id='btnasignar"+row['id']+"' onclick='asigna(\""+row['id']+"\",\""+row['nombre']+"\")' class='btn btn-success btn-xs col-md-4'>Asignar</button>";
-                str += "<button id='btnEliminar"+row['id']+"' class='btn btn-danger btn-xs col-md-4'><i class='fa fa-trash-o'></i></button>";
+                str += "<button id='btnEliminar"+row['id']+"' class='btn btn-danger btn-xs col-md-4'>Baja</button>";
                 str += "</div>";
+
+                (row['activo'] == 0) ?  str = "<div align='center'><button id='btnAlta"+row['id']+"' onclick='alta(\""+row['id']+"\")' class='btn btn-info btn-xs col-md-4'>Alta</button></div>":'';
                 return str;
             }}
         ],
@@ -441,4 +488,55 @@ function cancelpago(id) {
             swal("Error","Tuvimos un problema de conexion","error");
         });
     })
+}
+
+function rellenarTabla(filtro) {
+    $('#tablaAlumnos').DataTable({
+        'scrollX':true,
+        'scrollY':'600px',
+        "processing": true,
+        "serverSide": true,
+        "ajax":{
+            "url":  document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/alumnos'+filtro,
+            "type": "get"
+        },
+        "columnDefs":[
+            {targets:[0,1,3],width:'20%'},
+            {targets:[2,4,5],width:'13%'},
+            {searchable:true, targets:'_all'},
+        ],
+        columns: [
+            {data: 'nombre'},
+            {data: function (row) {
+                str = row['ape_paterno']+' '+row['ape_materno'];
+                return str;
+            }},
+            {data: 'fecha_nac'},
+            {data: function (row) {
+                str = row['npadre']+' '+row['appadre']+' '+row['ampadre'];
+                return str;
+            }},
+            {data: function (row) {
+                str = (row['asignado']==0) ? row['adeudo'] : row["adeudo"]+'<a id="adeudo'+row['id']+'" class="btn btn-warning btn-xs" onclick="pago('+row['id']+')">pago</a>';
+                return str;
+            }},
+            {data: function (row) {
+                str = "<div align='center'>";
+                str += (row['asignado']==1) ? " <button id='btninfo"+row['id']+"' class='btn btn-info btn-xs col-md-4'>Info</button>":
+                    " <button id='btnasignar"+row['id']+"' onclick='asigna(\""+row['id']+"\",\""+row['nombre']+"\")' class='btn btn-success btn-xs col-md-4'>Asignar</button>";
+                str += "<button id='btnEliminar"+row['id']+"' class='btn btn-danger btn-xs col-md-4'>Baja</button>";
+                str += "</div>";
+
+                (row['activo'] == 0) ?  str = "<div align='center' class='col-md-12'><button id='btnAlta"+row['id']+"' onclick='alta(\""+row['id']+"\")' class='btn btn-primary btn-xs col-md-8'>Alta</button></div>":'';
+                return str;
+            }}
+        ],
+        buttons: [
+            'print'
+        ],
+        'language': {
+            url:'https://cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json',
+            sLoadingRecords : '<span style="width:100%;"><img src="http://www.snacklocal.com/images/ajaxload.gif"></span>'
+        }
+    });
 }

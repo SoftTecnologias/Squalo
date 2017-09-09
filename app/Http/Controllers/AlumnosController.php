@@ -23,8 +23,11 @@ class AlumnosController extends Controller
     public function index()
     {
         $alumnos = DB::table('alumnos as a')->select('a.id', 'a.nombre', 'a.ape_paterno', 'a.ape_materno', 'a.adeudo', 'a.fecha_nac',
-            'a.asignado', 'p.nombre as npadre', 'p.ape_paterno as appadre', 'p.ape_materno as ampadre')
-            ->join('padres as p', 'padreid', '=', 'p.id')->get();
+            'a.asignado', 'p.nombre as npadre', 'p.ape_paterno as appadre', 'p.ape_materno as ampadre','a.activo')
+            ->join('padres as p', 'padreid', '=', 'p.id')
+            ->where('a.activo','=',1)
+            ->get();
+
         return Datatables::of(collect($alumnos))->make(true);
     }
 
@@ -55,7 +58,8 @@ class AlumnosController extends Controller
                 "fecha_nac" => $request->input('fecha_nac'),
                 "padreid" => $request->input('padre'),
                 "adeudo" => 0,
-                "asignado" => 0
+                "asignado" => 0,
+                "activo" => 1
             ]);
 
             $respuesta = ["code" => 200, "msg" => 'El maestros fue registrado exitosamente', 'detail' => 'success'];
@@ -331,5 +335,35 @@ class AlumnosController extends Controller
         return Response::json($respuesta);
     }
 
+    public function todos()
+    {
+        $alumnos = DB::table('alumnos as a')->select('a.id', 'a.nombre', 'a.ape_paterno', 'a.ape_materno', 'a.adeudo', 'a.fecha_nac',
+            'a.asignado', 'p.nombre as npadre', 'p.ape_paterno as appadre', 'p.ape_materno as ampadre','a.activo')
+            ->join('padres as p', 'padreid', '=', 'p.id')
+            ->get();
+
+        return Datatables::of(collect($alumnos))->make(true);
+    }
+
+    public function inactivos()
+    {
+        $alumnos = DB::table('alumnos as a')->select('a.id', 'a.nombre', 'a.ape_paterno', 'a.ape_materno', 'a.adeudo', 'a.fecha_nac',
+            'a.asignado', 'p.nombre as npadre', 'p.ape_paterno as appadre', 'p.ape_materno as ampadre','a.activo')
+            ->join('padres as p', 'padreid', '=', 'p.id')
+            ->where('a.activo','=',0)
+            ->get();
+        return Datatables::of(collect($alumnos))->make(true);
+    }
+
+    public  function activos()
+    {
+            $alumnos = DB::table('alumnos as a')->select('a.id', 'a.nombre', 'a.ape_paterno', 'a.ape_materno', 'a.adeudo', 'a.fecha_nac',
+                'a.asignado', 'p.nombre as npadre', 'p.ape_paterno as appadre', 'p.ape_materno as ampadre','a.activo')
+                ->join('padres as p', 'padreid', '=', 'p.id')
+                ->where('a.activo','=',1)
+                ->get();
+
+            return Datatables::of(collect($alumnos))->make(true);
+    }
 }
 

@@ -37,31 +37,33 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
+                        <input type="checkbox" id="chactivos" checked>Activos
+                        <input type="checkbox" id="chinactivos" >InActivos
                         <table id="tablaAlumnos" class="table table-bordered table-hover dataTable table-responsive"
                                role="grid" aria-describedby="User_info">
                             <thead>
                             <tr role="row" class="active">
-                                <th class="sorting_asc" tabindex="0" aria-controls="userTable" rowspan="1"
+                                <th class="sorting_asc" aria-controls="userTable" rowspan="1"
                                     colspan="1" aria-label="Nombre: Nombre del usuario">
                                     Nombre
                                 </th>
-                                <th class="sorting" tabindex="0" aria-controls="userTable" rowspan="1"
+                                <th class="sorting" aria-controls="userTable" rowspan="1"
                                     colspan="1" aria-label="Apellido Paterno: apellido paterno del usuario">
                                     Apellidos
                                 </th>
-                                <th class="sorting" tabindex="0" aria-controls="userTable" rowspan="1"
+                                <th class="sorting"  aria-controls="userTable" rowspan="1"
                                     colspan="1" aria-label="Apellido Materno: apellido materno del usuario">
                                     Fecha de nacimiento
                                 </th>
-                                <th class="sorting" tabindex="0" aria-controls="userTable" rowspan="1"
+                                <th class="sorting" aria-controls="userTable" rowspan="1"
                                     colspan="1" aria-label="Email: Correo del usuario">
                                     Padre
                                 </th>
-                                <th class="sorting" tabindex="0" aria-controls="userTable" rowspan="1"
+                                <th class="sorting" aria-controls="userTable" rowspan="1"
                                     colspan="1" aria-label="rol de permisos: permisos del usuario">
                                     Adeudo
                                 </th>
-                                <th class="sorting col-sm-3" tabindex="0" aria-controls="userTable"
+                                <th class="sorting col-sm-3" aria-controls="userTable"
                                     rowspan="1" colspan="1" aria-sort="ascending"
                                     aria-label="Acciones">
                                     Acciones
