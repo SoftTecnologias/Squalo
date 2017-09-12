@@ -59,6 +59,10 @@ Route::post('/alumnos/{id}/asignargrupo',[
     'uses' => 'AlumnosController@asignargrupo'
 ]);
 
+Route::get('/alumnos/{id}/getfechas',[
+   'uses' => 'AlumnosController@fechasClases'
+]);
+
 Route::get('/pagos',[
    'uses' => 'UserController@getPagosForm',
     'as' => 'index.pagos'
@@ -83,6 +87,14 @@ Route::resource('/resource/alumnos','AlumnosController');
 Route::get('/alumnos/all',[
     'uses' => 'AlumnosController@todos',
     'as' => 'algo.l'
+]);
+
+Route::get('/alumno/baja/{id}',[
+   'uses' => 'AlumnosController@bajaAlumno'
+]);
+
+Route::get('/alumno/alta/{id}',[
+    'uses' => 'AlumnosController@altaAlumno'
 ]);
 
 Route::get('/alumnos/inactivos',[

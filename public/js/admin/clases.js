@@ -63,7 +63,5 @@ function comparafecha(fecha) {
     if(fecha>=fa){
         return false;
     }
-
-    console.log(fecha)
     return true;
 }

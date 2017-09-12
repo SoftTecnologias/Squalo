@@ -365,5 +365,64 @@ class AlumnosController extends Controller
 
             return Datatables::of(collect($alumnos))->make(true);
     }
+
+    public function fechasClases($id){
+        try{
+        $alumnos = DB::table('alumnos as a')->select('a.nombre', 'a.ape_paterno', 'a.ape_materno','a.fecha_nac',
+            'p.nombre as npadre', 'p.ape_paterno as appadre', 'p.ape_materno as ampadre','fc.fecha','ga.asistencia')
+            ->join('padres as p', 'padreid', '=', 'p.id')
+            ->join('grupo_alumnos as ga','ga.idAlumno','=','a.id')
+            ->join('grupo as g','g.id','=','ga.idGrupo')
+            ->join('fecha_clase as fc','fc.id','=','g.idfecha')
+            ->where('a.id','=',$id)
+            ->get();
+
+        foreach ($alumnos as $alumno){
+            if($alumno->asistencia == 0){
+                $alumno->asistencia = 'falta';
+            }elseif ($alumno->asistencia == 1){
+                $alumno->asistencia = 'asistio';
+            }
+
+        }
+            $respuesta = ["code" => 200, "msg" => $alumnos, 'detail' => 'success'];
+        }catch (Exception $e){
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
+
+    public function bajaAlumno($id){
+        try {
+            $alumno = Alumno::findOrFail($id);
+            $up = ([
+                "activo" => 0
+            ]);
+
+            $alumno->fill($up);
+            $alumno->save();
+            $respuesta = ["code" => 200, "msg" => 'El Alumno se dio de Baja Correctamente', 'detail' => 'success'];
+        } catch (Exception $e) {
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
+
+    public function altaAlumno($id)
+    {
+        try {
+            $alumno = Alumno::findOrFail($id);
+            $up = ([
+                "activo" => 1
+            ]);
+
+            $alumno->fill($up);
+            $alumno->save();
+            $respuesta = ["code" => 200, "msg" => 'El Alumno se dio de Alta Correctamente', 'detail' => 'success'];
+        } catch (Exception $e) {
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
 }
 

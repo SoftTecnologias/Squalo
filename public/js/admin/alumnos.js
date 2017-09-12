@@ -317,9 +317,9 @@ $(function() {
             }},
             {data: function (row) {
                 str = "<div align='center'>";
-                str += (row['asignado']==1) ? " <button id='btninfo"+row['id']+"' class='btn btn-info btn-xs col-md-4'>Info</button>":
+                str += (row['asignado']==1) ? " <button id='btninfo"+row['id']+"' onclick='infoAlumno(\""+row['id']+"\")' class='btn btn-info btn-xs col-md-4'>Info</button>":
                     " <button id='btnasignar"+row['id']+"' onclick='asigna(\""+row['id']+"\",\""+row['nombre']+"\")' class='btn btn-success btn-xs col-md-4'>Asignar</button>";
-                str += "<button id='btnEliminar"+row['id']+"' class='btn btn-danger btn-xs col-md-4'>Baja</button>";
+                str += "<button id='btnEliminar"+row['id']+"' onclick='baja(\""+row['id']+"\")' class='btn btn-danger btn-xs col-md-4'>Baja</button>";
                 str += "</div>";
 
                 (row['activo'] == 0) ?  str = "<div align='center'><button id='btnAlta"+row['id']+"' onclick='alta(\""+row['id']+"\")' class='btn btn-info btn-xs col-md-4'>Alta</button></div>":'';
@@ -334,6 +334,8 @@ $(function() {
             sLoadingRecords : '<span style="width:100%;"><img src="http://www.snacklocal.com/images/ajaxload.gif"></span>'
         }
     });
+
+
 } );
 function limpiarSeleccion() {
     $('#rutealumnos').addClass('active');
@@ -538,5 +540,96 @@ function rellenarTabla(filtro) {
             url:'https://cdn.datatables.net/plug-ins/1.10.13/i18n/Spanish.json',
             sLoadingRecords : '<span style="width:100%;"><img src="http://www.snacklocal.com/images/ajaxload.gif"></span>'
         }
+    });
+}
+
+function infoAlumno(id){
+    $('#infoFechas label').remove();
+    $('#infoFechas input').remove();
+    $('#infoFechas div').remove();
+    $.ajax({
+        type: "get",
+        url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/alumnos/'+id+'/getfechas',
+        success: function (data) {
+            var fechas = '';
+            data['msg'].forEach(function (item) {
+                $('#ainame').val(item['nombre']);
+                $('#aiape_pat').val(item['ape_paterno']);
+                $('#aiape_mat').val(item['ape_materno']);
+                $('#aifecha_nac').val(item['fecha_nac']);
+                $('#aipadre').val(item['npadre']+' '+item['appadre']+' '+item['ampadre']);
+                (comparafecha(item['fecha']) == false) ? item['asistencia']='pendiente' : '';
+                $('#infoFechas').append('<div class="form-group">' +
+                    '<label class="col-md-4 control-label" for="'+item['fecha']+'" >Fecha Clase:</label>'+
+                    ' <div class="col-md-4">' +
+                    '<input type="text" id="'+item['fecha']+'" name="'+item['fecha']+'"  class="form-control input-md" value="'+item['fecha']+'">' +
+                    '</div>' +
+                    '<label class="col-md-1">'+item['asistencia']+'</label>'+
+                    '</div>');
+            });
+        }
+    });
+
+    $('#modalIfoAlumno').modal('show');
+}
+function comparafecha(fecha) {
+    var fa = new Date();
+    fecha = new Date(fecha);
+    fecha.setDate(fecha.getDate() + 1);
+    if(fecha>fa){
+        return false;
+    }
+    return true;
+}
+
+function baja(id){
+    swal({
+        title: 'Estas seguro?',
+        text: "El Alumno se dara de baja!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si deseo continuar!'
+    }).then(function () {
+         $.ajax({
+         type: "get",
+         url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/alumno/baja/'+id,
+           success: function (data) {
+             swal(
+             'Success!',
+            'El Alumno se dio de baja Correctamente!',
+             'success'
+             ).then(function () {
+                 $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+             });
+          }
+         });
+    });
+}
+
+function alta(id){
+    swal({
+        title: 'Estas seguro?',
+        text: "El Alumno se dara de Alta!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si deseo continuar'
+    }).then(function () {
+        $.ajax({
+            type: "get",
+            url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/alumno/alta/'+id,
+            success: function (data) {
+                swal(
+                    'Success!',
+                    'El Alumno se dio de alta Correctamente!',
+                    'success'
+                ).then(function () {
+                    $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+                });
+            }
+        });
     });
 }

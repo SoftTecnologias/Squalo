@@ -296,4 +296,72 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="modalIfoAlumno">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="reset()"><i class="fa fa-times"></i></button>
+                    <h3 id="titulo-modal">Alumnos</h3>
+                </div>
+                <div class="model-body">
+                    <form class="form-horizontal" enctype="multipart/form-data" id="alumnosInfoForm">
+                        <fieldset>
+                            <br>
+                            {{csrf_field()}}
+                            <input type="hidden" name="padreid" id="padreid">
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="ainame">Nombre:</label>
+                                <div class="col-md-5">
+                                    <input id="ainame" name="ainame" placeholder="" class="form-control input-md" required=""
+                                           type="text">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="aiape_pat">Apellido Paterno:</label>
+                                <div class="col-md-5">
+                                    <input id="aiape_pat" name="aiape_pat" placeholder="" class="form-control input-md"
+                                           required="" type="text">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="aiape_mat">Apellido Materno:</label>
+                                <div class="col-md-5">
+                                    <input id="aiape_mat" name="aiape_mat" placeholder="" class="form-control input-md"
+                                           required="" type="text">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="aifecha_nac">Fecha de Nacimiento:</label>
+                                <div class="col-md-5">
+                                    <input id="aifecha_nac" name="aifecha_nac" placeholder="" class="form-control input-md" type="text">
+                                </div>
+                            </div>
+
+                            <!-- Text input password-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="aipadre" >Padre:</label>
+                                <div class="col-md-5">
+                                    <input type="text" id="aipadre" name="aipadre"  class="form-control input-md">
+                                </div>
+                            </div>
+
+                            <div id="infoFechas" class="form-group">
+
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnGuardarCambios" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
