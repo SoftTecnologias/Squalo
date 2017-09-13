@@ -15,7 +15,7 @@ class TableUsuarios extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->string('user');
-            $table->float('password');
+            $table->string('password');
         });
     }
 

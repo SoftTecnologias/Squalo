@@ -11,6 +11,16 @@
 |
 */
 //area de rutas para el administrador
+Route::post('/login',[
+   'uses' => 'UserController@doLogin',
+    'as' => 'login'
+]);
+
+Route::get('/logout',[
+   'uses' => 'UserController@logout',
+    'as' => 'logout'
+]);
+
 Route::get('/',[
     'uses' => 'UserController@getIndex',
     'as' => 'index'
