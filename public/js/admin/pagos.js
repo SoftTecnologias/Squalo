@@ -63,10 +63,13 @@ function consulta() {
         fecha[0] = fecha[1];
         fecha[1] = temp;
     }
+    var id = $('#maestro').val();
+    $('#export').removeAttr('href');
+    $('#export').attr('href',"exportpdf/"+id+'&'+fecha[0]+'&'+fecha[1]);
     $.ajax({
         url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/pagos/maestro",
         type:"POST",
-        data: {'maestro':$('#maestro').val(),'inicial':fecha[0],'final':fecha[1]},
+        data: {'maestro':id,'inicial':fecha[0],'final':fecha[1]},
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }

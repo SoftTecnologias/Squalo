@@ -27,7 +27,7 @@ class UserController extends Controller
     {
         try {
             $cookie = null;
-            $users = User::where('user', $request->username)->firstOrFail(); //buscamos con el email si es vacio entonces mensaje de error
+            $users = User::where('user', $request->username)->firstOrFail();
             if ($request->password == $users->password) {
                 $datos = [
                     'username' => $users->user,

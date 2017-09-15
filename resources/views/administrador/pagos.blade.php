@@ -113,7 +113,9 @@
                 </div>
                 <div class="col-md-12">
                     <hr></div>
-            <div class="col-md-10" align="right"><a href="{{route('pdf.export')}}" class="btn btn-primary">exportar</a></div>
+            <input type="hidden" id="datos">
+
+            <div class="col-md-10" align="right"><a id="export" class="btn btn-primary">exportar</a></div>
 
         </form>
 

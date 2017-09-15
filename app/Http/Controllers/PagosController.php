@@ -14,7 +14,6 @@ class PagosController extends Controller
     private $datos;
     public function getInfo(Request $request){
         try{
-            //Insercion del producto
             $clasesIndividuales = DB::table('maestros as m')
                 ->select('*')
                 ->join('clase as c','c.idmaestro','=','m.id')
@@ -100,38 +99,111 @@ class PagosController extends Controller
         return Response::json($respuesta);
     }
 
-    public function exportpdf() {
+    public function exportpdf($id) {
+        $datos = explode('&',$id);
+
+        $clasesIndividuales = DB::table('maestros as m')
+            ->select('*')
+            ->join('clase as c','c.idmaestro','=','m.id')
+            ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+            ->join('fecha_clase as fc','fc.idclase','=','c.id')
+            ->join('grupo as g','g.idfecha','=','fc.id')
+            ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+            ->where('m.id','=',$datos[0])
+            ->where('tc.tipo_clase','=','I')
+            ->where('fc.fecha','>=',$datos[1])
+            ->where('fc.fecha','<=',$datos[2])
+            ->where('am.asistencia','=',1)
+            ->count();
+        $clasesGrupales = DB::table('maestros as m')
+            ->select('*')
+            ->join('clase as c','c.idmaestro','=','m.id')
+            ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+            ->join('fecha_clase as fc','fc.idclase','=','c.id')
+            ->join('grupo as g','g.idfecha','=','fc.id')
+            ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+            ->where('m.id','=',$datos[0])
+            ->where('tc.tipo_clase','=','G')
+            ->where('fc.fecha','>=',$datos[1])
+            ->where('fc.fecha','<=',$datos[2])
+            ->where('am.asistencia','=',1)
+            ->count();
+        $clasesEspeciales = DB::table('maestros as m')
+            ->select('*')
+            ->join('clase as c','c.idmaestro','=','m.id')
+            ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+            ->join('fecha_clase as fc','fc.idclase','=','c.id')
+            ->join('grupo as g','g.idfecha','=','fc.id')
+            ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+            ->where('m.id','=',$datos[0])
+            ->where('tc.tipo_clase','=','E')
+            ->where('fc.fecha','>=',$datos[1])
+            ->where('fc.fecha','<=',$datos[2])
+            ->where('am.asistencia','=',1)
+            ->count();
+        $pagos = DB::table('maestros as m')
+            ->select('claseIndividual','claseGrupal','claseEspecial','m.nombre','m.ape_paterno','m.ape_materno')
+            ->join('maestro_pago as mp','m.id','=','mp.idmaestro')
+            ->where('m.id','=',$datos[0])
+            ->get(1);
+
+        $pagosclases = DB::table('pago_clase as m')
+            ->select('*')
+            ->get();
+
+        foreach ($pagos as  $pago){
+            $individial = ($pago->claseIndividual/100);
+            $grupal = ($pago->claseGrupal/100);
+            $especial = ($pago->claseEspecial/100);
+            $maestro = $pago->nombre.' '.$pago->ape_paterno.' '.$pago->ape_materno;
+        }
+
+        foreach ($pagosclases as $pagoclase){
+            switch ($pagoclase->tipoclase){
+                case 'I': $individial = ($individial*$pagoclase->pago_por_clase);
+                    break;
+                case 'G': $grupal = ($grupal*$pagoclase->pago_por_clase);
+                    break;
+                case 'E': $especial = ($especial*$pagoclase->pago_por_clase);
+                    break;
+            }
+        }
         $pdf = new Fpdf();
        $pdf->addPage();
         $pdf->SetFont('Arial', 'B', 16);
-//inserto la cabecera poniendo una imagen dentro de una celda
-        $pdf->Cell(700,85,$pdf->Image(asset('img.jpg'),30,12,170),0,0,'C');
+        $pdf->Cell(700,85,$pdf->Image(asset('img.jpg'),30,12,90),0,0,'C');
         $pdf->Cell(100,12,"Presupuesto: ");
         $pdf->Cell(100,12,"Fecha: ". date('d/m/Y'));
-        $pdf->Line(35,40,190,40);
-        $pdf->Ln(7);
-        $pdf->Cell(100,12,"Nombre : ");
-$pdf->Line(35,48,190,48);
-$pdf->Ln(7);
-$pdf->Cell(100,12,"Domicilio: ");
-$pdf->Line(35,56,190,56);
-$pdf->Ln(7);
-$pdf->Cell(90,12,"Teléfono: ");
-$pdf->Line(35,62,190,62);
-$pdf->Ln(7);
-$pdf->Cell(100,12,"Equipo: ");
-$pdf->Line(35,68,190,68);
-$pdf->Ln(9);
-$pdf->SetFont('Arial','B',10);
-
-$pdf->Cell(60,12,'PRESUPUESTO');
-
-$pdf->Ln(2);
-
-$pdf->SetFont('Arial','',8);
-$pdf->Output();
-        $fichero='presupuesto-00.pdf';
-        //$pdfdoc = $pdf->Output($fichero, "D");
+        $pdf->Ln(80);
+        $pdf->Cell(100,12,"Nombre :             ".$maestro);
+        $pdf->Line(40,100,190,100);
+        $pdf->Ln(15);
+        $pdf->Cell(20,12,"                                                         Del: ".$datos[1]."        Al: ".$datos[2]);
+        $pdf->Line(112,114,145,114);
+        $pdf->Line(162,114,195,114);
+        $pdf->Ln(15);
+        $pdf->Cell(100,12,"Clases");
+        $pdf->Ln(15);
+        $pdf->Cell(90,12,"Individuales:  ".$clasesIndividuales."      Pago p/clase: $".$especial."     Total Individual: $".($clasesIndividuales*$individial));
+        $pdf->Line(45,145,65,145);
+        $pdf->Line(104,145,124,145);
+        $pdf->Line(169,145,190,145);
+        $pdf->Ln(15);
+        $pdf->Cell(90,12,"Grupales:  ".$clasesGrupales."      Pago p/clase: $".$grupal."     Total Individual: $".($clasesGrupales*$grupal));
+        $pdf->Line(37,160,57,160);
+        $pdf->Line(96,160,116,160);
+        $pdf->Line(161,160,182,160);
+        $pdf->Ln(15);
+        $pdf->Cell(90,12,"Especiales:  ".$clasesEspeciales."      Pago p/clase: $".$especial."     Total Individual: $".($clasesEspeciales*$especial));
+        $pdf->Line(41,175,61,175);
+        $pdf->Line(100,175,120,175);
+        $pdf->Line(165,175,186,175);
+        $pdf->Ln(15);
+        $pdf->Cell(100,12,"                                                                                  Total: $".(($clasesIndividuales*$individial)+($clasesGrupales*$grupal)+($clasesEspeciales*$especial)));
+        $pdf->Line(155,190,190,190);
+        //$pdf->Output();
+        $fichero='Factura - '.$datos[0].' ('.$datos[1].' al '.$datos[2].').pdf';
+        $pdfdoc = $pdf->Output($fichero, "D");
         exit;
     }
 }
