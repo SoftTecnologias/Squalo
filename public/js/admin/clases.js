@@ -38,9 +38,9 @@ $(function() {
             }},
             {data: 'fecha'},
             {data: function (row) {
-                str = (row['asisalumno'] == 1) ? '<label><i class="glyphicon glyphicon-check text-success"></i></label>': '<label><i class="glyphicon glyphicon-remove text-danger"></i></label>';
+                str = (row['asisalumno'] == 1) ? '<label>asistio <i class="glyphicon glyphicon-check text-success"></i></label>': '<label>falto <i class="glyphicon glyphicon-remove text-danger"></i></label>';
                 if(comparafecha(row['fecha']) == false){
-                    return 'Pendiente';
+                    return '<label>Pendiente</label>';
                 }
                 return str;
 

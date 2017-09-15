@@ -63,8 +63,44 @@ class UserController extends Controller
    public function getIndex(Request $request){
        if ($request->cookie('admin') != null) {
            //Existe la cookie, solo falta averiguar que rol es
+           $maestros = Maestro::all();
+           foreach ($maestros as $maestro){
+               $clases = DB::table('maestros as m')
+                   ->select('*')
+                   ->join('clase as c','c.idmaestro','=','m.id')
+                   ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+                   ->join('fecha_clase as fc','fc.idclase','=','c.id')
+                   ->join('grupo as g','g.idfecha','=','fc.id')
+                   ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+                   ->where('m.id','=',$maestro->id)
+                   ->count();
+               $asistencias = DB::table('maestros as m')
+                   ->select('*')
+                   ->join('clase as c','c.idmaestro','=','m.id')
+                   ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+                   ->join('fecha_clase as fc','fc.idclase','=','c.id')
+                   ->join('grupo as g','g.idfecha','=','fc.id')
+                   ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+                   ->where('m.id','=',$maestro->id)
+                   ->where('am.asistencia','=',1)
+                   ->count();
+               $faltas = DB::table('maestros as m')
+                   ->select('*')
+                   ->join('clase as c','c.idmaestro','=','m.id')
+                   ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+                   ->join('fecha_clase as fc','fc.idclase','=','c.id')
+                   ->join('grupo as g','g.idfecha','=','fc.id')
+                   ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+                   ->where('m.id','=',$maestro->id)
+                   ->where('am.asistencia','=',0)
+                   ->count();
+               $maestro->setAttribute('totalClases',$clases);
+               $maestro->setAttribute('totalFaltas',$faltas);
+               $maestro->setAttribute('totalAsistencias',$asistencias);
+           }
+
            $cookie = Cookie::get('admin');
-           return view('index');
+           return view('index',['maestros'=>$maestros]);
        } else {
            //no existe una session de administrador y lo manda al login
            return view('login');
@@ -135,6 +171,7 @@ class UserController extends Controller
        try{
            if ($request->cookie('admin') != null) {
                //Existe la cookie, solo falta averiguar que rol es
+
                $cookie = Cookie::get('admin');
                $maestros = Maestro::all();
                $tipos = DB::table('tipo_clase')

@@ -35,180 +35,72 @@
                     <hr>
 
                     <div class="panel panel-default">
-                        <div class="panel-heading"><h4>Reports</h4></div>
+                        <div class="panel-heading"><h4>Reporte de Asistencias Totales</h4></div>
                         <div class="panel-body">
+                        @foreach($maestros as $maestro)
+                            <?php
+                                    if($maestro->totalClases == 0){
+                                        $m = 100;
+                                    }else{
+                                    $m = ($maestro->totalAsistencias)/($maestro->totalClases)*100;
+                                    }
+                                    if($m>=80){
+                                    $color = "progress-bar-success";
+                                    }elseif($m>=50){
+                                        $color = "progress-bar-warning";
+                                    }else{
+                                        $color = "progress-bar-danger";
+                                    }
+                                    ?>
+                            <small>{{$maestro->nombre.' '.$maestro->ape_paterno.' '.$maestro->ape_materno}}</small>
+                            <div class="progress">
 
-                            <small>Success</small>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                                    <span class="sr-only">72% Complete</span>
+                                <div class="progress-bar {{$color}}" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: {{$m}}%">
+                                    <span class="sr-only"> Complete</span>
                                 </div>
                             </div>
-                            <small>Info</small>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                    <span class="sr-only">20% Complete</span>
-                                </div>
-                            </div>
-                            <small>Warning</small>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                    <span class="sr-only">60% Complete (warning)</span>
-                                </div>
-                            </div>
-                            <small>Danger</small>
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                    <span class="sr-only">80% Complete</span>
-                                </div>
-                            </div>
+                            @endforeach
 
                         </div><!--/panel-body-->
                     </div><!--/panel-->
 
                     <hr>
 
-                    <!--tabs-->
-                    <div class="container">
-                        <div class="col-md-4">
-                            <ul class="nav nav-tabs" id="myTab">
-                                <li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-                                <li><a href="#messages" data-toggle="tab">Messages</a></li>
-                                <li><a href="#settings" data-toggle="tab">Settings</a></li>
-                            </ul>
-
-                            <div class="tab-content">
-                                <div class="tab-pane active" id="profile">
-                                    <h4><i class="glyphicon glyphicon-user"></i></h4>
-                                    Lorem profile dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-                                    <p>Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-                                        dolor, in sagittis nisi.</p>
-                                </div>
-                                <div class="tab-pane" id="messages">
-                                    <h4><i class="glyphicon glyphicon-comment"></i></h4>
-                                    Message ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-                                    <p>Quisque mauris augu.</p>
-                                </div>
-                                <div class="tab-pane" id="settings">
-                                    <h4><i class="glyphicon glyphicon-cog"></i></h4>
-                                    Lorem settings dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-                                    <p>Quisque mauris augue, molestie.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!--/tabs-->
-
-                    <hr>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><h4>New Requests</h4></div>
-                        <div class="panel-body">
-                            <div class="list-group">
-                                <a href="#" class="list-group-item active">Hosting virtual mailbox serv..</a>
-                                <a href="#" class="list-group-item">Dedicated server doesn't..</a>
-                                <a href="#" class="list-group-item">RHEL 6 install on new..</a>
-                            </div>
-                        </div>
-                    </div>
 
                 </div><!--/col-->
                 <div class="col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><h4>Notices</h4></div>
-                        <div class="panel-body">
-
-                            <div class="alert alert-info">
-                                <button type="button" class="close" data-dismiss="alert">×</button>
-                                This is a dismissable alert.. just sayin'.
-                            </div>
-
-                            This is a dashboard-style layout that uses Bootstrap 3. You can use this template as a starting point to create something more unique.
-                            <br><br>
-                            Visit the Bootstrap Playground at <a href="http://bootply.com">Bootply</a> to tweak this layout or discover more useful code snippets.
-                        </div>
-                    </div>
-
                     <table class="table table-striped">
                         <thead>
-                        <tr><th>Visits</th><th>ROI</th><th>Source</th></tr>
+                        <tr><th>Maestro</th><th>Clases</th><th>Faltas</th><th>Asitencias</th></tr>
                         </thead>
                         <tbody>
-                        <tr><td>45</td><td>2.45%</td><td>Direct</td></tr>
-                        <tr><td>289</td><td>56.2%</td><td>Referral</td></tr>
-                        <tr><td>98</td><td>25%</td><td>Type</td></tr>
-                        <tr><td>..</td><td>..</td><td>..</td></tr>
-                        <tr><td>..</td><td>..</td><td>..</td></tr>
+                        @foreach($maestros as $maestro)
+                        <tr>
+                            <td>{{$maestro->nombre.' '.$maestro->ape_paterno.' '.$maestro->ape_materno}}</td>
+                            <td>{{$maestro->totalClases}}</td>
+                            <td>{{$maestro->totalFaltas}}</td>
+                            <td>{{$maestro->totalAsistencias}}</td>
+                        </tr>
+                            @endforeach
                         </tbody>
                     </table>
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title">
-                                <i class="glyphicon glyphicon-wrench pull-right"></i>
-                                <h4>Post Request</h4>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-
-                            <form class="form form-vertical">
-
-                                <div class="control-group">
-                                    <label>Name</label>
-                                    <div class="controls">
-                                        <input type="text" class="form-control" placeholder="Enter Name">
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label>Message</label>
-                                    <div class="controls">
-                                        <textarea class="form-control"></textarea>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label>Category</label>
-                                    <div class="controls">
-                                        <select class="form-control"><option>options</option></select>
-                                    </div>
-                                </div>
-
-                                <div class="control-group">
-                                    <label></label>
-                                    <div class="controls">
-                                        <button type="submit" class="btn btn-primary">
-                                            Post
-                                        </button>
-                                    </div>
-                                </div>
-
-                            </form>
-
-
-                        </div><!--/panel content-->
-                    </div><!--/panel-->
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading"><div class="panel-title"><h4>Engagement</h4></div></div>
-                        <div class="panel-body">
-                            <div class="col-xs-4 text-center"><img src="http://placehold.it/80/BBBBBB/FFF" class="img-circle img-responsive"></div>
-                            <div class="col-xs-4 text-center"><img src="http://placehold.it/80/EFEFEF/555" class="img-circle img-responsive"></div>
-                            <div class="col-xs-4 text-center"><img src="http://placehold.it/80/EEEEEE/222" class="img-circle img-responsive"></div>
-                        </div>
-                    </div><!--/panel-->
 
                 </div><!--/col-span-6-->
 
             </div><!--/row-->
 
             <hr>
+            <hr>
+            <hr>
+            <hr>
+            <hr>
+            <hr>
+            <hr>
 
         </div><!--/col-span-9-->
 
 
-<footer class="text-center">This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></footer>
+<footer class="text-right"><h6>This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></h6></footer>
 
 <div class="modal" id="addWidgetModal">
     <div class="modal-dialog">

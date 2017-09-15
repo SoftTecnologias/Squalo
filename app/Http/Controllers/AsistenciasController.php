@@ -164,6 +164,7 @@ class AsistenciasController extends Controller
                 ->join('maestros as m', 'm.id', '=', 'c.idmaestro')
                 ->where('fc.fecha', '=', $fecha)
                 ->where('c.id','=',$id)
+                ->where('a.activo','=',1)
                 ->get();
             $respuesta = ["code"=>200, 'data'=>$asistencias,"detail"=>"success"];
         }catch(Exception $e){
