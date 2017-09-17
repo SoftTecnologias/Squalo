@@ -6,7 +6,7 @@ $(function () {
         var id = $('#asistid').val();
         $('#remplazo option[value="00"]').prop("selected",true);
         $.ajax({
-            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/asistencias/maestro/"+id,
+            url:document.location.protocol+'//'+document.location.host+""  +"/resource/asistencias/maestro/"+id,
             type:"POST",
             data: {'check':$('#asisMaestro').prop('checked')},
             headers: {
@@ -33,7 +33,7 @@ $(function () {
     $('#remplazo').on('change',function () {
         var id = $('#asistid').val();
         $.ajax({
-            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/asistencias/remplazo/"+id,
+            url:document.location.protocol+'//'+document.location.host+""  +"/resource/asistencias/remplazo/"+id,
             type:"POST",
             data: {'remplazo':$('#remplazo option:selected').val()},
             headers: {
@@ -56,7 +56,7 @@ $(function () {
         'scrollY':'600px',
         "processing": true,
         "serverSide": true,
-        "ajax": document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/asistencias',
+        "ajax": document.location.protocol+'//'+document.location.host+""  +'/resource/asistencias',
         "columnDefs":[
             {targets:[0,1,2,3,4],width:'25%'}
         ],
@@ -125,7 +125,7 @@ $(function () {
 
     $('#horario').on('change',function () {
         $.ajax({
-            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/alumnos/horarios",
+            url:document.location.protocol+'//'+document.location.host+""  +"/resource/alumnos/horarios",
             type:"POST",
             data: {'maestro':$('#maestroc').val(),'horario':$('#horario').val()},
             headers: {
@@ -161,7 +161,7 @@ $(function () {
 function newGrupo(){
     var data = new FormData(document.getElementById("grupoForm"));
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/asistencias",
+        url:document.location.protocol+'//'+document.location.host+""  +"/resource/asistencias",
         type:"POST",
         data: data,
         contentType:false,
@@ -186,7 +186,7 @@ function newGrupo(){
 function info(id) {
     $.ajax({
         type: "get",
-        url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/asistenciaalumnos/'+id,
+        url: document.location.protocol+'//'+document.location.host+""  +'/resource/asistenciaalumnos/'+id,
         success: function (data) {
             $('#ab tr').remove();
             data['data'].forEach(function (item) {
@@ -210,7 +210,7 @@ function info(id) {
 
 function alumAsis(id) {
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/asistencias/alumno/"+id,
+        url:document.location.protocol+'//'+document.location.host+""  +"/resource/asistencias/alumno/"+id,
         type:"POST",
         data: {'check':$('#check'+id).prop('checked'),'grupo':$('#asistid').val()},
         headers: {

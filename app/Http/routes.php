@@ -169,6 +169,11 @@ Route::resource('/resource/reemplazo','ReemplazosController');
 Route::resource('/resource/clases','ClasesController');
 
 Route::get('exportpdf/{id}', [
-   'uses' => 'PagosController@exportpdf',
+    'uses' => 'PagosController@exportpdf',
     'as' => 'pdf.export'
+]);
+
+Route::get('exportallpdf/{id}', [
+    'uses' => 'PagosController@exportallpdf',
+    'as' => 'pdf.exportall'
 ]);

@@ -29,6 +29,7 @@
             <hr>
 
         <form id="formPago">
+            <div class="col-md-12" align="right"><a href="" id="exportall" class="btn btn-primary">Exportar Todos</a></div>
             <div class="form-group col-md-4">
                 <label for="maestro" class="label-control">Maestro</label>
                 <select name="maestro" id="maestro" class="selectpicker" data-live-search="true">
@@ -56,6 +57,7 @@
                     <a class="btn btn-primary" href="#" id="consultar">Consultar <i class="fa fa-search"></i></a>
                 </div>
             </div>
+
                 <hr style="border-color:lightgray; width: 90%">
             <div class="col-md-1"></div>
             <div class="col-md-3 form-group">
@@ -117,8 +119,13 @@
 
             <div class="col-md-10" align="right"><a id="export" class="btn btn-primary">exportar</a></div>
 
+
+            <br>
+
         </form>
 
     </div>
+
+
     <footer class="text-right"><h6>This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></h6></footer>
 @endsection

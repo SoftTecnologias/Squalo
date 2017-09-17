@@ -2,7 +2,7 @@
 $(function () {
     $('#signin').on('click',function(){
         $.ajax({
-            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"+ "/login",
+            url:document.location.protocol+'//'+document.location.host+""+ "/login",
             type:"POST",
             data:{
                 username: $("#username").val(),

@@ -66,6 +66,8 @@ function consulta() {
     var id = $('#maestro').val();
     $('#export').removeAttr('href');
     $('#export').attr('href',"exportpdf/"+id+'&'+fecha[0]+'&'+fecha[1]);
+    $('#exportall').removeAttr('href');
+    $('#exportall').attr('href',"exportallpdf/"+fecha[0]+'&'+fecha[1]);
     $.ajax({
         url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/pagos/maestro",
         type:"POST",

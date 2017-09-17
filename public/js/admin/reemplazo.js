@@ -5,7 +5,7 @@ $(function() {
         'scrollY':'600px',
         "processing": true,
         "serverSide": true,
-        "ajax": document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/reemplazo',
+        "ajax": document.location.protocol+'//'+document.location.host+""  +'/resource/reemplazo',
         "columnDefs":[
             {"targets":[1,2,3],"width":"25%"},
             {"targets":[0],"width":"20%"},

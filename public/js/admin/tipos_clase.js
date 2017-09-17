@@ -69,7 +69,7 @@ $(function() {
         'scrollY':'600px',
         "processing": true,
         "serverSide": true,
-        "ajax": document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/tipoclase',
+        "ajax": document.location.protocol+'//'+document.location.host+""  +'/resource/tipoclase',
         "columnDefs":[
             {"targets":[0,1,3,4],"width":"25%"}
         ],
@@ -106,7 +106,7 @@ function limpiarSeleccion() {
 function newTipo(){
     var data = new FormData(document.getElementById("tiposForm"));
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/tipoclase",
+        url:document.location.protocol+'//'+document.location.host+""  +"/resource/tipoclase",
         type:"POST",
         data: data,
         contentType:false,
@@ -156,7 +156,7 @@ function deleteTipo(id){
         cancelButtonText: "Lo pensaré"
     }).then(function () {
         $.ajax({
-            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/tipoclase/'+id,
+            url:document.location.protocol+'//'+document.location.host+""  +'/resource/tipoclase/'+id,
             type:'delete',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -177,7 +177,7 @@ function updateTipo(){
     var id = $("#tipoid").val();
     var datos = new FormData(document.getElementById("tiposForm"));
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/tipoclase/'+id,
+        url:document.location.protocol+'//'+document.location.host+""  +'/resource/tipoclase/'+id,
         type:"POST",
         data: datos,
         contentType:false,

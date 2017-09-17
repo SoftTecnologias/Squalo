@@ -116,7 +116,7 @@ $(function() {
         'scrollY':'600px',
         "processing": true,
         "serverSide": true,
-        "ajax": document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/padres',
+        "ajax": document.location.protocol+'//'+document.location.host+""  +'/resource/padres',
         "columnDefs":[
             {"targets":[0,1,2,3],"width":"20%"}
         ],
@@ -159,7 +159,7 @@ function limpiarSeleccion() {
 function newPadre(){
     var data = new FormData(document.getElementById("padresForm"));
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/padres",
+        url:document.location.protocol+'//'+document.location.host+""  +"/resource/padres",
         type:"POST",
         data: data,
         contentType:false,
@@ -205,7 +205,7 @@ function deletePadre(id){
         cancelButtonText: "Lo pensaré"
     }).then(function () {
         $.ajax({
-            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/padres/'+id,
+            url:document.location.protocol+'//'+document.location.host+""  +'/resource/padres/'+id,
             type:'delete',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -226,7 +226,7 @@ function updatePadre(){
     var id = $("#padreid").val();
     var datos = new FormData(document.getElementById("padresForm"));
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/padres/'+id,
+        url:document.location.protocol+'//'+document.location.host+""  +'/resource/padres/'+id,
         type:"POST",
         data: datos,
         contentType: false,

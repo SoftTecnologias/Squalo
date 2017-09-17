@@ -5,7 +5,7 @@ $(function() {
         'scrollY':'400px',
         "processing": true,
         "serverSide": true,
-        "ajax": document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/clases',
+        "ajax": document.location.protocol+'//'+document.location.host+""  +'/resource/clases',
         "columnDefs":[
             {"targets":[1,2,3],"width":"25%"},
             {"targets":[0],"width":"20%"},

@@ -158,7 +158,7 @@ $(function() {
         if(tc[1] == 'G'){
             $.ajax({
                 type: "get",
-                url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/alumnos/grupo/'+id,
+                url: document.location.protocol+'//'+document.location.host+""  +'/resource/alumnos/grupo/'+id,
                 success: function (data) {
                     $('#gruposdisp option').remove();
                     $('#gruposdisp').append('<option value="00">Seleccione un Grupo</option>').selectpicker('refresh');
@@ -182,7 +182,7 @@ $(function() {
         if(tc[1] != '00'){
             $.ajax({
                 type: "get",
-                url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/alumnos/clase/sel/'+id,
+                url: document.location.protocol+'//'+document.location.host+""  +'/resource/alumnos/clase/sel/'+id,
                 success: function (data) {
                     var fechas = '';
                     data['msg'].forEach(function (item) {
@@ -201,7 +201,7 @@ $(function() {
 
     $('#horario').on('change',function () {
         $.ajax({
-            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/alumnos/horarios",
+            url:document.location.protocol+'//'+document.location.host+""  +"/resource/alumnos/horarios",
             type:"POST",
             data: {'maestro':$('#maestroc').val(),'horario':$('#horario').val()},
             headers: {
@@ -254,7 +254,7 @@ $(function() {
         }).then(function (abono) {
             var id = $('#idabono').val();
             $.ajax({
-                url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/alumnos/abono/"+id,
+                url:document.location.protocol+'//'+document.location.host+""  +"/resource/alumnos/abono/"+id,
                 type:"POST",
                 data: {'abonar':abono},
                 headers: {
@@ -294,7 +294,7 @@ $(function() {
         'scrollY':'600px',
         "processing": true,
         "serverSide": true,
-        "ajax": document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/alumnos',
+        "ajax": document.location.protocol+'//'+document.location.host+""  +'/resource/alumnos',
         "columnDefs":[
             {targets:[0,1,3],width:'20%'},
             {targets:[2,4,5],width:'13%'},
@@ -346,7 +346,7 @@ function limpiarSeleccion() {
 function newAlumno(){
     var data = new FormData(document.getElementById("alumnosForm"));
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/alumnos",
+        url:document.location.protocol+'//'+document.location.host+""  +"/resource/alumnos",
         type:"POST",
         data: data,
         contentType:false,
@@ -377,7 +377,7 @@ function asignarAlumno(){
 
   var id = $('#idasignar').val();
   $.ajax({
-      url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/alumnos/"+id+'/asignar',
+      url:document.location.protocol+'//'+document.location.host+""  +"/alumnos/"+id+'/asignar',
       type:"POST",
       data: data,
       contentType:false,
@@ -402,7 +402,7 @@ function asignarAlumnoGrupal(){
 
     var id = $('#idasignar').val();
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/alumnos/"+id+'/asignargrupo',
+        url:document.location.protocol+'//'+document.location.host+""  +"/alumnos/"+id+'/asignargrupo',
         type:"POST",
         data: data,
         contentType:false,
@@ -431,7 +431,7 @@ function pago(id) {
 
     $.ajax({
         type: "get",
-        url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/pagos/'+id,
+        url: document.location.protocol+'//'+document.location.host+""  +'/resource/pagos/'+id,
         success: function (data) {
             $('#abonobody tr').remove();
             $('#idabono').val(id);
@@ -468,7 +468,7 @@ function cancelpago(id) {
     }).then(function (abono) {
 
         $.ajax({
-            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/alumnos/abono/cancel/"+id,
+            url:document.location.protocol+'//'+document.location.host+""  +"/resource/alumnos/abono/cancel/"+id,
             type:"POST",
             data: {'id':id},
             headers: {
@@ -499,7 +499,7 @@ function rellenarTabla(filtro) {
         "processing": true,
         "serverSide": true,
         "ajax":{
-            "url":  document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/alumnos'+filtro,
+            "url":  document.location.protocol+'//'+document.location.host+""  +'/alumnos'+filtro,
             "type": "get"
         },
         "columnDefs":[
@@ -549,7 +549,7 @@ function infoAlumno(id){
     $('#infoFechas div').remove();
     $.ajax({
         type: "get",
-        url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/alumnos/'+id+'/getfechas',
+        url: document.location.protocol+'//'+document.location.host+""  +'/alumnos/'+id+'/getfechas',
         success: function (data) {
             var fechas = '';
             data['msg'].forEach(function (item) {
@@ -594,7 +594,7 @@ function baja(id){
     }).then(function () {
          $.ajax({
          type: "get",
-         url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/alumno/baja/'+id,
+         url: document.location.protocol+'//'+document.location.host+""  +'/alumno/baja/'+id,
            success: function (data) {
              swal(
              'Success!',
@@ -620,7 +620,7 @@ function alta(id){
     }).then(function () {
         $.ajax({
             type: "get",
-            url: document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/alumno/alta/'+id,
+            url: document.location.protocol+'//'+document.location.host+""  +'/alumno/alta/'+id,
             success: function (data) {
                 swal(
                     'Success!',

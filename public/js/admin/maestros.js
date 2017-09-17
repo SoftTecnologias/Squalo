@@ -12,7 +12,7 @@ $(function() {
         'scrollY':'600px',
         "processing": true,
         "serverSide": true,
-        "ajax": document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/maestros',
+        "ajax": document.location.protocol+'//'+document.location.host+""  +'/resource/maestros',
        "columnDefs":[
             {"targets":[0,1,2,3],"width":"20%"}
        ],
@@ -161,7 +161,7 @@ function limpiarSeleccion() {
 function newMaestro(){
     var data = new FormData(document.getElementById("maestrosForm"));
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/resource/maestros",
+        url:document.location.protocol+'//'+document.location.host+""  +"/resource/maestros",
         type:"POST",
         data: data,
         contentType:false,
@@ -207,7 +207,7 @@ function deleteMaestro(id){
         cancelButtonText: "Lo pensaré"
     }).then(function () {
         $.ajax({
-            url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/maestros/'+id,
+            url:document.location.protocol+'//'+document.location.host+""  +'/resource/maestros/'+id,
             type:'delete',
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -228,7 +228,7 @@ function updateMaestro(){
     var id = $("#maestroid").val();
     var datos = new FormData(document.getElementById("maestrosForm"));
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +'/resource/maestros/'+id,
+        url:document.location.protocol+'//'+document.location.host+""  +'/resource/maestros/'+id,
         type:"POST",
         data: datos,
         contentType: false,
