@@ -34,10 +34,13 @@
 
             </div>
             <div class="wrap">
+
                 <p class="form-title">
-                    Sign In</p>
-                <hr>
-                <hr>
+                    <IMG SRC="{{asset('img.jpg')}}" WIDTH=300 HEIGHT=200 class="">
+                    </p>
+                <div align="center">
+                    <h1 class="xbootstrap"> Bienvenido </h1>
+                </div>
                 <form class="login">
                     <div class="row">
                     <input type="text" id="username" name="username" placeholder="Username" class="form-control"/>

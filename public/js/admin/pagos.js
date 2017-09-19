@@ -69,7 +69,7 @@ function consulta() {
     $('#exportall').removeAttr('href');
     $('#exportall').attr('href',"exportallpdf/"+fecha[0]+'&'+fecha[1]);
     $.ajax({
-        url:document.location.protocol+'//'+document.location.host+"/Squalo/public"  +"/pagos/maestro",
+        url:document.location.protocol+'//'+document.location.host+""  +"/pagos/maestro",
         type:"POST",
         data: {'maestro':id,'inicial':fecha[0],'final':fecha[1]},
         headers: {

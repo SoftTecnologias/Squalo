@@ -27,6 +27,9 @@
         <li id="rutepagos"><a href="{{route('index.pagos')}}">Pagos</a></li>
     </ul>
 
+    <br>
+
+    <IMG SRC="{{asset('img.jpg')}}" WIDTH=160 HEIGHT=140 class="">
 
     <hr>
 </div><!-- /col-3 -->
