@@ -132,4 +132,17 @@ class TiposController extends Controller
         return Response::json($respuesta);
     }
 
+    public function addHorario(Request $request){
+        try{
+            $horario = DB::table('horarios')->insertGetId([
+                "Hora"        => $request->horario
+            ]);
+
+            $respuesta = ["code"=>200, "msg"=>'El maestros fue registrado exitosamente', 'detail' => 'success'];
+        }catch (Exception $e){
+            $respuesta = ["code"=>500, "msg"=>$e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
+
 }

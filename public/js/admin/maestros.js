@@ -4,6 +4,48 @@ $(function() {
         $('#titulo-modal').text("Nuevo Maestro");
         $('#maestrosForm').submit();
     });
+    $('#adminpagos').on('click',function () {
+        $('#modalAdmin').modal('show');
+    });
+    $('#btnAdmpago').on('click',function () {
+        var data = new FormData(document.getElementById("adpa"));
+        $.ajax({
+            url:document.location.protocol+'//'+document.location.host+""  +"/resource/maestros/admpago",
+            type:"POST",
+            data: data,
+            contentType:false,
+            processData: false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        }).done(function(json){
+            if(json.code == 200) {
+                swal("Realizado", json.msg, json.detail);
+                $('#modalAdmin').modal("hide");
+                $('#Individual').val('');
+                $('#Grupal').val('');
+                $('#Especial').val('');
+            }else{
+                swal("Error",json.msg,json.detail);
+            }
+        }).fail(function(){
+            swal("Error","Tuvimos un problema de conexion","error");
+        });
+    });
+    $('#maes').on('change',function () {
+        var id = $(this).find('option:selected').val();
+            $.ajax({
+                type: "get",
+                url: document.location.protocol+'//'+document.location.host+""  +'/resource/maestros/admpago/'+id,
+                success: function (data) {
+                    data['msg'].forEach(function (item) {
+                        $('#Individual').val(item['claseIndividual']+'%');
+                        $('#Grupal').val(item['claseGrupal']+'%');
+                        $('#Especial').val(item['claseEspecial']+'%');
+                    });
+                }
+            });
+    });
     $('#RegMaestro').on('click',function () {
        $('#modalMaestros').modal('show');
     });

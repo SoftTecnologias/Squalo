@@ -5,8 +5,10 @@
           href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="{{asset('/css/index.css')}}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 @endsection
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" src="{{asset('js/plugins/jquery.validate.min.js')}}"></script>
@@ -21,6 +23,7 @@
         <div class="row"><h3>Maestros</h3>
             <hr style="border-color:lightgray; width: 90%"></div>
         <div align="right" class="">
+            <a id="adminpagos" class="btn btn-success">Admnistrar pagos</a>
             <button class="btn btn-success" id="RegMaestro">Agregar <i class="fa fa-user-plus"></i></button>
         </div>
         <br>
@@ -156,7 +159,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="fecha">Fecha de Nacimiento:</label>
                                 <div class="col-md-5">
-                                    <input id="fecha" name="fecha" placeholder="dd/mm/aaaa" class="form-control input-md"
+                                    <input id="fecha" name="fecha" placeholder="AAAA-MM-DD" class="form-control input-md"
                                            type="text">
                                 </div>
                             </div>
@@ -173,6 +176,63 @@
                 </div>
                 <div class="modal-footer">
                     <button id="btnMaestro" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal" id="modalAdmin">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick=""><i class="fa fa-times"></i></button>
+                    <h3 id="titulo-modal">Administracion Pagos</h3>
+                </div>
+                <div class="model-body">
+                    <form class="form-horizontal" enctype="multipart/form-data" id="adpa">
+                        <fieldset>
+                            <br>
+                            {{csrf_field()}}
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="name">Maestro:</label>
+                                <div class="col-md-5">
+                                        <select name="maes" id="maes" class="selectpicker">
+                                            <option value="00">Selecciona a un Maestro</option>
+                                            @foreach($maestros as $maestro)
+                                                <option value="{{$maestro->id}}">{{$maestro->nombre.' '.$maestro->ape_paterno.' '.$maestro->ape_materno}}</option>
+                                            @endforeach
+                                        </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="Individual">Individual:</label>
+                                <div class="col-md-5">
+                                    <input id="Individual" name="Individual" placeholder="" class="form-control input-md"
+                                           required="" type="text">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="Grupal">Grupal:</label>
+                                <div class="col-md-5">
+                                    <input id="Grupal" name="Grupal" placeholder="" class="form-control input-md"
+                                           required="" type="text">
+                                </div>
+                            </div>
+
+                            <!-- Text input-->
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="Especial">Especial:</label>
+                                <div class="col-md-5">
+                                    <input id="Especial" name="Especial" placeholder="" class="form-control input-md" type="text">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnAdmpago" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </div>

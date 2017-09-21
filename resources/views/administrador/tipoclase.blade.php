@@ -21,6 +21,7 @@
         <div class="row"><h3>Tipos de Clases</h3>
             <hr style="border-color:lightgray; width: 90%"></div>
         <div align="right" class="">
+            <a id="horarioadd" class="btn btn-success">Agregar Horario</a>
             <button class="btn btn-success" id="agregartipo">Agregar <i class="fa fa-plus"></i></button>
         </div>
         <br>

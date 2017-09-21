@@ -40,7 +40,7 @@ $(function() {
             {data: function (row) {
                 str = (row['asisalumno'] == 1) ? '<label>asistio <i class="glyphicon glyphicon-check text-success"></i></label>': '<label>falto <i class="glyphicon glyphicon-remove text-danger"></i></label>';
                 if(comparafecha(row['fecha']) == false){
-                    return '<label>Pendiente</label>';
+                    return 'Pendiente';
                 }
                 return str;
 

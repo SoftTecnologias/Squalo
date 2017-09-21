@@ -15,9 +15,9 @@ class TableMaestroPago extends Migration
     {
         Schema::create('maestro_pago', function (Blueprint $table) {
             $table->integer('idmaestro');
-            $table->integer('claseIndividual');
-            $table->integer('claseGrupal');
-            $table->integer('claseEspecial');
+            $table->float('claseIndividual');
+            $table->float('claseGrupal');
+            $table->float('claseEspecial');
 
 
             $table->foreign('idmaestro')->references('id')->on('maestros');

@@ -16,6 +16,18 @@ Route::post('/login',[
     'as' => 'login'
 ]);
 
+Route::post('/addhorario',[
+   'uses'=> 'TiposController@addHorario'
+]);
+
+Route::get('/resource/maestros/admpago/{id}',[
+   'uses' => 'MaestrosController@admpago'
+]);
+
+Route::post('/resource/maestros/admpago',[
+    'uses' => 'MaestrosController@actualizarPagos'
+]);
+
 Route::get('/logout',[
    'uses' => 'UserController@logout',
     'as' => 'logout'

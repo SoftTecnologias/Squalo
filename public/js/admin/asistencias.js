@@ -201,7 +201,7 @@ function info(id) {
                     '<td>'+item['ama']+'</td>' +
                     '<td>'+asistencia+'</td>' +
                     '</tr>');
-            })
+            });
             $('#modalAsistencia').modal('show');
         }
 

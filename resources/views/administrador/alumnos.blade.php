@@ -127,7 +127,7 @@
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="fecha_nac">Fecha de Nacimiento:</label>
                                 <div class="col-md-5">
-                                    <input id="fecha_nac" name="fecha_nac" placeholder="" class="form-control input-md" type="text">
+                                    <input id="fecha_nac" name="fecha_nac" placeholder="AAAA-MM-DD" class="form-control input-md" type="text">
                                 </div>
                             </div>
 

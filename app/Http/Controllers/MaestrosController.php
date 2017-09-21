@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
+use Mockery\Exception;
 use yajra\Datatables\Datatables;
 
 class MaestrosController extends Controller
@@ -57,6 +58,10 @@ class MaestrosController extends Controller
                 "fecha_nac" => $request->input('fecha'),
                 "email" => $request->input('email')
             ]);
+
+            DB::table('maestro_pago')->insert(
+                array('idmaestro'=>$maestroid,'claseIndividual' => 100, 'claseGrupal' => 100, 'claseEspecial' => 100)
+            );
 
             $respuesta = ["code"=>200, "msg"=>'El maestros fue registrado exitosamente', 'detail' => 'success'];
         }catch (Exception $e){
@@ -140,6 +145,33 @@ class MaestrosController extends Controller
             $respuesta = ["code"=>200, "msg"=>'El producto ha sido eliminado', 'detail' => 'success'];
         }catch(Exception $e){
             $respuesta = ["code"=>500, "msg"=>$e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
+
+    public function admpago($id){
+            try{
+                $maestro = DB::table('maestro_pago')
+                    ->select('*')
+                    ->where('idmaestro','=',$id)
+                    ->get();
+                $respuesta = ["code" => 200, "msg" => $maestro, 'detail' => 'success'];
+            }catch (Exception $e){
+                $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+            }
+            return Response::json($respuesta);
+    }
+
+    public function actualizarPagos(Request $request){
+        try{
+            DB::table('maestro_pago')
+                ->where('idmaestro', $request->input('maes'))
+                ->update(array('claseIndividual' =>str_replace('%','',$request->input('Individual')),
+                    'claseGrupal'=>str_replace('%','',$request->input('Grupal')),
+                    'claseEspecial'=>str_replace('%','',$request->input('Especial'))));
+            $respuesta = ["code" => 200, "msg" => 'Maestro Actualizado', 'detail' => 'success'];
+        }catch (Exception $e){
+            $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
         }
         return Response::json($respuesta);
     }

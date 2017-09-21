@@ -108,10 +108,12 @@ class UserController extends Controller
    }
    public function  getMaestrosForm(Request $request){
        try {
+
            if ($request->cookie('admin') != null) {
                //Existe la cookie, solo falta averiguar que rol es
+               $maestros = Maestro::all();
                $cookie = Cookie::get('admin');
-               return view('administrador.maestros');
+               return view('administrador.maestros',["maestros"=>$maestros]);
            } else {
                //no existe una session de administrador y lo manda al login
                return view('login');

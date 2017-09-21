@@ -4,6 +4,50 @@ $(function() {
         $('#titulo-modal').text("Nuevo Tipo");
         $('#modalTipos').modal('show');
     });
+    $('#horarioadd').on('click',function () {
+            swal({
+                title: 'Ingrese el Horario',
+                input: 'text',
+                showCancelButton: true,
+                confirmButtonText: 'Agregar',
+                showLoaderOnConfirm: true,
+                preConfirm: function (horario) {
+                    return new Promise(function (resolve, reject) {
+                        setTimeout(function() {
+                            if (horario == '') {
+                                reject('Ingrese un Horario')
+                            } else {
+                                resolve()
+                            }
+                        }, 2000)
+                    })
+                },
+                allowOutsideClick: false
+            }).then(function (horario) {
+                $.ajax({
+                    url:document.location.protocol+'//'+document.location.host+""  +"/addhorario",
+                    type:"POST",
+                    data: {'horario':horario},
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                }).done(function(json){
+                    if(json.code == 200) {
+                        swal({
+                            type: 'success',
+                            title: 'Horario Registrado!',
+                            html: 'Se registro: ' + horario+' correctamente'
+                        })
+                        $('#modalInfoAbono').modal("hide");
+                        $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
+                    }else{
+                        swal("Error",json.msg,json.detail);
+                    }
+                }).fail(function(){
+                    swal("Error","Tuvimos un problema de conexion","error");
+                });
+            })
+    });
     $.validator.addMethod("selected", function(value, element, arg){
         return arg !== value;
     }, "Seleccion no valida");
