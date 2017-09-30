@@ -4,6 +4,7 @@
         <div class="col-md-10">
 
             <!-- column 2 -->
+           <!-- <a href="{{route('index.send')}}">masivo</a>-->
 
             <hr>
 

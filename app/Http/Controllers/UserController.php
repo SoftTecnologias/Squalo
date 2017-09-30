@@ -178,7 +178,7 @@ class UserController extends Controller
                $maestros = Maestro::all();
                $tipos = DB::table('tipo_clase')
                    ->select('*')
-                   ->where('tipo_clase','=','G')
+                   ->where('tipo_clase','!=','I')
                    ->get();
                $horarios = Horarios::all();
                return view('administrador.asistencias',['maestros'=>$maestros,'horarios'=>$horarios,'tipos'=>$tipos]);

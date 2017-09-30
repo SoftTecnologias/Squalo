@@ -11,6 +11,17 @@
 |
 */
 //area de rutas para el administrador
+
+Route::get('send', [
+    'as' => 'index.send',
+    'uses' => 'MailController@send'
+]);
+
+Route::get('contact', [
+    'as' => 'contact',
+    'uses' => 'MailController@index'
+]);
+
 Route::post('/login',[
    'uses' => 'UserController@doLogin',
     'as' => 'login'

@@ -1,6 +1,12 @@
 $(function() {
     limpiarSeleccion();
 
+    $('#datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        maxDate: '0d',
+        autoclose: true
+    });
+
     $('#chactivos').on('change',function () {
        if($(this).is(':checked')){
            var filtro;
@@ -142,7 +148,7 @@ $(function() {
         submitHandler: function () {
             var tipo = $('#tipoc').find('option:selected').attr('name');
             var tc = tipo.split('-');
-            if(tc[1] == 'G'){
+            if(tc[1] == 'G' || tc[1] == 'E'){
                 asignarAlumnoGrupal();
             }else {
                 asignarAlumno();
@@ -155,7 +161,7 @@ $(function() {
         tc = tipoclase.split('-');
         var id = $(this).find('option:selected').val();
         console.log(id);
-        if(tc[1] == 'G'){
+        if(tc[1] == 'G' || tc[1] == 'E'){
             $.ajax({
                 type: "get",
                 url: document.location.protocol+'//'+document.location.host+""  +'/resource/alumnos/grupo/'+id,
@@ -215,8 +221,8 @@ $(function() {
                     arreglo.push(item['fecha'])
                 });
                 console.log(arreglo);
-                $('#datepicker').datepicker('destroy');
-                $('#datepicker').datepicker({
+                $('#datepicker1').datepicker('destroy');
+                $('#datepicker1').datepicker({
                     format: 'yyyy-mm-dd',
                     startDate: '0d',
                     autoclose: false,

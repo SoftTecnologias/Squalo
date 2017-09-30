@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="{{asset('/css/index.css')}}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <link rel="stylesheet" type="text/css" href="{{asset('/css/bootstrap-datepicker.css')}}"/>
 @endsection
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
@@ -13,6 +14,7 @@
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
     <script type="text/javascript" src="{{asset('js/plugins/jquery.validate.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/plugins/fileinput.min.js')}}"></script>
+    <script src="{{asset('/js/bootstrap-datepicker.js')}}"></script>
     <script src="{{ asset('/js/index.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/js/admin/maestros.js') }}" type="text/javascript"></script>
 
@@ -157,10 +159,17 @@
                             </div>
                             <!-- Text input-->
                             <div class="form-group">
-                                <label class="col-md-4 control-label" for="fecha">Fecha de Nacimiento:</label>
-                                <div class="col-md-5">
-                                    <input id="fecha" name="fecha" placeholder="AAAA-MM-DD" class="form-control input-md"
-                                           type="text">
+                                <label class="col-md-4 control-label" for="fecha" >Fecha de Nacimiento:</label>
+                                <div class="col-md-5" id="fechas">
+                                    <div class='col-sm-8'>
+                                        <div class='form-group'>
+                                            <div class='input-group date' id='datepicker'>
+                                                <input type='text' class='form-control' id='fecha' name='fecha'/>
+                                                <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Select Basic -->

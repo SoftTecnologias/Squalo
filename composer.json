@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "yajra/laravel-datatables-oracle": "~5.0",
         "uxweb/sweet-alert": "^1.4",
-        "anouar/fpdf": "^2.0"
+        "anouar/fpdf": "^2.0",
+        "sendgrid/sendgrid": "~6.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

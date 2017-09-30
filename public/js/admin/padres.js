@@ -3,6 +3,13 @@ $(function() {
         $('#titulo-modal').text("Nuevo Padre");
         $('#modalPadres').modal('show');
     });
+
+    $('#datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        maxDate: '0d',
+        autoclose: true
+    });
+
     $('#padresForm').validate({
         rules: {
             'name': {

@@ -4,6 +4,13 @@ $(function() {
         $('#titulo-modal').text("Nuevo Maestro");
         $('#maestrosForm').submit();
     });
+
+    $('#datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        maxDate: '0d',
+        autoclose: true
+    });
+
     $('#adminpagos').on('click',function () {
         $('#modalAdmin').modal('show');
     });
