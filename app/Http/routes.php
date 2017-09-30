@@ -12,7 +12,7 @@
 */
 //area de rutas para el administrador
 
-Route::get('send', [
+Route::post('/send', [
     'as' => 'index.send',
     'uses' => 'MailController@send'
 ]);
@@ -25,6 +25,11 @@ Route::get('contact', [
 Route::post('/login',[
    'uses' => 'UserController@doLogin',
     'as' => 'login'
+]);
+
+Route::get('/promociones',[
+    'uses' => 'UserController@getPromoForm',
+    'as' => 'index.promo'
 ]);
 
 Route::post('/addhorario',[

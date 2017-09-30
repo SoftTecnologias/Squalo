@@ -190,7 +190,7 @@ class UserController extends Controller
            return $e;
        }
    }
-    public function getReemplazoForm(Request $request){
+   public function getReemplazoForm(Request $request){
         try{
             if ($request->cookie('admin') != null) {
                 //Existe la cookie, solo falta averiguar que rol es
@@ -228,6 +228,22 @@ class UserController extends Controller
 
                 $maestros = Maestro::all();
                 return view('administrador.pagos',['maestros'=>$maestros]);
+            } else {
+                //no existe una session de administrador y lo manda al login
+                return view('login');
+            }
+        }catch (Exception $e){
+            return $e;
+        }
+    }
+
+    public function getPromoForm(Request $request){
+        try{
+            if ($request->cookie('admin') != null) {
+                //Existe la cookie, solo falta averiguar que rol es
+                $cookie = Cookie::get('admin');
+
+                return view('administrador.promocion');
             } else {
                 //no existe una session de administrador y lo manda al login
                 return view('login');

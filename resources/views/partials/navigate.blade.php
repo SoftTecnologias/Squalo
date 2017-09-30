@@ -25,6 +25,14 @@
         <li id="ruteremplazo"><a href="{{route('index.reemplazo')}}">Reemplazos</a></li>
         <li id="ruteclases"><a href="{{route('index.clases')}}">Clases</a></li>
         <li id="rutepagos"><a href="{{route('index.pagos')}}">Pagos</a></li>
+
+        <li>
+            <br>
+            <b>Promociones</b>
+            <hr style="border-color:gray;" >
+
+        </li>
+        <li id="rutepromocion"><a href="{{route('index.promo')}}">Promociones</a></li>
     </ul>
 
     <br>
