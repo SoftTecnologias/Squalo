@@ -1,7 +1,7 @@
 $(function() {
     limpiarSeleccion();
 
-    $('#datepicker').datepicker({
+    $('#datepicker1').datepicker({
         format: 'yyyy-mm-dd',
         maxDate: '0d',
         autoclose: true
@@ -221,8 +221,8 @@ $(function() {
                     arreglo.push(item['fecha'])
                 });
                 console.log(arreglo);
-                $('#datepicker1').datepicker('destroy');
-                $('#datepicker1').datepicker({
+                $('#datepicker').datepicker('destroy');
+                $('#datepicker').datepicker({
                     format: 'yyyy-mm-dd',
                     startDate: '0d',
                     autoclose: false,
