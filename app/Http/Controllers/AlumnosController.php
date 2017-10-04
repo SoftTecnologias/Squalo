@@ -147,7 +147,7 @@ class AlumnosController extends Controller
                 ]);
 
                 $asismaestroid = DB::table('asistencia_maestros')->insertGetId([
-                    "asistencia" => 0,
+                    "asistencia" => 1,
                     "remplazo" => null
                 ]);
 
@@ -159,7 +159,7 @@ class AlumnosController extends Controller
                 $gru_al = DB::table('grupo_alumnos')->insertGetId([
                     "idAlumno" => $request->input('idasignar'),
                     "idGrupo" => $grupoid,
-                    "asistencia" => 0,
+                    "asistencia" => 1,
                 ]);
             }
 
@@ -196,7 +196,7 @@ class AlumnosController extends Controller
                 $gru_al = DB::table('grupo_alumnos')->insertGetId([
                     "idAlumno" => $request->input('idasignar'),
                     "idGrupo" => $gid->id,
-                    "asistencia" => 0,
+                    "asistencia" => 1,
                 ]);
             }
 
@@ -209,15 +209,12 @@ class AlumnosController extends Controller
 
     public  function getPagos($id){
         try {
-            $hoy = getdate();
-            if ($hoy['mon'] < 10) {
-                $hoy['mon'] = '0' . $hoy['mon'];
-            }
-            if ($hoy['mday'] < 10) {
-                $hoy['mday'] = '0' . $hoy['mday'];
-            }
-            $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . ($hoy['mday']);
+            $hoy = date("Y-m-j");
+            $nuevafecha = strtotime ( '-6 hour' , strtotime ( $hoy ) ) ;
+            $hoy = date ( 'Y-m-j' , $nuevafecha );
 
+
+            $fecha = $hoy;
             $asistencias = DB::table('pagos as p')
                 ->select('p.abono','p.fecha','p.id','p.cancel','a.nombre','a.ape_paterno','a.ape_materno')
                 ->join('alumnos as a','p.idAlumno','=','a.id')
@@ -232,14 +229,12 @@ class AlumnosController extends Controller
 
     public function abonar(Request $request,$id){
         try{
-            $hoy = getdate();
-            if ($hoy['mon'] < 10) {
-                $hoy['mon'] = '0' . $hoy['mon'];
-            }
-            if ($hoy['mday'] < 10) {
-                $hoy['mday'] = '0' . $hoy['mday'];
-            }
-            $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . ($hoy['mday']);
+            $hoy = date("Y-m-j");
+            $nuevafecha = strtotime ( '-6 hour' , strtotime ( $hoy ) ) ;
+            $hoy = date ( 'Y-m-j' , $nuevafecha );
+
+
+            $fecha = $hoy;
 
             $idpago = DB::table('pagos')->insertGetId([
                 "idAlumno" => $id,
@@ -293,14 +288,12 @@ class AlumnosController extends Controller
 
     public function getGruposDisponibles($id){
         try{
-            $hoy = getdate();
-            if ($hoy['mon'] < 10) {
-                $hoy['mon'] = '0' . $hoy['mon'];
-            }
-            if ($hoy['mday'] < 10) {
-                $hoy['mday'] = '0' . $hoy['mday'];
-            }
-            $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . ($hoy['mday']);
+            $hoy = date("Y-m-j");
+            $nuevafecha = strtotime ( '-6 hour' , strtotime ( $hoy ) ) ;
+            $hoy = date ( 'Y-m-j' , $nuevafecha );
+
+
+            $fecha = $hoy;
             $fechas = DB::table('grupo as g')
                 ->select('c.id as idclase','c.fechainicio as feini')
                 ->join('fecha_clase as fc','fc.id','=','g.idfecha')

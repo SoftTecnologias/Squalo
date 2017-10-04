@@ -20,14 +20,12 @@ class AsistenciasController extends Controller
      */
     public function index()
     {
-        $hoy = getdate();
-        if($hoy['mon']<10){
-            $hoy['mon'] = '0'.$hoy['mon'];
-        }
-        if($hoy['mday']<10){
-            $hoy['mday'] = '0'.($hoy['mday']);
-        }
-        $fecha = $hoy['year'].'-'.$hoy['mon'].'-'.($hoy['mday']);
+        $hoy = date("Y-m-j");
+        $nuevafecha = strtotime ( '-6 hour' , strtotime ( $hoy ) ) ;
+        $hoy = date ( 'Y-m-j' , $nuevafecha );
+
+
+        $fecha = $hoy;
         $asistencias = DB::table('grupo as g')
             ->select('tc.descripcion','fc.fecha','h.Hora','m.nombre','c.id')
             ->join('fecha_clase as fc','fc.id','=','g.idfecha')
@@ -80,7 +78,7 @@ class AsistenciasController extends Controller
                 ]);
 
                 $asismaestroid = DB::table('asistencia_maestros')->insertGetId([
-                    "asistencia" => 0,
+                    "asistencia" => 1,
                     "remplazo" => null
                 ]);
 
@@ -144,14 +142,12 @@ class AsistenciasController extends Controller
 
     public  function AlumnosClase($id){
         try {
-            $hoy = getdate();
-            if ($hoy['mon'] < 10) {
-                $hoy['mon'] = '0' . $hoy['mon'];
-            }
-            if ($hoy['mday'] < 10) {
-                $hoy['mday'] = '0' . ($hoy['mday']);
-            }
-            $fecha = $hoy['year'] . '-' . $hoy['mon'] . '-' . ($hoy['mday']);
+            $hoy = date("Y-m-j");
+            $nuevafecha = strtotime ( '-6 hour' , strtotime ( $hoy ) ) ;
+            $hoy = date ( 'Y-m-j' , $nuevafecha );
+
+
+            $fecha = $hoy;
 
             $asistencias = DB::table('clase as c')
                 ->select('g.id', 'a.nombre as na', 'a.ape_paterno as apa', 'a.ape_materno as ama', 'ga.asistencia as asal',
