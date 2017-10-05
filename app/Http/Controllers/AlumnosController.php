@@ -173,7 +173,7 @@ class AlumnosController extends Controller
     public function asignargrupo(Request $request, $id)
     {
         try {
-
+            $fechas = explode(',', $request->input('alldates'));
             $alumno = Alumno::findOrFail($id);
             $grupoid = DB::table('grupo as g')
                 ->select('g.id')
@@ -192,13 +192,31 @@ class AlumnosController extends Controller
             $alumno->fill($up);
             $alumno->save();
 
-            foreach ($grupoid as $gid) {
+            foreach ($fechas as $fecha) {
+                $fecha = date(str_replace('/','-',$fecha));
+                $f = strtotime($fecha);
+                $fcid = DB::table('fecha_clase')->insertGetId([
+                    "fecha" => date('Y-m-d',$f),
+                    "idclase" => $request->input('gruposdisp')
+                ]);
+
+                $asismaestroid = DB::table('asistencia_maestros')->insertGetId([
+                    "asistencia" => 1,
+                    "remplazo" => null
+                ]);
+
+                $gi= DB::table('grupo')->insertGetId([
+                    "id_asis_maestro" => $asismaestroid,
+                    "idfecha" => $fcid
+                ]);
+
                 $gru_al = DB::table('grupo_alumnos')->insertGetId([
                     "idAlumno" => $request->input('idasignar'),
-                    "idGrupo" => $gid->id,
+                    "idGrupo" => $gi,
                     "asistencia" => 1,
                 ]);
             }
+
 
             $respuesta = ["code" => 200, "msg" => 'El maestros fue registrado exitosamente', 'detail' => 'success'];
         } catch (Exception $e) {
@@ -292,18 +310,14 @@ class AlumnosController extends Controller
             $nuevafecha = strtotime ( '-6 hour' , strtotime ( $hoy ) ) ;
             $hoy = date ( 'Y-m-j' , $nuevafecha );
 
-
             $fecha = $hoy;
-            $fechas = DB::table('grupo as g')
+            $fechas = DB::table('clase as c')
                 ->select('c.id as idclase','c.fechainicio as feini')
-                ->join('fecha_clase as fc','fc.id','=','g.idfecha')
-                ->join('clase as c', 'c.id', '=', 'fc.idclase')
                 ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
-                ->where('tc.tipo_clase','like','G')
-                ->where('c.fechainicio','>',$fecha)
                 ->where('tc.id','=',$id)
                 ->distinct()
                 ->get();
+
             $respuesta = ["code" => 200, "msg" => $fechas, 'detail' => 'success'];
         }catch (Exception $e){
             $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
@@ -315,10 +329,9 @@ class AlumnosController extends Controller
         try{
 
             $clase = DB::table('clase as c')
-                ->select('m.id as maestro','h.id as hora','fc.fecha as fechas')
+                ->select('m.id as maestro','h.id as hora')
                 ->join('maestros as m', 'm.id', '=', 'c.idmaestro')
                 ->join('horarios as h','h.id','=','c.idhorario')
-                ->join('fecha_clase as fc','fc.idclase','=','c.id')
                 ->where('c.id','=',$id)
                 ->get();
             $respuesta = ["code" => 200, "msg" => $clase, 'detail' => 'success'];

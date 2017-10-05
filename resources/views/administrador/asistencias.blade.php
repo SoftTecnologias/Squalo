@@ -189,20 +189,7 @@
                             </div>
 
                             <!-- Text input password-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="alldates" >Fechas:</label>
-                                <div class="col-md-5" id="fechas">
-                                    <div class='col-sm-6'>
-                                        <div class='form-group'>
-                                            <div class='input-group date' id='datepicker'>
-                                                <input type='text' class='form-control' id='alldates' name='alldates'/>
-                                                <span class='input-group-addon'><span class='glyphicon glyphicon-calendar'></span>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                         </fieldset>
                     </form>
                 </div>

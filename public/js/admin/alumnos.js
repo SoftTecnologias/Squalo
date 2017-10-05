@@ -194,9 +194,7 @@ $(function() {
                     data['msg'].forEach(function (item) {
                         $('#maestroc').val(item['maestro']).datepicker('refresh');
                         $('#horario').val(item['hora']).datepicker('refresh');
-                        fechas += item['fechas']+',';
                     });
-                    $('#alldates').val(fechas);
                 }
             });
 
@@ -221,14 +219,24 @@ $(function() {
                     arreglo.push(item['fecha'])
                 });
                 console.log(arreglo);
-                $('#datepicker').datepicker('destroy');
-                $('#datepicker').datepicker({
-                    format: 'yyyy-mm-dd',
-                    startDate: '0d',
-                    autoclose: false,
-                    multidate:true,
-                    datesDisabled:arreglo
-                });
+                if($("#tipoc").val == 'I') {
+                    $('#datepicker').datepicker('destroy');
+                    $('#datepicker').datepicker({
+                        format: 'yyyy-mm-dd',
+                        startDate: '0d',
+                        autoclose: false,
+                        multidate: true,
+                        datesDisabled: arreglo
+                    });
+                }else{
+                    $('#datepicker').datepicker('destroy');
+                    $('#datepicker').datepicker({
+                        format: 'yyyy-mm-dd',
+                        startDate: '0d',
+                        autoclose: false,
+                        multidate: true
+                    });
+                }
             }else{
                 swal("Error",json.msg,json.detail);
             }

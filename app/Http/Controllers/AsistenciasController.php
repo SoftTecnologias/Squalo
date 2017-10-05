@@ -33,6 +33,7 @@ class AsistenciasController extends Controller
             ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
             ->join('maestros as m','m.id','=','c.idmaestro')
             ->join('horarios as h','h.id','=','c.idhorario')
+            ->distinct()
             ->where('fc.fecha','=',$fecha)
             ->get();
 
@@ -58,18 +59,17 @@ class AsistenciasController extends Controller
     public function store(Request $request)
     {
         try {
-            $fechas = explode(',', $request->input('alldates'));
-            $finicial = date(str_replace('/','-',$fechas[0]));
-            $f = strtotime($finicial);
+            //$fechas = explode(',', $request->input('alldates'));
+            //$finicial = date(str_replace('/','-',$fechas[0]));
 
             $claseid = DB::table('clase')->insertGetId([
                 "idtipo_clase" => $request->input('tipoc'),
                 "idmaestro" => $request->input('maestroc'),
-                "fechainicio" => date('Y-m-d',$f),
+                "fechainicio" => date('Y-m-d'),
                 "idhorario" => $request->input('horario'),
             ]);
 
-            foreach ($fechas as $fecha) {
+            /*foreach ($fechas as $fecha) {
                 $fecha = date(str_replace('/','-',$fecha));
                 $f = strtotime($fecha);
                 $fcid = DB::table('fecha_clase')->insertGetId([
@@ -86,7 +86,7 @@ class AsistenciasController extends Controller
                     "id_asis_maestro" => $asismaestroid,
                     "idfecha" => $fcid
                 ]);
-            }
+            }*/
 
             $respuesta = ["code" => 200, "msg" => 'El grupo fue registrado exitosamente', 'detail' => 'success'];
         } catch (Exception $e) {
