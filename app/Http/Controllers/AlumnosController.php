@@ -312,7 +312,8 @@ class AlumnosController extends Controller
 
             $fecha = $hoy;
             $fechas = DB::table('clase as c')
-                ->select('c.id as idclase','c.fechainicio as feini')
+                ->select('c.id as idclase','h.hora as horario')
+                ->join('horarios as h','c.idhorario','=','h.id')
                 ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
                 ->where('tc.id','=',$id)
                 ->distinct()

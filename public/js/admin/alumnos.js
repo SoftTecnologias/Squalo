@@ -169,7 +169,7 @@ $(function() {
                     $('#gruposdisp option').remove();
                     $('#gruposdisp').append('<option value="00">Seleccione un Grupo</option>').selectpicker('refresh');
                     data['msg'].forEach(function (item) {
-                            $('#gruposdisp').append('<option value="'+item['idclase']+'">'+'Inicia: '+item['feini']+'</option>').selectpicker('refresh');
+                            $('#gruposdisp').append('<option value="'+item['idclase']+'">'+'Grupo de : '+item['horario']+'</option>').selectpicker('refresh');
                     });
                 }
             });

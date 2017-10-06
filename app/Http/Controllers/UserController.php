@@ -72,7 +72,9 @@ class UserController extends Controller
                    ->join('fecha_clase as fc','fc.idclase','=','c.id')
                    ->join('grupo as g','g.idfecha','=','fc.id')
                    ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+                   ->where('fc.fecha','<',date('Y-m-j'))
                    ->where('m.id','=',$maestro->id)
+                   ->distinct()
                    ->count();
                $asistencias = DB::table('maestros as m')
                    ->select('*')
@@ -81,8 +83,10 @@ class UserController extends Controller
                    ->join('fecha_clase as fc','fc.idclase','=','c.id')
                    ->join('grupo as g','g.idfecha','=','fc.id')
                    ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+                   ->where('fc.fecha','<',date('Y-m-j'))
                    ->where('m.id','=',$maestro->id)
                    ->where('am.asistencia','=',1)
+                   ->distinct()
                    ->count();
                $faltas = DB::table('maestros as m')
                    ->select('*')
@@ -91,8 +95,10 @@ class UserController extends Controller
                    ->join('fecha_clase as fc','fc.idclase','=','c.id')
                    ->join('grupo as g','g.idfecha','=','fc.id')
                    ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+                   ->where('fc.fecha','<',date('Y-m-j'))
                    ->where('m.id','=',$maestro->id)
                    ->where('am.asistencia','=',0)
+                   ->distinct()
                    ->count();
                $maestro->setAttribute('totalClases',$clases);
                $maestro->setAttribute('totalFaltas',$faltas);
