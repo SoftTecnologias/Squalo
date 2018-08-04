@@ -6,7 +6,7 @@ $(function() {
     });
     $('#horarioadd').on('click',function () {
             swal({
-                title: 'Ingrese el Horario',
+                title: 'Ingrese el Horario \n HH:MM-HH:MM',
                 input: 'text',
                 showCancelButton: true,
                 confirmButtonText: 'Agregar',

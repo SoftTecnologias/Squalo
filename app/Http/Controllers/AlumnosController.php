@@ -295,6 +295,7 @@ class AlumnosController extends Controller
                 ->join('maestros as m','m.id','=','c.idmaestro')
                 ->where('m.id','=',$request->maestro)
                 ->where('h.id','=',$request->horario)
+                ->orderBy('h.Hora')
                 ->get();
 
             $respuesta = ["code" => 200, "msg" => $fechas, 'detail' => 'success'];

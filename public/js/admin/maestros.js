@@ -1,5 +1,28 @@
 $(function() {
     limpiarSeleccion();
+    $('#pit').val('100');
+    $('#pgt').val('100');
+    $('#pet').val('100');
+
+    $('#Individual').keyup(function () {
+        item = $('#Individual').val();
+
+        item = item.split('%');
+        $('#pi').val((100*(item[0]/100)));
+    });
+    $('#Grupal').keyup(function () {
+        item = $('#Grupal').val();
+
+        item = item.split('%');
+        $('#pg').val((100*(item[0]/100)));
+    });
+    $('#Especial').keyup(function () {
+        item = $('#Especial').val();
+
+        item = item.split('%');
+        $('#pe').val((100*(item[0]/100)));
+    });
+
     $('#btnMaestro').on('click',function () {
         $('#titulo-modal').text("Nuevo Maestro");
         $('#maestrosForm').submit();
@@ -49,6 +72,10 @@ $(function() {
                         $('#Individual').val(item['claseIndividual']+'%');
                         $('#Grupal').val(item['claseGrupal']+'%');
                         $('#Especial').val(item['claseEspecial']+'%');
+
+                        $('#pi').val((100*(item['claseIndividual']/100)));
+                        $('#pg').val((100*(item['claseGrupal']/100)));
+                        $('#pe').val((100*(item['claseEspecial']/100)));
                     });
                 }
             });

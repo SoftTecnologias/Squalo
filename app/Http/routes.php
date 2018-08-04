@@ -89,6 +89,12 @@ Route::get('/clases',[
 ]);
 
 
+Route::get('/semanal',[
+    'uses' => 'UserController@getReporteSemanalForm',
+    'as' => 'index.semanal'
+]);
+
+
 Route::post('/alumnos/{id}/asignar',[
     'uses' => 'AlumnosController@asignar'
 ]);
@@ -105,6 +111,7 @@ Route::get('/pagos',[
    'uses' => 'UserController@getPagosForm',
     'as' => 'index.pagos'
 ]);
+
 
 Route::post('/pagos/maestro',[
     'uses' => 'PagosController@getInfo',
@@ -204,4 +211,8 @@ Route::get('exportpdf/{id}', [
 Route::get('exportallpdf/{id}', [
     'uses' => 'PagosController@exportallpdf',
     'as' => 'pdf.exportall'
+]);
+
+Route::get('/getrepsemanal/{id}', [
+    'uses' => 'semanalController@getRepSemanal'
 ]);

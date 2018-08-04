@@ -20,9 +20,10 @@ class AsistenciasController extends Controller
      */
     public function index()
     {
+        date_default_timezone_set("America/Mexico_City");
         $hoy = date("Y-m-j");
-        $nuevafecha = strtotime ( '-6 hour' , strtotime ( $hoy ) ) ;
-        $hoy = date ( 'Y-m-j' , $nuevafecha );
+        #$nuevafecha = strtotime ( '-6 hour' , strtotime ( $hoy ) ) ;
+        $hoy = date ( 'Y-m-j');
 
 
         $fecha = $hoy;
@@ -61,7 +62,7 @@ class AsistenciasController extends Controller
         try {
             //$fechas = explode(',', $request->input('alldates'));
             //$finicial = date(str_replace('/','-',$fechas[0]));
-
+            date_default_timezone_set("America/Mexico_City");
             $claseid = DB::table('clase')->insertGetId([
                 "idtipo_clase" => $request->input('tipoc'),
                 "idmaestro" => $request->input('maestroc'),
@@ -142,10 +143,8 @@ class AsistenciasController extends Controller
 
     public  function AlumnosClase($id){
         try {
+            date_default_timezone_set("America/Mexico_City");
             $hoy = date("Y-m-j");
-            $nuevafecha = strtotime ( '-6 hour' , strtotime ( $hoy ) ) ;
-            $hoy = date ( 'Y-m-j' , $nuevafecha );
-
 
             $fecha = $hoy;
 
@@ -216,7 +215,7 @@ class AsistenciasController extends Controller
 
     public function remplazo(Request $request,$id){
         try {
-
+            date_default_timezone_set("America/Mexico_City");
             $grupo = DB::table('grupo')
                 ->select('*')
                 ->where('id','=',$id)->get();
@@ -225,9 +224,10 @@ class AsistenciasController extends Controller
                 $asismaestro = AsistenciaMaestro::findOrFail($g->id_asis_maestro);
             }
             $up=([
-                "remplazo" => $request->remplazo
+                "remplazo" => $request->remplazo,
+                "fecha" => date("Y-m-d")
             ]);
-
+           # dd(date("Y-m-d"));
             $asismaestro->fill($up);
             $asismaestro->save();
 

@@ -10,6 +10,6 @@ class Padre extends Model
     public $timestamps = false;
     protected $fillable = [
         'nombre','ape_paterno','ape_materno','colonia','calle','numero','tel_fijo',
-        'tel_celular','fecha_nac','email'
+        'tel_celular','fecha_nac','email','RFC','Trabajo'
     ];
 }

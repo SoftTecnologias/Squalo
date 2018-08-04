@@ -16,84 +16,115 @@ class PagosController extends Controller
     private $datos;
     public function getInfo(Request $request){
         try{
-            $clasesIndividuales = DB::table('maestros as m')
-                ->select('*')
-                ->join('clase as c','c.idmaestro','=','m.id')
-                ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
-                ->join('fecha_clase as fc','fc.idclase','=','c.id')
-                ->join('grupo as g','g.idfecha','=','fc.id')
-                ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
-                ->where('m.id','=',$request->maestro)
-                ->where('tc.tipo_clase','=','I')
-                ->where('fc.fecha','>=',$request->inicial)
-                ->where('fc.fecha','<=',$request->final)
-                ->where('am.asistencia','=',1)
-                ->count();
-            $clasesGrupales = DB::table('maestros as m')
-                ->select('*')
-                ->join('clase as c','c.idmaestro','=','m.id')
-                ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
-                ->join('fecha_clase as fc','fc.idclase','=','c.id')
-                ->join('grupo as g','g.idfecha','=','fc.id')
-                ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
-                ->where('m.id','=',$request->maestro)
-                ->where('tc.tipo_clase','=','G')
-                ->where('fc.fecha','>=',$request->inicial)
-                ->where('fc.fecha','<=',$request->final)
-                ->where('am.asistencia','=',1)
-                ->count();
-            $clasesEspeciales = DB::table('maestros as m')
-                ->select('*')
-                ->join('clase as c','c.idmaestro','=','m.id')
-                ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
-                ->join('fecha_clase as fc','fc.idclase','=','c.id')
-                ->join('grupo as g','g.idfecha','=','fc.id')
-                ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
-                ->where('m.id','=',$request->maestro)
-                ->where('tc.tipo_clase','=','E')
-                ->where('fc.fecha','>=',$request->inicial)
-                ->where('fc.fecha','<=',$request->final)
-                ->where('am.asistencia','=',1)
-                ->count();
+            $fechas = [];
+
+            $in = 0;
+            $gru = 0;
+            $esp = 0;
+            $rem = 0;
+
+            for($i=$request->inicial;$i<=$request->final;$i = date("Y-m-d", strtotime($i ."+ 1 days"))){
+
+                $clasesIndividuales = DB::table('maestros as m')
+                    ->select('*')
+                    ->join('clase as c','c.idmaestro','=','m.id')
+                    ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+                    ->join('fecha_clase as fc','fc.idclase','=','c.id')
+                    ->join('grupo as g','g.idfecha','=','fc.id')
+                    ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+                    ->where('m.id','=',$request->maestro)
+                    ->where('tc.tipo_clase','=','I')
+                    ->where('fc.fecha','=',$i)
+                    ->where('am.asistencia','=',1)
+                    ->count();
+
+                $clasesGrupales = DB::table('maestros as m')
+                    ->select('*')
+                    ->join('clase as c','c.idmaestro','=','m.id')
+                    ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+                    ->join('fecha_clase as fc','fc.idclase','=','c.id')
+                    ->join('grupo as g','g.idfecha','=','fc.id')
+                    ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+                    ->where('m.id','=',$request->maestro)
+                    ->where('tc.tipo_clase','=','G')
+                    ->where('fc.fecha','=',$i)
+                    ->where('am.asistencia','=',1)
+                    ->count();
+
+                $clasesEspeciales = DB::table('maestros as m')
+                    ->select('*')
+                    ->join('clase as c','c.idmaestro','=','m.id')
+                    ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+                    ->join('fecha_clase as fc','fc.idclase','=','c.id')
+                    ->join('grupo as g','g.idfecha','=','fc.id')
+                    ->join('asistencia_maestros as am','g.id_asis_maestro','=','am.id')
+                    ->where('m.id','=',$request->maestro)
+                    ->where('tc.tipo_clase','=','E')
+                    ->where('fc.fecha','=',$i)
+                    ->where('am.asistencia','=',1)
+                    ->count();
+
+                $reemplazos = DB::table('asistencia_maestros')
+                    ->select('*')
+                    ->where('remplazo','=',$request->maestro)
+                    ->where('fecha','=',$i)
+                    ->count();
+
+                $in = $in+$clasesIndividuales;
+                $gru = $gru+$clasesGrupales;
+                $esp = $esp+$clasesEspeciales;
+                $rem = $rem+$reemplazos;
+
+                array_push($fechas,[
+                    "fecha" => $i,
+                    "individuales" => $clasesIndividuales,
+                    "grupales" => $clasesGrupales,
+                    "especiales" => $clasesEspeciales,
+                    "reemplazos" => $reemplazos
+                ]);
+            }
+
+
+
+
+
             $pagos = DB::table('maestros as m')
                 ->select('claseIndividual','claseGrupal','claseEspecial')
                 ->join('maestro_pago as mp','m.id','=','mp.idmaestro')
                 ->where('m.id','=',$request->maestro)
-                ->get(1);
+                ->first();
 
             $pagosclases = DB::table('pago_clase as m')
                 ->select('*')
                 ->get();
 
-            foreach ($pagos as  $pago){
-                $individial = ($pago->claseIndividual/100);
-                $grupal = ($pago->claseGrupal/100);
-                $especial = ($pago->claseEspecial/100);
-            }
 
             foreach ($pagosclases as $pagoclase){
                 switch ($pagoclase->tipoclase){
-                    case 'I': $individial = ($individial*$pagoclase->pago_por_clase);
+                    case 'I': $individial = ($in*$pagoclase->pago_por_clase);
+                        $reemplazo = ($rem*$pagoclase->pago_por_clase);
                         break;
-                    case 'G': $grupal = ($grupal*$pagoclase->pago_por_clase);
+                    case 'G': $grupal = ($gru*$pagoclase->pago_por_clase);
                         break;
-                    case 'E': $especial = ($especial*$pagoclase->pago_por_clase);
+                    case 'E': $especial = ($esp*$pagoclase->pago_por_clase);
                         break;
+                    case 'R':
                 }
             }
 
 
 
-            $datos = ['clasesIndividuales'=>$clasesIndividuales,
-                'clasesGrupales'=>$clasesGrupales,
-                'clasesEspeciales'=>$clasesEspeciales,
+            $datos = [
+                'clases'=>$fechas,
                 'individual'=>$individial,
                 'grupal'=>$grupal,
                 'especial'=>$especial,
-                'totalI' => ($clasesIndividuales*$individial),
-                'totalG' => ($clasesGrupales*$grupal),
-                'totalE' => ($clasesEspeciales*$especial),
-                'ptotal' => (($clasesIndividuales*$individial)+($clasesGrupales*$grupal)+($clasesEspeciales*$especial))];
+                'reemplazo' => $reemplazo,
+                "tcin" => $in,
+                "tcgru" => $gru,
+                "tcesp" => $esp,
+                "tcrem" => $rem
+            ];
             $respuesta = ["code"=>200, "msg"=>$datos, 'detail' => 'success'];
         }catch (Exception $e){
             $respuesta = ["code"=>500, "msg"=>$e->getMessage(), 'detail' => 'warning'];

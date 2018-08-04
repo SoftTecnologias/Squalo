@@ -9,6 +9,6 @@ class AsistenciaMaestro extends Model
     protected $table = "asistencia_maestros";
     public $timestamps = false;
     protected $fillable = [
-        'asistencia','remplazo'
+        'asistencia','remplazo','fecha'
     ];
 }

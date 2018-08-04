@@ -76,17 +76,34 @@ function consulta() {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     }).done(function(json){
+
         if(json.code == 200) {
-            $('#hrsIndividual').val(json.msg['clasesIndividuales']);
-            $('#hrsGrupal').val(json.msg['clasesGrupales']);
-            $('#hrsEspecial').val(json.msg['clasesEspeciales']);
-            $('#pagoIndividual').val(json.msg['individual']);
-            $('#pagoGrupal').val(json.msg['grupal']);
-            $('#pagoEspecial').val(json.msg['especial']);
-            $('#totalIndividual').val(json.msg['totalI']);
-            $('#totalGrupal').val(json.msg['totalG']);
-            $('#totalEspecial').val(json.msg['totalE']);
-            $('#totalPago').val(json.msg['ptotal']);
+            clases = json.msg.clases;
+            datos = json.msg;
+            $('#cuerpo').empty();
+            for(i=0; i<clases.length; i++){
+                $('#cuerpo').append('<tr>' +
+                    '<td>'+clases[i].fecha+'</td>' +
+                    '<td>'+clases[i].grupales+'</td>' +
+                    '<td>'+clases[i].individuales+'</td>' +
+                    '<td>'+clases[i].reemplazos+'</td>' +
+                    '<td>'+clases[i].especiales+'</td>' +
+                    '</tr>');
+            }
+            $('#cuerpo').append('<tr class="warning">' +
+                '<td>Total de Clases</td>' +
+                '<td>'+datos.tcgru+'</td>' +
+                '<td>'+datos.tcin+'</td>' +
+                '<td>'+datos.tcrem+'</td>' +
+                '<td>'+datos.tcesp+'</td>' +
+                '</tr>');
+            $('#cuerpo').append('<tr class="success">' +
+                '<td>Total a pagar</td>' +
+                '<td>$ '+datos.grupal+'</td>' +
+                '<td>$ '+datos.individual+'</td>' +
+                '<td>$ '+datos.reemplazo+'</td>' +
+                '<td>$ '+datos.especial+'</td>' +
+                '</tr>');
         }else{
             swal("Error",json.msg,json.detail);
         }

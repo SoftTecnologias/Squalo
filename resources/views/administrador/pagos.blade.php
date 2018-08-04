@@ -29,9 +29,9 @@
             <hr>
 
         <form id="formPago">
-            <div class="col-md-12" align="right"><a href="" id="exportall" class="btn btn-primary">Exportar Todos</a></div>
+            <!--div class="col-md-12" align="right"><a href="" id="exportall" class="btn btn-primary">Exportar Todos</a></div-->
             <div class="form-group col-md-4">
-                <label for="maestro" class="label-control">Maestro</label>
+
                 <select name="maestro" id="maestro" class="selectpicker" data-live-search="true">
                     <option value="00">Seleccione un Maestro</option>
                     @foreach($maestros as $maestro)
@@ -59,65 +59,24 @@
             </div>
 
                 <hr style="border-color:lightgray; width: 90%">
-            <div class="col-md-1"></div>
-            <div class="col-md-3 form-group">
-                  <label for="hrsIndividual" class="label-cotrol">Clases Individuales</label>
-                  <input type="text" id="hrsIndividual" name="hrsIndividual" placeholder="Clases Individuales" class="form-control" readonly>
-            </div>
-                <div class="col-md-3 form-group">
-                    <label for="pagoIndividual" class="label-cotrol">Pago por Clase</label>
-                    <input type="text" id="pagoIndividual" name="pagoIndividual" placeholder="Pago por Clase" class="form-control" readonly>
-                </div>
 
-                <div class="col-md-3 form-group">
-                    <label for="totalIndividual" class="label-cotrol">Total Individuales</label>
-                    <input type="text" id="totalIndividual" name="totalIndividual" placeholder="Total" class="form-control" readonly>
-                </div>
+                <table class="table table-striped">
+                    <thead class="bg-success">
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Grupo</th>
+                            <th>Particular</th>
+                            <th>Auxiliar</th>
+                            <th>Fiesta</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cuerpo">
 
-                <div class="col-md-12">
-                    <br></div>
-            <div class="col-md-1"></div>
-                <div class="col-md-3 form-group">
-                    <label for="hrsIndividual" class="label-cotrol">Clases Grupales</label>
-                    <input type="text" id="hrsGrupal" name="hrsGrupal" placeholder="Clases Individuales" class="form-control" readonly>
-                </div>
-                <div class="col-md-3 form-group">
-                    <label for="pagoIndividual" class="label-cotrol">Pago por Clase</label>
-                    <input type="text" id="pagoGrupal" name="pagoGrupal" placeholder="Pago por Clase" class="form-control" readonly>
-                </div>
-                <div class="col-md-3 form-group">
-                    <label for="totalIndividual" class="label-cotrol">Total Grupal</label>
-                    <input type="text" id="totalGrupal" name="totalGrupal" placeholder="Total" class="form-control" readonly>
-                </div>
+                    </tbody>
+                </table>
+                    <input type="hidden" id="datos">
 
-                <div class="col-md-12">
-                    <br></div>
-            <div class="col-md-1"></div>
-                <div class="col-md-3 form-group">
-                    <label for="hrsIndividual" class="label-cotrol">Clases Especiales</label>
-                    <input type="text" id="hrsEspecial" name="totalEspecial" placeholder="Clases Individuales" class="form-control" readonly>
-                </div>
-                <div class="col-md-3 form-group">
-                    <label for="pagoIndividual" class="label-cotrol">Pago por Clase</label>
-                    <input type="text" id="pagoEspecial" name="totalEspecial" placeholder="Pago por Clase" class="form-control" readonly>
-                </div>
-                <div class="col-md-3 form-group">
-                    <label for="totalIndividual" class="label-cotrol">Total Especial</label>
-                    <input type="text" id="totalEspecial" name="totalEspecial" placeholder="Total" class="form-control" readonly>
-                </div>
-
-                <div class="col-md-12">
-                    <br></div>
-            <div class="col-md-7"></div>
-                <div class="col-md-3">
-                    <label for="totalPago" class="label-cotrol">Pago Total</label>
-                    <input type="text" id="totalPago" name="totalPago" placeholder="Pago Total" class="form-control" readonly>
-                </div>
-                <div class="col-md-12">
-                    <hr></div>
-            <input type="hidden" id="datos">
-
-            <div class="col-md-10" align="right"><a id="export" class="btn btn-primary">exportar</a></div>
+            <!--div class="col-md-10" align="right"><a id="export" class="btn btn-primary">exportar</a></div-->
 
 
             <br>

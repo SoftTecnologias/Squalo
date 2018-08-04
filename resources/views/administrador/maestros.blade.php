@@ -216,25 +216,49 @@
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Individual">Individual:</label>
-                                <div class="col-md-5">
+                                <div class="col-md-2">
                                     <input id="Individual" name="Individual" placeholder="" class="form-control input-md"
                                            required="" type="text">
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="pit" placeholder="" class="form-control input-md"
+                                           required="" type="text" disabled>
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="pi" placeholder="" class="form-control input-md"
+                                           required="" type="text" disabled="">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Grupal">Grupal:</label>
-                                <div class="col-md-5">
+                                <div class="col-md-2">
                                     <input id="Grupal" name="Grupal" placeholder="" class="form-control input-md"
                                            required="" type="text">
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="pgt" placeholder="" class="form-control input-md"
+                                           required="" type="text" disabled>
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="pg" placeholder="" class="form-control input-md"
+                                           required="" type="text" disabled="">
                                 </div>
                             </div>
 
                             <!-- Text input-->
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="Especial">Especial:</label>
-                                <div class="col-md-5">
+                                <div class="col-md-2">
                                     <input id="Especial" name="Especial" placeholder="" class="form-control input-md" type="text">
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="pet" placeholder="" class="form-control input-md"
+                                           required="" type="text" disabled>
+                                </div>
+                                <div class="col-md-2">
+                                    <input id="pe" placeholder="" class="form-control input-md"
+                                           required="" type="text" disabled="">
                                 </div>
                             </div>
                         </fieldset>

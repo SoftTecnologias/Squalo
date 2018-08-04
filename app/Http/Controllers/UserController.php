@@ -150,7 +150,7 @@ class UserController extends Controller
                $padres = Padre::all();
                $tipos= Tipos::all();
                $maestros = Maestro::all();
-               $horarios = Horarios::all();
+               $horarios = Horarios::orderBy('Hora')->get();
                return view('administrador.alumnos',['padres' => $padres,'tipos' => $tipos,'maestros' => $maestros,
                    'horarios' => $horarios]);
            } else {
@@ -250,6 +250,23 @@ class UserController extends Controller
                 $cookie = Cookie::get('admin');
 
                 return view('administrador.promocion');
+            } else {
+                //no existe una session de administrador y lo manda al login
+                return view('login');
+            }
+        }catch (Exception $e){
+            return $e;
+        }
+    }
+
+    public function getReporteSemanalForm(Request $request){
+        try{
+            if ($request->cookie('admin') != null) {
+                //Existe la cookie, solo falta averiguar que rol es
+                $cookie = Cookie::get('admin');
+                $maestros = Maestro::all();
+                $horarios = Horarios::orderBy('Hora')->get();
+                return view('administrador.semanal',["maestros" => $maestros,"horarios"=>$horarios]);
             } else {
                 //no existe una session de administrador y lo manda al login
                 return view('login');
