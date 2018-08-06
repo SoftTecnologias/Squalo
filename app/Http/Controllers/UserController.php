@@ -275,4 +275,21 @@ class UserController extends Controller
             return $e;
         }
     }
+
+    public function getHorario(Request $request){
+        try{
+            if ($request->cookie('admin') != null) {
+                //Existe la cookie, solo falta averiguar que rol es
+                $cookie = Cookie::get('admin');
+                $maestros = Maestro::all();
+                $horarios = Horarios::orderBy('Hora')->get();
+                return view('administrador.horarios',["maestros" => $maestros,"horarios"=>$horarios]);
+            } else {
+                //no existe una session de administrador y lo manda al login
+                return view('login');
+            }
+        }catch (Exception $e){
+            return $e;
+        }
+    }
 }

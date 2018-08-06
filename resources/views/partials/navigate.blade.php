@@ -16,6 +16,7 @@
         </li>
         <li id="rutetipos"><a href="{{route('index.tipos')}}">Tipos de Clases</a></li>
         <li id="ruteasistencia"><a href="{{route('index.asistencias')}}">Asistencias</a></li>
+        <li id="rutehorarios"><a href="{{route('index.horario')}}">Horario Semanal</a></li>
         <li>
             <br>
             <b>Reportes</b>

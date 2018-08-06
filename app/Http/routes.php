@@ -54,6 +54,11 @@ Route::get('/',[
     'as' => 'index'
 ]);
 
+Route::get('/horario',[
+    'uses' => 'UserController@getHorario',
+    'as' => 'index.horario'
+]);
+
 Route::get('/maestros',[
     'uses' => 'UserController@getMaestrosForm',
     'as' => 'index.maestros'
@@ -215,4 +220,8 @@ Route::get('exportallpdf/{id}', [
 
 Route::get('/getrepsemanal/{id}', [
     'uses' => 'semanalController@getRepSemanal'
+]);
+
+Route::get('/gethorariosemanal', [
+    'uses' => 'semanalController@getCalSemanal'
 ]);
