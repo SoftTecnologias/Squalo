@@ -8,19 +8,19 @@ $(function() {
         item = $('#Individual').val();
 
         item = item.split('%');
-        $('#pi').val((100*(item[0]/100)));
+        $('#pi').val('$'+(100*(item[0]/100))+" pesos");
     });
     $('#Grupal').keyup(function () {
         item = $('#Grupal').val();
 
         item = item.split('%');
-        $('#pg').val((100*(item[0]/100)));
+        $('#pg').val('$'+(100*(item[0]/100))+" pesos");
     });
     $('#Especial').keyup(function () {
         item = $('#Especial').val();
 
         item = item.split('%');
-        $('#pe').val((100*(item[0]/100)));
+        $('#pe').val('$'+(100*(item[0]/100))+" pesos");
     });
 
     $('#btnMaestro').on('click',function () {
@@ -73,9 +73,9 @@ $(function() {
                         $('#Grupal').val(item['claseGrupal']+'%');
                         $('#Especial').val(item['claseEspecial']+'%');
 
-                        $('#pi').val((100*(item['claseIndividual']/100)));
-                        $('#pg').val((100*(item['claseGrupal']/100)));
-                        $('#pe').val((100*(item['claseEspecial']/100)));
+                        $('#pi').val('$'+(100*(item['claseIndividual']/100))+" pesos");
+                        $('#pg').val('$'+(100*(item['claseGrupal']/100))+" pesos");
+                        $('#pe').val('$'+(100*(item['claseEspecial']/100))+" pesos");
                     });
                 }
             });

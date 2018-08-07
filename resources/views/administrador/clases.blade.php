@@ -75,5 +75,35 @@
             </div>
         </div>
     </div>
-    <footer class="text-right"><h6>This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></h6></footer>
+
+    <div class="modal fade" id="modalJustifica" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Nuevo Horario</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" id="idclase">
+                        <input type="hidden" id="idalumno">
+                        <label for="fecha">fecha a justificar</label>
+                        <input type="text" id="fecha" disabled class="form-control">
+
+                        <label for="nfecha">Nueva fecha</label>
+                        <input type="date" class="form-control" id="nfecha">
+
+                        <label for="motivo">Motivo</label>
+                        <textarea id="motivo" cols="30" rows="10" class="form-control"></textarea>
+                    </form>
+                    <hr>
+                    <hr>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" data-dismiss="modal" id="justifica">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection

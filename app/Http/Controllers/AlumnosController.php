@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Alumno;
+use App\Justificante;
 use App\pagos;
 use App\Tipos;
 use DateTime;
@@ -429,6 +430,16 @@ class AlumnosController extends Controller
             $respuesta = ["code" => 200, "msg" => 'El Alumno se dio de Alta Correctamente', 'detail' => 'success'];
         } catch (Exception $e) {
             $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
+        }
+        return Response::json($respuesta);
+    }
+
+    function getJustificantes($id){
+        try {
+            $justificantes = Justificante::where('idAlumno','=',$id)->get();
+            $respuesta = ["code"=>200, 'data'=>$justificantes,"detail"=>"success"];
+        }catch(Exception $e){
+            $respuesta = ["code"=>500, "msg"=>$e->getMessage(),"detail"=>"error"];
         }
         return Response::json($respuesta);
     }

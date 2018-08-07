@@ -51,6 +51,9 @@ $(function () {
     });
     $("#ruteasistencia").addClass('active');
     $("#rutehome").removeClass('active');
+    $("#btnAsistencia").on("click",function () {
+       $("#modalAsistencia").modal("hide");
+    });
     $('#tablaAsistencias').DataTable({
         'scrollX':true,
         'scrollY':'600px',

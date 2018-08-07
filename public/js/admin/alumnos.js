@@ -326,7 +326,7 @@ $(function() {
                 return str;
             }},
             {data: function (row) {
-                str = (row['asignado']==0) ? row['adeudo'] : row["adeudo"]+'<a id="adeudo'+row['id']+'" class="btn btn-warning btn-xs" onclick="pago('+row['id']+')">pago</a>';
+                str = (row['asignado']==0) ? '$'+row['adeudo'] : '$'+row["adeudo"]+'<a id="adeudo'+row['id']+'" class="btn btn-warning btn-xs" onclick="pago('+row['id']+')">pago</a>';
                 return str;
             }},
             {data: function (row) {
@@ -334,6 +334,7 @@ $(function() {
                 str += (row['asignado']==1) ? " <button id='btninfo"+row['id']+"' onclick='infoAlumno(\""+row['id']+"\")' class='btn btn-info btn-xs col-md-4'>Info</button>":
                     " <button id='btnasignar"+row['id']+"' onclick='asigna(\""+row['id']+"\",\""+row['nombre']+"\")' class='btn btn-success btn-xs col-md-4'>Asignar</button>";
                 str += "<button id='btnEliminar"+row['id']+"' onclick='baja(\""+row['id']+"\")' class='btn btn-danger btn-xs col-md-4'>Baja</button>";
+                str += "<button id='just"+row['id']+"' onclick='just(\""+row['id']+"\",\""+row['nombre']+"\")' class='btn btn-success btn-xs col-md-4'>Just</button>";
                 str += "</div>";
 
                 (row['activo'] == 0) ?  str = "<div align='center'><button id='btnAlta"+row['id']+"' onclick='alta(\""+row['id']+"\")' class='btn btn-info btn-xs col-md-4'>Alta</button></div>":'';
@@ -646,4 +647,38 @@ function alta(id){
             }
         });
     });
+}
+
+function just(id,name) {
+    $("#jFechas").empty();
+    $("#jname").val(name);
+
+        $.ajax({
+            type: "get",
+            url: document.location.protocol+'//'+document.location.host+""  +'/alumnos/'+id+'/getjustificantes',
+            success: function (data) {
+                if(data['code'] == 500){
+                    console.log(data['data']);
+                    return;
+                }
+                data['data'].forEach(function (item) {
+                    $('#jFechas').append('<div class="form-group">' +
+                        '<label class="col-md-4 control-label" for="'+item['fecha']+'" >Fecha:</label>'+
+                        ' <div class="col-md-5">' +
+                        '<input type="text" id="'+item['fecha']+'" name="'+item['fecha']+'"  class="form-control input-md" value="'+item['fecha']+'" disabled>' +
+                        '</div>' +
+                        '<div class="col-md-12">' +
+                        '<div class="col-md-2"></div>' +
+                        '<div class="col-md-8"><label for="jarea">Motivo</label></div>' +
+                        '</div>' +
+                        '<div class="col-md-2"></div>'+
+                        '<div class="col-md-8">' +
+                        '<textarea id="jarea" cols="15" rows="5" class="form-control" >'+item['motivo']+'</textarea>' +
+                        '</div>'+
+                        '</div>');
+                });
+            }
+        });
+
+        $('#modalJust').modal('show');
 }

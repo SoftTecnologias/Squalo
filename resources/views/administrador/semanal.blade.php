@@ -14,10 +14,13 @@
     <script type="text/javascript" src="{{asset('js/plugins/jquery.validate.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/plugins/fileinput.min.js')}}"></script>
     <script src="{{ asset('/js/index.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{asset('js/FileSaver.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/xlsx.core.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/tableExport.min.js')}}"></script>
     <script src="{{ asset('/js/admin/semanal.js') }}" type="text/javascript"></script>
 @endsection
 @section('content')
-    <div class="col-md-10">
+    <div class="col-md-10 col-lg-10">
         <hr>
         <div class="row"><h3>Reporte de Semanal</h3>
             <hr style="border-color:lightgray; width: 90%"></div>
@@ -38,7 +41,7 @@
 
                 <div class="row">
                     <div class="col-sm-12">
-                        <table class="table table-striped">
+                        <table class="table table-striped" id="tablaSemanal">
                             <thead>
                             <th>Horario</th>
                             <th>Lunes</th>
@@ -67,5 +70,7 @@
             </div>
         </div>
     </div>
-    <footer class="text-right"><h6>This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></h6></footer>
+    <div>
+        <button class="btn btn-warning" id="export">exportar a pdf</button>
+    </div>
 @endsection

@@ -32,7 +32,11 @@ $(function() {
        }
     });
 
-} );
+    $("#export").on("click",function () {
+        $('#tablaSemanal').tableExport({type: 'excel'});
+    });
+});
+
 function limpiarSeleccion() {
     $('#rutesemanal').addClass('active');
     $('#rutehome').removeClass('active');

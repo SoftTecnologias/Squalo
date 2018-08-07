@@ -28,14 +28,17 @@
 <body class="skin-blue sidebar-mini sidebar-collapse" background="{{asset("/img/fondo.jpg")}}">
 <div class="wrapper">
     @include('partials.header')
-    <div class="container">
+    <div class="container" style="background: whitesmoke;">
         <div class="row">
             @include('partials.navigate')
 
 <!-- contenido dinamico -->
             @yield('content')
+
+                @include('partials.footer')
         </div>
     </div>
+
 <!--footer del panel -->
 
 <!-- AdminLTE App -->

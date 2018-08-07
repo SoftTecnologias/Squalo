@@ -76,14 +76,13 @@
             </div>
         </div>
     </div>
-    <footer class="text-right"><h6>This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></h6></footer>
 
     <div class="modal" id="modalAsistencia">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick=""><i class="fa fa-times"></i></button>
-                    <h3 id="titulo-modal">Alumnos</h3>
+                    <h3 id="titulo-modal">Asistencias</h3>
                 </div>
                 <div class="model-body">
                     <form class="form-horizontal" enctype="multipart/form-data" id="alumnosForm">
@@ -132,7 +131,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="btnAlumno" class="btn btn-primary">Cerrar</button>
+                    <button id="btnAsistencia" class="btn btn-primary">Cerrar</button>
                 </div>
             </div>
         </div>

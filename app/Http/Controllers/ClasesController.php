@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\FechaClase;
+use App\GrupoAlumno;
+use App\Justificante;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 use yajra\Datatables\Datatables;
 
 class ClasesController extends Controller
@@ -21,7 +25,8 @@ class ClasesController extends Controller
             ->select('m.nombre as mnombre','m.ape_paterno as map','m.ape_materno as mam',
                 'p.nombre as pnombre','p.ape_paterno as pap','p.ape_materno as pam',
                 'a.nombre as anombre', 'a.ape_paterno as aap', 'a.ape_materno as aam',
-                'ga.asistencia as asisalumno','fc.fecha','am.asistencia as asismaestro','am.remplazo')
+                'ga.asistencia as asisalumno','fc.fecha','am.asistencia as asismaestro','am.remplazo',
+                'c.id as idclase','a.id as idalumno')
             ->join('maestros as m', 'c.idmaestro', '=', 'm.id')
             ->join('fecha_clase as fc', 'fc.idclase', '=', 'c.id')
             ->join('grupo as g', 'g.idfecha', '=', 'fc.id')
@@ -42,6 +47,27 @@ class ClasesController extends Controller
             }
         }
         return Datatables::of(collect($infoClases))->make(true);
+    }
+
+    function Justifica(Request $request,$id){
+        try {
+
+            Justificante::create([
+                'idAlumno' => $request->idalumno,
+                'fecha' => $request->actual,
+                'motivo' => $request->motivo
+            ]);
+
+            $clase = FechaClase::where('fecha', '=', $request->actual)->where('idclase', '=', $id)->first();
+
+            $clase->fecha = $request->nueva;
+            $clase->save();
+
+            return Response::json(["code" => 200,'error'=>"no"]);
+
+        }catch (Exception $e){
+            return Response::json(["code" => 500,'error'=>$e->getMessage()]);
+        }
     }
 
     /**

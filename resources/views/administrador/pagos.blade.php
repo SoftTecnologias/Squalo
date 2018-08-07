@@ -86,5 +86,4 @@
     </div>
 
 
-    <footer class="text-right"><h6>This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></h6></footer>
 @endsection

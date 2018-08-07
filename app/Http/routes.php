@@ -93,6 +93,10 @@ Route::get('/clases',[
     'as' => 'index.clases'
 ]);
 
+Route::post('/justifica/{id}',[
+   'uses' => 'ClasesController@Justifica'
+]);
+
 
 Route::get('/semanal',[
     'uses' => 'UserController@getReporteSemanalForm',
@@ -106,6 +110,10 @@ Route::post('/alumnos/{id}/asignar',[
 
 Route::post('/alumnos/{id}/asignargrupo',[
     'uses' => 'AlumnosController@asignargrupo'
+]);
+
+Route::get('/alumnos/{id}/getjustificantes',[
+   'uses' => 'AlumnosController@getJustificantes'
 ]);
 
 Route::get('/alumnos/{id}/getfechas',[

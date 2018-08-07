@@ -16,7 +16,7 @@
 
 @endsection
 @section('content')
-    <div class="col-md-10">
+    <div class="col-md-10 col-lg-10">
         <hr>
         <div class="row"><h3>Reporte de Reemplazo</h3>
             <hr style="border-color:lightgray; width: 90%"></div>
@@ -68,5 +68,4 @@
             </div>
         </div>
     </div>
-    <footer class="text-right"><h6>This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></h6></footer>
 @endsection

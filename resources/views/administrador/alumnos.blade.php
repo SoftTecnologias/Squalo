@@ -82,7 +82,6 @@
             </div>
         </div>
     </div>
-    <footer class="text-right"><h6>This Bootstrap 3 dashboard layout is compliments of <a href="http://www.bootply.com/85850"><strong>Bootply.com</strong></a></h6></footer>
 
     <div class="modal" id="modalAlumno">
         <div class="modal-dialog">
@@ -369,6 +368,35 @@
                 </div>
                 <div class="modal-footer">
                     <button id="btnGuardarCambios" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="modalJust">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick=""><i class="fa fa-times"></i></button>
+                    <h3 id="titulo-modal">Alumnos</h3>
+                </div>
+                <div class="model-body">
+                    <form class="form-horizontal" enctype="multipart/form-data" id="alumnosInfoForm">
+                        <fieldset>
+                            <br>
+                            <div class="form-group">
+                                <label class="col-md-4 control-label" for="jname">Nombre:</label>
+                                <div class="col-md-5">
+                                    <input id="jname" name="jname" placeholder="" class="form-control input-md" required=""
+                                           type="text" disabled>
+                                </div>
+                            </div>
+
+                            <div id="jFechas" class="form-group">
+
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
             </div>
         </div>
