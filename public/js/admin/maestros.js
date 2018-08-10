@@ -108,6 +108,8 @@ $(function() {
                     "\""+row["colonia"]+"\"," +
                     "\""+row["calle"]+"\"," +
                     ""+row["numero"]+"," +
+                    "\""+row["RFC"]+"\"," +
+                    "\""+row["Trabajo"]+"\"," +
                     "\""+row["tel_fijo"]+"\"," +
                     "\""+row["tel_celular"]+"\"," +
                     "\""+row["fecha_nac"]+"\"," +
@@ -270,6 +272,8 @@ function reset(){
     $('#tel').val('');
     $('#phone').val('');
     $('#email').val('');
+    $('#rfc').val('');
+    $('#trabajo').val('');
 }
 function deleteMaestro(id){
     swal({
@@ -326,7 +330,7 @@ function updateMaestro(){
         swal("Error","Tuvimos un problema de conexion","error");
     });
 }
-function showMaestro(id,nombre, ape_pat, ape_mat, col, calle, num, telfij, telcel, fechanac, email){
+function showMaestro(id,nombre, ape_pat, ape_mat, col, calle, num,rfc,trabajo, telfij, telcel, fechanac, email){
     $('#titulo-modal').text("Editar Maestro");
     $('#maestroid').val(id);
     $('#name').val(nombre);
@@ -338,6 +342,8 @@ function showMaestro(id,nombre, ape_pat, ape_mat, col, calle, num, telfij, telce
     $('#numero').val(num);
     $('#tel').val(telfij);
     $('#phone').val(telcel);
+    $('#rfc').val(rfc);
+    $('#trabajo').val(trabajo);
     $('#email').val(email);
     $('#modalMaestros').modal('show');
 }

@@ -1,5 +1,9 @@
 $(function() {
     limpiarSeleccion();
+    $("#export").on("click",function () {
+        $('#tablaPagos').tableExport({type: 'excel'});
+    });
+
     $('#datepicker').datepicker({
         format: 'yyyy-mm-dd',
         autoclose: false,
@@ -81,6 +85,8 @@ function consulta() {
             clases = json.msg.clases;
             datos = json.msg;
             $('#cuerpo').empty();
+            $('#mname').empty();
+            $('#mname').append('<th colspan="5">'+$('#maestro option:selected').text()+'</th>');
             for(i=0; i<clases.length; i++){
                 $('#cuerpo').append('<tr>' +
                     '<td>'+clases[i].fecha+'</td>' +

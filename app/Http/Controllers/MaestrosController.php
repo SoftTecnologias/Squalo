@@ -54,6 +54,8 @@ class MaestrosController extends Controller
                 "calle"     => $request->input('calle'),
                 "numero"  => $request->input('numero'),
                 "tel_fijo"=> $request->input('tel'),
+                "RFC" => $request->input('rfc'),
+                "Trabajo" => $request->input('trabajo'),
                 "tel_celular" => $request->input('phone'),
                 "fecha_nac" => $request->input('fecha'),
                 "email" => $request->input('email')
@@ -114,6 +116,8 @@ class MaestrosController extends Controller
                 "tel_fijo"=> $request->input('tel'),
                 "tel_celular" => $request->input('phone'),
                 "fecha_nac" => $request->input('fecha'),
+                "RFC"  => $request->input('rfc'),
+                "Trabajo"  => $request->input('trabajo'),
                 "email" => $request->input('email')
             ]);
 

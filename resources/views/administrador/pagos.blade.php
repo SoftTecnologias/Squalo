@@ -16,6 +16,9 @@
     <script type="text/javascript" src="{{asset('js/plugins/jquery.validate.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/plugins/fileinput.min.js')}}"></script>
     <script src="{{asset('/js/bootstrap-datepicker.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/FileSaver.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/xlsx.core.min.js')}}"></script>
+    <script type="text/javascript" src="{{asset('js/tableExport.min.js')}}"></script>
     <script src="{{ asset('/js/index.js') }}" type="text/javascript"></script>
     <script src="{{ asset('/js/admin/pagos.js') }}" type="text/javascript"></script>
 
@@ -60,8 +63,10 @@
 
                 <hr style="border-color:lightgray; width: 90%">
 
-                <table class="table table-striped">
+                <table class="table table-striped" id="tablaPagos">
                     <thead class="bg-success">
+                    <tr id="mname">
+                    </tr>
                         <tr>
                             <th>Fecha</th>
                             <th>Grupo</th>
@@ -84,6 +89,8 @@
         </form>
 
     </div>
-
+    <div>
+        <button class="btn btn-warning" id="export">exportar a Excel</button>
+    </div>
 
 @endsection

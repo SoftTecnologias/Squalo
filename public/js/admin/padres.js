@@ -153,8 +153,6 @@ $(function() {
                 str = "<div align='center'>";
                 str +=" <button id='btnEditar"+row['id']+"' onclick='showPadre(\""+row["id"]+"\"," +
                     "\""+row["nombre"]+"\"," +
-                    "\""+row["RFC"]+"\"," +
-                    "\""+row["Trabajo"]+"\"," +
                     "\""+row["ape_paterno"]+"\"," +
                     "\""+row["ape_materno"]+"\"," +
                     "\""+row["colonia"]+"\"," +
@@ -215,8 +213,6 @@ function reset(){
     $('#calle').val('');
     $('#numero').val('');
     $('#tel').val('');
-    $('#rfc').val('');
-    $('#trabajo').val('');
     $('#phone').val('');
     $('#email').val('');
 }
@@ -275,7 +271,7 @@ function updatePadre(){
         swal("Error","Tuvimos un problema de conexion","error");
     });
 }
-function showPadre(id,nombre,rfc,trabajo, ape_pat, ape_mat, col, calle, num, telfij, telcel, fechanac, email){
+function showPadre(id,nombre, ape_pat, ape_mat, col, calle, num, telfij, telcel, fechanac, email){
     $('#titulo-modal').text("Editar Padre");
     $('#padreid').val(id);
     $('#name').val(nombre);
@@ -286,9 +282,6 @@ function showPadre(id,nombre,rfc,trabajo, ape_pat, ape_mat, col, calle, num, tel
     $('#calle').val(calle);
     $('#numero').val(num);
     $('#tel').val(telfij);
-    $('#tel').val(telfij);
-    $('#rfc').val(rfc);
-    $('#trabajo').val(trabajo);
     $('#phone').val(telcel);
     $('#email').val(email);
     $('#modalPadres').modal('show');

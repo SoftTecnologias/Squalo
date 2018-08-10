@@ -4,30 +4,19 @@
     <list default="true" id="d81386b7-592a-4e14-b65d-9a97bcddc676" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AlumnosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AlumnosController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClasesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClasesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/fondo.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/img/fondo.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MaestrosController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MaestrosController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PadresController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PadresController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Maestro.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Maestro.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Padre.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Padre.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/admin/alumnos.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/alumnos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin/asistencias.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/asistencias.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin/clases.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/clases.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin/horarios.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/horarios.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/admin/maestros.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/maestros.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin/semanal.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/semanal.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/admin/tipos_clase.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/tipos_clase.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/alumnos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/alumnos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/asistencias.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/asistencias.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/clases.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/clases.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/admin/padres.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/padres.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/admin/pagos.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/admin/pagos.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/administrador/horarios.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/horarios.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/administrador/maestros.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/maestros.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/administrador/padresForm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/padresForm.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/administrador/pagos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/pagos.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/promocion.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/promocion.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/reemplazos.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/reemplazos.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/administrador/semanal.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/semanal.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/administrador/tipoclase.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/administrador/tipoclase.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/administracion.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/administracion.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/partials/navigate.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partials/navigate.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -47,54 +36,45 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
+            <state relative-caret-position="1802">
               <caret line="115" column="48" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AlumnosController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AlumnosController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AlumnosController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="438" column="75" selection-start-line="438" selection-start-column="75" selection-end-line="438" selection-end-column="75" />
+            <state relative-caret-position="103">
+              <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
               <folding>
                 <element signature="e#40#55#0#PHP" expanded="true" />
-                <element signature="e#418#882#0#PHP" />
-                <element signature="e#1002#1049#0#PHP" />
-                <element signature="e#1218#2062#0#PHP" />
-                <element signature="e#2194#2242#0#PHP" />
-                <element signature="e#2900#4960#0#PHP" />
-                <element signature="e#4966#6986#0#PHP" />
-                <element signature="e#6992#7764#0#PHP" />
-                <element signature="e#7770#8537#0#PHP" />
-                <element signature="e#8543#9055#0#PHP" />
-                <element signature="e#9061#9849#0#PHP" />
-                <element signature="e#9855#10704#0#PHP" />
-                <element signature="e#10710#11321#0#PHP" />
-                <element signature="e#11327#11753#0#PHP" />
-                <element signature="e#11759#12226#0#PHP" />
-                <element signature="e#12232#12723#0#PHP" />
-                <element signature="e#12729#13826#0#PHP" />
-                <element signature="e#13832#14354#0#PHP" />
-                <element signature="e#14360#14887#0#PHP" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clases.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public/js/admin/clases.js">
+      <file leaf-file-name="semanalController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/semanalController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
+            <state relative-caret-position="127">
+              <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="38" />
               <folding>
-                <element signature="e#71#1957#0" />
-                <element signature="e#2203#2219#0" />
-                <element signature="n#!!block;n#limpiarSeleccion#0" />
-                <element signature="n#!!block;n#comparafecha#0" />
-                <element signature="n#!!block;n#f#0" />
+                <element signature="e#40#57#0#PHP" expanded="true" />
+                <element signature="e#6906#7686#0#PHP" />
+                <element signature="e#7692#14131#0#PHP" />
+                <element signature="e#14137#15005#0#PHP" />
+                <element signature="e#15011#16462#0#PHP" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pagos.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/administrador/pagos.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="86">
+              <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -102,8 +82,8 @@
       <file leaf-file-name="alumnos.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/public/js/admin/alumnos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-81">
-              <caret line="652" column="26" selection-start-line="652" selection-start-column="26" selection-end-line="652" selection-end-column="26" />
+            <state relative-caret-position="222">
+              <caret line="359" column="56" selection-start-line="359" selection-start-column="56" selection-end-line="359" selection-end-column="56" />
               <folding>
                 <element signature="e#205#849#0" />
                 <element signature="e#898#1555#0" />
@@ -116,7 +96,6 @@
                 <element signature="e#8403#10121#0" />
                 <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
                 <element signature="n#!!block;n#newAlumno#0" />
-                <element signature="e#12985#13283#0" />
                 <element signature="n#!!block;n#asigna#0" />
                 <element signature="n#!!block;n#asignarAlumno#0" />
                 <element signature="n#!!block;n#asignarAlumnoGrupal#0" />
@@ -131,27 +110,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="alumnos.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/administrador/alumnos.blade.php">
+      <file leaf-file-name="semanal.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/admin/semanal.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="379" column="105" selection-start-line="379" selection-start-column="105" selection-end-line="379" selection-end-column="105" />
+            <state relative-caret-position="119">
+              <caret line="36" column="7" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="36" selection-end-column="7" />
               <folding>
-                <element signature="e#1489#4629#0#HTML" />
-                <element signature="e#4635#9032#0#HTML" />
-                <element signature="e#9038#14567#0#HTML" />
-                <element signature="e#14573#16993#0#HTML" />
-                <element signature="e#16999#20576#0#HTML" />
+                <element signature="e#82#1492#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="clases.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/administrador/clases.blade.php">
+      <file leaf-file-name="pagos.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/public/js/admin/pagos.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="99">
-              <caret line="96" column="86" selection-start-line="96" selection-start-column="46" selection-end-line="96" selection-end-column="86" />
+            <state relative-caret-position="137">
+              <caret line="88" column="77" selection-start-line="88" selection-start-column="77" selection-end-line="88" selection-end-column="77" />
+              <folding>
+                <element signature="e#71#205#0" />
+                <element signature="e#275#312#0" />
+                <element signature="e#366#1319#0" />
+                <element signature="e#1365#1405#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -181,6 +162,7 @@
       <find>limpiarSeleccion</find>
       <find>clases</find>
       <find>texta</find>
+      <find>pdf</find>
     </findStrings>
     <replaceStrings>
       <replace>180</replace>
@@ -193,10 +175,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/vendor/anouar/fpdf/src/Anouar/Fpdf/Facades/Fpdf.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2017_09_09_014728_table_pago_por_clase.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2017_08_21_194044_table_alumnos.php" />
-        <option value="$PROJECT_DIR$/app/Alumno.php" />
         <option value="$PROJECT_DIR$/resources/views/login.php" />
         <option value="$PROJECT_DIR$/public/css/login.css" />
         <option value="$PROJECT_DIR$/app/User.php" />
@@ -208,31 +186,21 @@
         <option value="$PROJECT_DIR$/database/migrations/2018_08_04_005855_add_column_to_asistencia_maestro.php" />
         <option value="$PROJECT_DIR$/app/AsistenciaMaestro.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/AsistenciasController.php" />
-        <option value="$PROJECT_DIR$/public/js/admin/pagos.js" />
         <option value="$PROJECT_DIR$/database/migrations/2018_08_04_063903_add_column_to_padres.php" />
-        <option value="$PROJECT_DIR$/app/Padre.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/PadresController.php" />
-        <option value="$PROJECT_DIR$/public/js/admin/padres.js" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PagosController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/semanalController.php" />
         <option value="$PROJECT_DIR$/public/js/admin/tipos_clase.js" />
-        <option value="$PROJECT_DIR$/public/js/admin/maestros.js" />
         <option value="$PROJECT_DIR$/public/js/admin/semanal.js" />
-        <option value="$PROJECT_DIR$/resources/views/administrador/semanal.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/navigate.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/partials/footer.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/administracion.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/administrador/reemplazos.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/administrador/promocion.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/administrador/pagos.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/administrador/padresForm.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/administrador/maestros.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/administrador/tipoclase.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/administrador/asistencias.blade.php" />
         <option value="$PROJECT_DIR$/public/js/admin/asistencias.js" />
-        <option value="$PROJECT_DIR$/resources/views/administrador/horarios.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2018_08_07_002935_Table_Justificaciones.php" />
         <option value="$PROJECT_DIR$/app/Justificante.php" />
         <option value="$PROJECT_DIR$/resources/views/administrador/clases.blade.php" />
@@ -241,9 +209,23 @@
         <option value="$PROJECT_DIR$/public/js/admin/horarios.js" />
         <option value="$PROJECT_DIR$/public/js/admin/clases.js" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/AlumnosController.php" />
-        <option value="$PROJECT_DIR$/public/js/admin/alumnos.js" />
         <option value="$PROJECT_DIR$/resources/views/administrador/alumnos.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2018_08_10_011414_remove_columns_padres.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2018_08_10_011603_add_columns_maestros.php" />
+        <option value="$PROJECT_DIR$/app/Padre.php" />
+        <option value="$PROJECT_DIR$/app/Maestro.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/PadresController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MaestrosController.php" />
+        <option value="$PROJECT_DIR$/resources/views/administrador/padresForm.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/administrador/maestros.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/admin/maestros.js" />
+        <option value="$PROJECT_DIR$/public/js/admin/padres.js" />
+        <option value="$PROJECT_DIR$/resources/views/administrador/semanal.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/administrador/horarios.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/administrador/pagos.blade.php" />
+        <option value="$PROJECT_DIR$/public/js/admin/pagos.js" />
+        <option value="$PROJECT_DIR$/public/js/admin/alumnos.js" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/AlumnosController.php" />
       </list>
     </option>
   </component>
@@ -581,12 +563,13 @@
       <workItem from="1533309499681" duration="24356000" />
       <workItem from="1533423889135" duration="5134000" />
       <workItem from="1533524649713" duration="6413000" />
-      <workItem from="1533584313928" duration="18105000" />
+      <workItem from="1533584313928" duration="18371000" />
+      <workItem from="1533863550226" duration="8244000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="284358000" />
+    <option name="totallyTimeSpent" value="292868000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -627,16 +610,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_08_23_012630_tabla_horarios.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_08_24_012341_tabla_clase.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-102" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2017_08_24_013811_tabla_grupo.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-153" />
@@ -646,13 +619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="16" column="37" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2017_08_21_194044_table_alumnos.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
-          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -677,52 +643,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Padre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PadresController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="110" column="54" selection-start-line="110" selection-start-column="54" selection-end-line="110" selection-end-column="54" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2017_09_09_014728_table_pago_por_clase.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-277" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/admin/padres.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2652">
-          <caret line="156" column="37" selection-start-line="156" selection-start-column="37" selection-end-line="156" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PagosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="270" column="27" selection-start-line="270" selection-start-column="27" selection-end-line="270" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/semanalController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="434" column="33" selection-start-line="434" selection-start-column="33" selection-end-line="434" selection-end-column="33" />
-          <folding>
-            <element signature="e#40#57#0#PHP" expanded="true" />
-            <element signature="e#215#6900#0#PHP" />
-            <element signature="e#6906#7686#0#PHP" />
-            <element signature="e#7692#14131#0#PHP" />
-            <element signature="e#14137#15005#0#PHP" />
-            <element signature="e#15011#16462#0#PHP" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AsistenciasController.php">
@@ -743,51 +666,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="41">
           <caret line="6" selection-start-line="6" selection-end-line="6" />
-          <folding>
-            <element signature="e#84#178#0" />
-            <element signature="e#2148#2185#0" />
-            <element signature="e#2240#3722#0" />
-            <element signature="e#3767#3807#0" />
-            <element signature="e#3841#5291#0" />
-          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/admin/pagos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="92" column="22" lean-forward="true" selection-start-line="92" selection-start-column="22" selection-end-line="92" selection-end-column="22" />
-          <folding>
-            <element signature="e#71#205#0" />
-            <element signature="e#275#312#0" />
-            <element signature="e#366#1319#0" />
-            <element signature="e#1365#1405#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/admin/maestros.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="53" selection-start-line="10" selection-start-column="53" selection-end-line="10" selection-end-column="53" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/js/admin/semanal.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="36" column="7" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="36" selection-end-column="7" />
-          <folding>
-            <element signature="e#82#1492#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partials/footer.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/partials/navigate.blade.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -800,30 +680,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="30" column="57" selection-start-line="30" selection-start-column="57" selection-end-line="30" selection-end-column="57" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/administrador/maestros.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="272" selection-start-line="272" selection-end-line="272" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/administrador/padresForm.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="204" selection-start-line="204" selection-end-line="204" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/administrador/pagos.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="488">
-          <caret line="88" selection-start-line="88" selection-end-line="88" />
         </state>
       </provider>
     </entry>
@@ -838,13 +694,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="502">
           <caret line="70" selection-start-line="70" selection-end-line="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/administrador/semanal.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
-          <caret line="74" column="10" selection-start-line="74" selection-start-column="10" selection-end-line="74" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -880,33 +729,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="54" column="40" selection-start-line="54" selection-start-column="40" selection-end-line="54" selection-end-column="40" />
-          <folding>
-            <element signature="e#65#106#0" />
-            <element signature="e#155#1547#0" />
-            <element signature="e#1602#1650#0" />
-            <element signature="e#1696#2291#0" />
-            <element signature="e#2418#3502#0" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="e#3665#4755#0" />
-            <element signature="e#4801#5959#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/administrador/horarios.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="98" column="10" lean-forward="true" selection-start-line="71" selection-start-column="4" selection-end-line="98" selection-end-column="10" />
-          <folding>
-            <element signature="e#3364#4645#0#HTML" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2018_08_04_063903_add_column_to_padres.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="29" column="39" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -928,9 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="20" column="36" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="36" />
-          <folding>
-            <element signature="e#7#48#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -952,9 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="65" column="46" selection-start-line="65" selection-start-column="46" selection-end-line="65" selection-end-column="46" />
-          <folding>
-            <element signature="e#40#59#0#PHP" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -965,9 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/AsistenciaAlumno.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Justificante.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -977,64 +790,197 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
+        <state relative-caret-position="1802">
           <caret line="115" column="48" selection-start-line="115" selection-start-column="32" selection-end-line="115" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AlumnosController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="438" column="75" selection-start-line="438" selection-start-column="75" selection-end-line="438" selection-end-column="75" />
-          <folding>
-            <element signature="e#40#55#0#PHP" expanded="true" />
-            <element signature="e#418#882#0#PHP" />
-            <element signature="e#1002#1049#0#PHP" />
-            <element signature="e#1218#2062#0#PHP" />
-            <element signature="e#2194#2242#0#PHP" />
-            <element signature="e#2900#4960#0#PHP" />
-            <element signature="e#4966#6986#0#PHP" />
-            <element signature="e#6992#7764#0#PHP" />
-            <element signature="e#7770#8537#0#PHP" />
-            <element signature="e#8543#9055#0#PHP" />
-            <element signature="e#9061#9849#0#PHP" />
-            <element signature="e#9855#10704#0#PHP" />
-            <element signature="e#10710#11321#0#PHP" />
-            <element signature="e#11327#11753#0#PHP" />
-            <element signature="e#11759#12226#0#PHP" />
-            <element signature="e#12232#12723#0#PHP" />
-            <element signature="e#12729#13826#0#PHP" />
-            <element signature="e#13832#14354#0#PHP" />
-            <element signature="e#14360#14887#0#PHP" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/administrador/clases.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="99">
+        <state relative-caret-position="1632">
           <caret line="96" column="86" selection-start-line="96" selection-start-column="46" selection-end-line="96" selection-end-column="86" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/admin/clases.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
+        <state relative-caret-position="986">
           <caret line="58" column="43" selection-start-line="58" selection-start-column="43" selection-end-line="58" selection-end-column="43" />
           <folding>
-            <element signature="e#71#1957#0" />
-            <element signature="e#2203#2219#0" />
             <element signature="n#!!block;n#limpiarSeleccion#0" />
             <element signature="n#!!block;n#comparafecha#0" />
-            <element signature="n#!!block;n#f#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_08_10_011414_remove_columns_padres.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="15" column="11" lean-forward="true" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_08_04_063903_add_column_to_padres.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="31" column="5" lean-forward="true" selection-start-line="12" selection-start-column="3" selection-end-line="31" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Padre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Maestro.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="57" selection-start-line="12" selection-start-column="57" selection-end-line="12" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MaestrosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1123">
+          <caret line="172" column="41" lean-forward="true" selection-start-line="172" selection-start-column="41" selection-end-line="172" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2018_08_10_011603_add_columns_maestros.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="28" column="31" selection-start-line="28" selection-start-column="31" selection-end-line="28" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/administrador/alumnos.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="378" column="42" selection-start-line="378" selection-start-column="42" selection-end-line="378" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/administrador/padresForm.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7">
+          <caret line="156" column="46" selection-start-line="156" selection-start-column="46" selection-end-line="156" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/admin/maestros.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="332" column="77" selection-start-line="332" selection-start-column="77" selection-end-line="332" selection-end-column="77" />
+          <folding>
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/admin/padres.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="273" column="29" selection-start-line="273" selection-start-column="29" selection-end-line="273" selection-end-column="29" />
+          <folding>
+            <element signature="e#311#3806#0" />
+            <element signature="e#3875#3916#0" />
+            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/administrador/maestros.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="103">
+          <caret line="176" column="83" selection-start-line="176" selection-start-column="83" selection-end-line="176" selection-end-column="83" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/administrador/horarios.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="586">
+          <caret line="101" column="10" lean-forward="true" selection-start-line="99" selection-start-column="3" selection-end-line="101" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/administrador/semanal.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" column="85" selection-start-line="16" selection-start-column="3" selection-end-line="18" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/admin/semanal.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="36" column="7" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="36" selection-end-column="7" />
+          <folding>
+            <element signature="e#82#1492#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/js/admin/pagos.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="88" column="77" selection-start-line="88" selection-start-column="77" selection-end-line="88" selection-end-column="77" />
+          <folding>
+            <element signature="e#71#205#0" />
+            <element signature="e#275#312#0" />
+            <element signature="e#366#1319#0" />
+            <element signature="e#1365#1405#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2017_08_21_194044_table_alumnos.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="24" column="33" selection-start-line="24" selection-start-column="33" selection-end-line="24" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PadresController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="55" column="56" selection-start-line="55" selection-start-column="56" selection-end-line="55" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PagosController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4369">
+          <caret line="270" column="27" selection-start-line="270" selection-start-column="27" selection-end-line="270" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/semanalController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="25" column="33" selection-start-line="25" selection-start-column="33" selection-end-line="25" selection-end-column="38" />
+          <folding>
+            <element signature="e#40#57#0#PHP" expanded="true" />
+            <element signature="e#6906#7686#0#PHP" />
+            <element signature="e#7692#14131#0#PHP" />
+            <element signature="e#14137#15005#0#PHP" />
+            <element signature="e#15011#16462#0#PHP" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/administrador/pagos.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="67" column="35" selection-start-line="67" selection-start-column="35" selection-end-line="67" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/admin/alumnos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-81">
-          <caret line="652" column="26" selection-start-line="652" selection-start-column="26" selection-end-line="652" selection-end-column="26" />
+        <state relative-caret-position="222">
+          <caret line="359" column="56" selection-start-line="359" selection-start-column="56" selection-end-line="359" selection-end-column="56" />
           <folding>
             <element signature="e#205#849#0" />
             <element signature="e#898#1555#0" />
@@ -1047,7 +993,6 @@
             <element signature="e#8403#10121#0" />
             <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
             <element signature="n#!!block;n#newAlumno#0" />
-            <element signature="e#12985#13283#0" />
             <element signature="n#!!block;n#asigna#0" />
             <element signature="n#!!block;n#asignarAlumno#0" />
             <element signature="n#!!block;n#asignarAlumnoGrupal#0" />
@@ -1061,16 +1006,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/administrador/alumnos.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/AlumnosController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="379" column="105" selection-start-line="379" selection-start-column="105" selection-end-line="379" selection-end-column="105" />
+        <state relative-caret-position="103">
+          <caret line="46" column="17" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
           <folding>
-            <element signature="e#1489#4629#0#HTML" />
-            <element signature="e#4635#9032#0#HTML" />
-            <element signature="e#9038#14567#0#HTML" />
-            <element signature="e#14573#16993#0#HTML" />
-            <element signature="e#16999#20576#0#HTML" />
+            <element signature="e#40#55#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

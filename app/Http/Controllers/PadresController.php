@@ -54,8 +54,6 @@ class PadresController extends Controller
                 "tel_fijo"=> $request->input('tel'),
                 "tel_celular" => $request->input('phone'),
                 "fecha_nac" => $request->input('fecha'),
-                "RFC" => $request->input('rfc'),
-                "Trabajo" => $request->input('trabajo'),
                 "email" => $request->input('email')
             ]);
 
@@ -107,8 +105,6 @@ class PadresController extends Controller
                 "colonia"      => $request->input('colonia'),
                 "calle"     => $request->input('calle'),
                 "numero"  => $request->input('numero'),
-                "RFC"  => $request->input('rfc'),
-                "Trabajo"  => $request->input('trabajo'),
                 "tel_fijo"=> $request->input('tel'),
                 "tel_celular" => $request->input('phone'),
                 "fecha_nac" => $request->input('fecha'),

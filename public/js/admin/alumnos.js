@@ -341,6 +341,28 @@ $(function() {
                 return str;
             }}
         ],
+        "fnRowCallback": function( nRow, aData, iDisplayIndex, iDisplayIndexFull ) {
+            switch (aData['color'])
+            {
+                case 'verde':
+                    $('td',nRow).addClass('success');
+                    $('td',nRow,1).attr('style',"font-weight:blod");
+                    break;
+                case 'amarillo': $('td',nRow).addClass('warning');
+                    $('td',nRow,1).attr('style',"font-weight:bold");
+                    break;
+                case 'rojo': $('td',nRow).addClass('danger');
+                    $('td',nRow,1).attr('style',"font-weight:bold");
+                    break;
+                case 'blanco': $('td',nRow).addClass('default');
+                    $('td',nRow,1).attr('style',"font-weight:bold");
+                    break;
+                case 'azul': $('td',nRow).addClass('info');
+                    $('td',nRow,1).attr('style',"font-weight:bold");
+                    break;
+
+            }
+        },
         buttons: [
             'print'
         ],

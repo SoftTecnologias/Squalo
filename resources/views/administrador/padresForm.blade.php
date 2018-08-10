@@ -155,21 +155,6 @@
                                 </div>
                             </div>
                             <!-- Text input-->
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="rfc">RFC</label>
-                                <div class="col-md-5">
-                                    <input id="rfc" name="rfc" placeholder=""
-                                           class="form-control input-md" type="text">
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="col-md-4 control-label" for="phone">Trabaja en:</label>
-                                <div class="col-md-5">
-                                    <input id="trabajo" name="trabajo" placeholder=""
-                                           class="form-control input-md" type="text">
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <label class="col-md-4 control-label" for="fecha" >Fecha de Nacimiento:</label>

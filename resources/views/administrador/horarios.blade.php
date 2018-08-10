@@ -98,6 +98,6 @@
         </div>
     </div>
     <div>
-        <button class="btn btn-warning" id="export">exportar a pdf</button>
+        <button class="btn btn-warning" id="export">exportar a Excel</button>
     </div>
 @endsection
