@@ -12,6 +12,11 @@
 */
 //area de rutas para el administrador
 
+Route::get('/getadeudos',[
+    'as' => 'index.adeudo',
+    'uses' => 'AdeudosController@getAdeudos'
+]);
+
 Route::post('/send', [
     'as' => 'index.send',
     'uses' => 'MailController@send'

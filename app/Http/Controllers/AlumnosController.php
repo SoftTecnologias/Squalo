@@ -30,7 +30,7 @@ class AlumnosController extends Controller
             ->join('padres as p', 'padreid', '=', 'p.id')
             ->where('a.activo','=',1)
             ->get();
-
+        $hoy = strtotime('+0 day', strtotime($hoy));
         foreach ($alumnos as $alumno) {
             $al = DB::table('alumnos as a')->select(DB::raw('MAX(fc.fecha) as fecha'))
                 ->join('grupo_alumnos as ga', 'ga.idAlumno', '=', 'a.id')
@@ -58,7 +58,7 @@ class AlumnosController extends Controller
             } else {
                 if ($al->fecha != null) {
                     $fecha = strtotime('+0 day', strtotime($al->fecha));
-                    $hoy = strtotime('+0 day', strtotime($hoy));
+
                     if($alumno->asignado == 1 && $hoy > $fecha && $alumno->adeudo){
 
                     }

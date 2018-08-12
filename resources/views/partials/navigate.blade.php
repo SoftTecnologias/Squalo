@@ -27,6 +27,7 @@
         <li id="ruteclases"><a href="{{route('index.clases')}}">Clases</a></li>
         <li id="rutepagos"><a href="{{route('index.pagos')}}">Pagos</a></li>
         <li id="rutesemanal"><a href="{{route('index.semanal')}}">Semanal</a></li>
+        <li id="ruteadeudo"><a href="{{route('index.adeudo')}}">Adeudos</a></li>
         <li>
             <br>
             <b>Promociones</b>
