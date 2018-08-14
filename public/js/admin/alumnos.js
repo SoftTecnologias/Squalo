@@ -7,6 +7,9 @@ $(function() {
         autoclose: true
     });
 
+    $('#btnAbonoCerrar').on('click',function () {
+       $("#modalInfoAbono").modal('hide');
+    });
     $('#chactivos').on('change',function () {
        if($(this).is(':checked')){
            var filtro;
@@ -280,8 +283,9 @@ $(function() {
                         type: 'success',
                         title: 'Pago Registrado!',
                         html: 'Se abonaron: ' + abono+' a la cuenta'
-                    })
-                    $('#modalInfoAbono').modal("hide");
+                    });
+                    $('#export').removeAttr('href');
+                    $('#export').attr('href',document.location.protocol+'//'+document.location.host+"/alumno/pago/"+id+'&'+abono+'&'+json.msg);
                     $('#tablaAlumnos').dataTable().api().ajax.reload(null,false);
                 }else{
                     swal("Error",json.msg,json.detail);

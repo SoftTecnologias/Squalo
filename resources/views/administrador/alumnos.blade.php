@@ -299,7 +299,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button id="btnAlumnoAsignar" class="btn btn-primary">Asignar</button>
+                    <a id="export" href="" class="btn btn-warning">Imprimir Recibo</a>
+                    <button id="btnAbonoCerrar" class="btn btn-primary">Cerrar</button>
                 </div>
             </div>
         </div>

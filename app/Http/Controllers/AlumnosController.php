@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Anouar\Fpdf\Fpdf;
 use App\Alumno;
 use App\Justificante;
 use App\pagos;
@@ -305,6 +306,7 @@ class AlumnosController extends Controller
             $hoy = date ( 'Y-m-j' , $nuevafecha );
 
 
+
             $fecha = $hoy;
 
             $idpago = DB::table('pagos')->insertGetId([
@@ -314,7 +316,8 @@ class AlumnosController extends Controller
                 "fecha" => $fecha,
             ]);
 
-            $respuesta = ["code" => 200, "msg" => 'El maestros fue registrado exitosamente', 'detail' => 'success'];
+
+            $respuesta = ["code" => 200, "msg" => $idpago, 'detail' => 'success'];
         } catch (Exception $e) {
             $respuesta = ["code" => 500, "msg" => $e->getMessage(), 'detail' => 'warning'];
         }
@@ -494,6 +497,145 @@ class AlumnosController extends Controller
             $respuesta = ["code"=>500, "msg"=>$e->getMessage(),"detail"=>"error"];
         }
         return Response::json($respuesta);
+    }
+
+    function generaRecibo($id){
+
+        $datos = explode('&',$id);
+
+        $id = $datos[0];
+
+        date_default_timezone_set("America/Mexico_City");
+        $hoy = date("Y-m-j");
+
+        $alumno = DB::table('alumnos as a')->select('a.id', 'a.nombre', 'a.ape_paterno', 'a.ape_materno', 'a.adeudo', 'a.fecha_nac',
+            'p.nombre as npadre', 'p.ape_paterno as appadre', 'p.ape_materno as ampadre','p.colonia','p.calle','p.numero',
+            'p.tel_celular')
+            ->join('padres as p', 'padreid', '=', 'p.id')
+            ->where('a.id','=',$id)
+            ->first();
+
+        $final = DB::table('alumnos as a')->select(DB::raw('MAX(fc.fecha) as fecha'),'h.Hora','descripcion')
+            ->join('grupo_alumnos as ga', 'ga.idAlumno', '=', 'a.id')
+            ->join('grupo as g', 'g.id', '=', 'ga.idGrupo')
+            ->join('fecha_clase as fc', 'fc.id', '=', 'g.idfecha')
+            ->join('clase as c','c.id','=','fc.idclase')
+            ->join('horarios as h','h.id','=','c.idhorario')
+            ->join('tipo_clase as tc','tc.id','=','c.idtipo_clase')
+            ->groupBy('Hora')
+            ->groupBy('descripcion')
+            ->where('a.id', '=', $id)
+            ->first();
+
+        $inicial = DB::table('alumnos as a')->select(DB::raw('MIN(fc.fecha) as fecha'))
+            ->join('grupo_alumnos as ga', 'ga.idAlumno', '=', 'a.id')
+            ->join('grupo as g', 'g.id', '=', 'ga.idGrupo')
+            ->join('fecha_clase as fc', 'fc.id', '=', 'g.idfecha')
+            ->where('a.id', '=', $id)
+            ->first();
+
+        $namea = $alumno->nombre.' '.$alumno->ape_paterno.' '.$alumno->ape_materno;
+        $namep = $alumno->npadre.' '.$alumno->appadre.' '.$alumno->ampadre;
+        $domicilio = $alumno->colonia.' calle: '.$alumno->calle.' #'.$alumno->numero;
+        $tel = $alumno->tel_celular;
+        $horario = $final->Hora;
+        $periodo = $inicial->fecha."  a  ".$final->fecha;
+        $categoria = $final->descripcion;
+        $total = $datos[1];
+        $idp = $datos[2];
+
+        $pdf = new Fpdf();
+        $pdf->addPage();
+        $pdf->SetFont('Arial', 'B', 8);
+        $pdf->Cell(700,85,$pdf->Image(asset('impresion.jpg'),5,12,200),0,0,'C');
+        $pdf->Cell(700,85,$pdf->Image(asset('impresion.jpg'),5,147,200),0,0,'C');
+
+        $pdf->Ln(8);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                             
+                                                                                            ".$idp);
+        $pdf->Ln(12);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                             
+                                                                                        ".$hoy);
+        $pdf->Ln(13);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                             ".$namea);
+
+        $pdf->Ln(8);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                             ".$namep);
+
+        $pdf->Ln(8);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                 ".$domicilio);
+
+        $pdf->Ln(10);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                 Nayarit                           
+                                    ".$tel);
+
+        $pdf->Ln(10);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                 ".$horario."                           
+         ".$periodo);
+
+        $pdf->Ln(9);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                 ".$categoria);
+
+        $pdf->Ln(42);
+        $pdf->SetFont('Arial', 'B', 14);
+        $pdf->Cell(500,12,"                                 "."
+                                                                                 ".$total);
+        $pdf->Ln(8);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"------------------------------------------------------------------------------------------------------------------------------------");
+
+        $pdf->Ln(15);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                             
+                                                                                            ".$idp);
+        $pdf->Ln(12);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                             
+                                                                                        ".$hoy);
+
+        $pdf->Ln(12);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                             ".$namea);
+
+        $pdf->Ln(8);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                             ".$namep);
+
+        $pdf->Ln(8);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                 ".$domicilio);
+
+        $pdf->Ln(10);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                 Nayarit                           
+                                    ".$tel);
+
+        $pdf->Ln(10);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                 ".$horario."                           
+         ".$periodo);
+
+        $pdf->Ln(9);
+        $pdf->SetFont('Arial', 'B', 12);
+        $pdf->Cell(500,12,"                                 ".$categoria);
+
+        $pdf->Ln(42);
+        $pdf->SetFont('Arial', 'B', 14);
+        $pdf->Cell(500,12,"                                 "."
+                                                                                 ".$total);
+
+        #$pdf->Output();
+        $fichero='Recibo.pdf';
+        $pdfdoc = $pdf->Output($fichero, "D");
+        exit;
     }
 }
 

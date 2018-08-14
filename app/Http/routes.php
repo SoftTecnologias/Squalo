@@ -238,3 +238,8 @@ Route::get('/getrepsemanal/{id}', [
 Route::get('/gethorariosemanal', [
     'uses' => 'semanalController@getCalSemanal'
 ]);
+
+Route::get('/alumno/pago/{id}',[
+    'uses' => 'AlumnosController@generaRecibo',
+    'as' => 'pdf.recibo'
+]);
